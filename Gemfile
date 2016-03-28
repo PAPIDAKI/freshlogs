@@ -36,8 +36,10 @@ gem 'gon'#to pass data from controller to js
 gem 'devise'
 gem 'milia'
 
+
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem 'bootstrap-datepicker-rails'
 gem 'rqrcode'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
