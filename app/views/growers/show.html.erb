@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grower.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @grower.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @grower.phone %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @grower.mobile %>
+</p>
+
+<p>
+  <strong>Vat:</strong>
+  <%= @grower.vat %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @grower.picture %>
+</p>
+
+<%= link_to 'Edit', edit_grower_path(@grower) %> |
+<%= link_to 'Back', growers_path %>

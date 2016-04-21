@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Growers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Mobile</th>
+      <th>Vat</th>
+      <th>Picture</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @growers.each do |grower| %>
+      <tr>
+        <td><%= grower.name %></td>
+        <td><%= grower.address %></td>
+        <td><%= grower.phone %></td>
+        <td><%= grower.mobile %></td>
+        <td><%= grower.vat %></td>
+        <td><%= grower.picture %></td>
+        <td><%= link_to 'Show', grower %></td>
+        <td><%= link_to 'Edit', edit_grower_path(grower) %></td>
+        <td><%= link_to 'Destroy', grower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grower', new_grower_path %>
