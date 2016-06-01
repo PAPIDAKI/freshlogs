@@ -1,0 +1,61 @@
+<%= form_for([@tenant,@project,@pmu]) do |f| %>
+  <% if @pmu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pmu.errors.count, "error") %> prohibited this pmu from being saved:</h2>
+
+      <ul>
+      <% @pmu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :produce %><br>
+    <%= f.text_field :produce %>
+  </div>
+  <div class="field">
+    <%= f.label :village %><br>
+    <%= f.text_field :village %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br>
+    <%= f.number_field :size %>
+  </div>
+  <div class="field">
+    <%= f.label :plants %><br>
+    <%= f.number_field :plants %>
+  </div>
+  <div class="field">
+    <%= f.label :production %><br>
+    <%= f.number_field :production %>
+  </div>
+  <div class="field">
+    <%= f.label :facilities %><br>
+    <%= f.text_field :facilities %>
+  </div>
+  <div class="field">
+    <%= f.label :certification %><br>
+    <%= f.text_field :certification %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

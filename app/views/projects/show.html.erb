@@ -23,3 +23,49 @@ edit_tenant_project_path(project: @project, tenant: @project.tenant_id), :class 
       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm",
       :default => 'Are you sure?')) },
       :class => 'btn btn-danger' %>
+      <br/>
+      <hr>
+      <h2>Logs</h2>
+
+
+
+
+     <hr>
+     <h2>Pmus</h2>
+  <p>
+     <%=link_to 'Add a Field',new_tenant_project_pmu_path(@tenant,@project,@pmu)%>
+  </p>
+  <div>
+  </div>
+
+
+  <hr>
+  <h2>globalGAP</h2>
+  <hr>
+
+<!-- 
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+ <!--  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Logs</a></li>
+    <li><a href="#tab2" data-toggle="tab">Fields</a></li>
+    <li><a href="#tab3" data-toggle="tab">globalGAP</a></li>
+  </ul>
+
+ -->
+  <!-- <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p> <p>I'm in Logs .</p>
+      <div>
+        
+      </div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Howdy, I'm in Fields </p>
+     <!--  <%=link_to 'Add a Field',new_tenant_project_pmu_path(@tenant,@project,@pmu)%> -->
+   <!--  </div>
+    <div class="tab-pane" id="tab3">
+      <p>Howdy, I'm in globalGAP </p>
+    </div>
+  </div> --> 
+<!-- </div> --> 

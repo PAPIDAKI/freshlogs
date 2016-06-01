@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :growers
   resources :tenants do
-    resources :projects
+    resources :projects do 
+      resources :pmus 
+    end
   end
+
+  resources :artifacts
 
 
   resources :members

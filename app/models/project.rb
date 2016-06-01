@@ -4,6 +4,9 @@ class Project < ActiveRecord::Base
 	validates_uniqueness_of :title
 	validate :free_plan_can_only_have_one_project
 
+	has_many :artifacts,dependent: :destroy
+	has_one :grower
+	has_many :pmus
 
 	def free_plan_can_only_have_one_project
 		if self.new_record? && (tenant.projects.count > 0) && (tenant.plan == 'free')

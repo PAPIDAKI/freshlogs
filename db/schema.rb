@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420163329) do
+ActiveRecord::Schema.define(version: 20160531121213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artifacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "artifacts", ["project_id"], name: "index_artifacts_on_project_id", using: :btree
 
   create_table "growers", force: :cascade do |t|
     t.string   "name"
@@ -38,13 +48,6 @@ ActiveRecord::Schema.define(version: 20160420163329) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "lots", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "lot"
-    t.integer  "purchase_id"
-  end
-
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
     t.integer  "user_id"
@@ -58,52 +61,37 @@ ActiveRecord::Schema.define(version: 20160420163329) do
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
   create_table "palet_line_items", force: :cascade do |t|
-    t.integer  "lot_id"
-    t.integer  "palet_id"
-    t.integer  "cartons"
-    t.string   "packing"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "palet_line_items", ["lot_id"], name: "index_palet_line_items_on_lot_id", using: :btree
-  add_index "palet_line_items", ["palet_id"], name: "index_palet_line_items_on_palet_id", using: :btree
-
   create_table "palets", force: :cascade do |t|
-    t.date     "date"
-    t.integer  "loading_id"
-    t.string   "code"
-    t.string   "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "paralavis", force: :cascade do |t|
-    t.integer  "kivotia"
-    t.integer  "kgs"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "purchase_id"
-    t.integer  "lot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pmus", force: :cascade do |t|
     t.string   "produce"
-    t.string   "nearest_village"
-    t.string   "area_name"
-    t.integer  "sq_area"
+    t.string   "village"
+    t.string   "location"
+    t.integer  "size"
     t.integer  "plants"
-    t.string   "usual_production"
+    t.integer  "production"
     t.string   "facilities"
     t.string   "certification"
-    t.integer  "grower_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "project_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "pmus", ["grower_id"], name: "index_pmus_on_grower_id", using: :btree
+  add_index "pmus", ["project_id"], name: "index_pmus_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
@@ -117,10 +105,6 @@ ActiveRecord::Schema.define(version: 20160420163329) do
   add_index "projects", ["tenant_id"], name: "index_projects_on_tenant_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
-    t.date     "date"
-    t.integer  "pmu_id"
-    t.float    "price"
-    t.string   "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,6 +118,11 @@ ActiveRecord::Schema.define(version: 20160420163329) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "tenant_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tenants", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -178,10 +167,10 @@ ActiveRecord::Schema.define(version: 20160420163329) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "artifacts", "projects"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
-  add_foreign_key "palet_line_items", "lots"
-  add_foreign_key "palet_line_items", "palets"
+  add_foreign_key "pmus", "projects"
   add_foreign_key "projects", "tenants"
   add_foreign_key "tenants", "tenants"
 end

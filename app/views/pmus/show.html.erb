@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Produce:</strong>
+  <%= @pmu.produce %>
+</p>
+
+<p>
+  <strong>Village:</strong>
+  <%= @pmu.village %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @pmu.location %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @pmu.size %>
+</p>
+
+<p>
+  <strong>Plants:</strong>
+  <%= @pmu.plants %>
+</p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @pmu.production %>
+</p>
+
+<p>
+  <strong>Facilities:</strong>
+  <%= @pmu.facilities %>
+</p>
+
+<p>
+  <strong>Certification:</strong>
+  <%= @pmu.certification %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @pmu.project %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @pmu.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @pmu.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_tenant_project_pmu_path(@tenant,@project,@pmu) %> |
+<%= link_to 'Back', tenant_project_pmus_path %>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+

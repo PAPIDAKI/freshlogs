@@ -27,18 +27,25 @@ gem 'awesome_print', :require => 'ap'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+
+#maps
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'gon'#to pass data from controller to js
 
+gem 'aws-sdk'
 # Authentication and beutification (devise and bootstrap )
 gem 'devise'
 gem 'milia'
 
 
+
+
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem "flat-ui-rails"
+
 gem 'bootstrap-datepicker-rails'
 gem 'rqrcode'
 gem 'recaptcha', require: 'recaptcha/rails'
