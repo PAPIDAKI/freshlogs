@@ -1,4 +1,4 @@
-<%= form_for(@grower) do |f| %>
+<%= form_for([@tenant,@grower]) do |f| %>
   <% if @grower.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@grower.errors.count, "error") %> prohibited this grower from being saved:</h2>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, placeholder:"Surname" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">

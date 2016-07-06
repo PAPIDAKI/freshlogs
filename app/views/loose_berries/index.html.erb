@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Loose Berries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Purchase</th>
+      <th>Tenant</th>
+      <th>Kg</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loose_berries.each do |loose_berry| %>
+      <tr>
+        <td><%= loose_berry.purchase_id %></td>
+        <td><%= loose_berry.tenant_id %></td>
+        <td><%= loose_berry.kg %></td>
+        <td><%= loose_berry.note %></td>
+        <td><%= link_to 'Show', loose_berry %></td>
+        <td><%= link_to 'Edit', edit_loose_berry_path(loose_berry) %></td>
+        <td><%= link_to 'Destroy', loose_berry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loose berry', new_loose_berry_path %>

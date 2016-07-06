@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lot:</strong>
+  <%= @paralavi.lot %>
+</p>
+
+<p>
+  <strong>Plastics:</strong>
+  <%= @paralavi.plastics %>
+</p>
+
+<p>
+  <strong>Kgs:</strong>
+  <%= @paralavi.kgs %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @paralavi.note %>
+</p>
+
+<%= link_to 'Edit', edit_paralavi_path(@paralavi) %> |
+<%= link_to 'Back', paralavis_path %>

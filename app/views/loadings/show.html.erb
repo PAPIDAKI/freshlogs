@@ -1,0 +1,24 @@
+<p>
+  <strong>Date:</strong>
+  <%= @loading.date %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @loading.customer %>
+</p>
+
+<p>
+  <strong>Eta:</strong>
+  <%= @loading.eta %>
+</p>
+
+<p>
+  <strong>Delivered:</strong>
+  <%= @loading.delivered %>
+</p>
+
+<%= link_to 'Edit', edit_tenant_loading_path(@tenant,@loading) %> |
+<%= link_to 'Destroy',[@tenant, @loading], method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<%= link_to 'Back', tenant_loadings_path %>
+ 

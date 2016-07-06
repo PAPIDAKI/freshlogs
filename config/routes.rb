@@ -1,11 +1,32 @@
 Rails.application.routes.draw do
   
+  resources :tenants do 
+    resources :purchases
+    resources :pmus
+    resources :paralavis
+    resources :lots
+    resources :loose_berries
+  end 
+
+
   resources :tenants do
+      resources :palets
+      resources :loadings
+      resources :growers do
+        resources :pmus 
+        resources :purchases
+        resources :lots  
+      end
+
+      resources :loadings
     resources :projects do 
-      resources :pmus 
+      resources :palets
+      resources :loadings
     end
+
   end
 
+  resources :paralavis
   resources :artifacts
 
 

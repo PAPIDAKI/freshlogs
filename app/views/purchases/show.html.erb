@@ -1,0 +1,12 @@
+<div>
+<h3>Purchase <%=@purchase.created_at.strftime("%d-%m-%Y")%></h3>
+	<strong><%=@purchase.pmu.grower.name%></strong>
+  <h3><%=@purchase.pmu.location%><br/></h3>
+  <%=@purchase.price%>
+  <%=@purchase.unit%><br/>
+  <%=@purchase.note%>
+  </div>
+
+  <%= link_to 'Edit', edit_tenant_purchase_path(@tenant,@purchase),class:'btn btn-warning' %> |
+  <%= link_to 'Delete',tenant_purchase_path(@tenant,@purchase),method: :delete,data: {confirm: 'Are you sure?'},class:'btn btn-danger'%> | 
+<%= link_to 'Back', tenant_purchases_path(@tenant),class:'btn' %>

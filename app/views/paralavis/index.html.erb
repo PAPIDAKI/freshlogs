@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Paralavis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lot</th>
+      <th>Plastics</th>
+      <th>Kgs</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paralavis.each do |paralavi| %>
+      <tr>
+        <td><%= paralavi.lot %></td>
+        <td><%= paralavi.plastics %></td>
+        <td><%= paralavi.kgs %></td>
+        <td><%= paralavi.note %></td>
+        <td><%= link_to 'Show', paralavi %></td>
+        <td><%= link_to 'Edit', edit_paralavi_path(paralavi) %></td>
+        <td><%= link_to 'Destroy', paralavi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paralavi', new_paralavi_path %>

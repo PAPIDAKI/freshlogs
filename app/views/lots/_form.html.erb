@@ -1,0 +1,48 @@
+<div class="row">
+  <%= form_for([@tenant,@lot]) do |f| %>
+    <% if @lot.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@lot.errors.count, "error") %> prohibited this lot from being saved:</h2>
+
+        <ul>
+        <% @lot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+  <% end %>
+  
+    <div class="form-group">
+      <%=f.label :lot,class:'control-label'%>
+      <%=f.text_field :lot,:placeholder=>@code, class: 'form-control'%>
+    </div>
+
+     <div class='form-group'>
+     <%=f.label :purchase_id,class:'control-label'%>
+     <div>
+     <%=f.collection_select(:purchase_id,Purchase.where(tenant_id:params[:tenant_id]),:id , :details,{:prompt=> true},{:class=>'form-control'})%> 
+   <!--  <%=f.grouped_collection_select(:purchase_id,Grower.where(tenant_id:params[:tenant_id]),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%> -->
+     </div>
+    </div>
+
+   <div class="form-group">
+      <%=f.label :plastics,class:'control-label'%>
+      <%=f.text_field :plastics, class: 'form-control'%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :kg,class:'control-label'%>
+      <%=f.text_field :kg, class: 'form-control'%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :note,class:'control-label'%>
+      <%=f.text_field :note, class: 'form-control'%>
+    </div>
+
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-default'%>
+  </div>
+<% end %>
+</div>

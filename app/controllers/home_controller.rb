@@ -12,7 +12,6 @@ class HomeController < ApplicationController
       @projects=Project.by_plan_and_tenant(@tenant.id)
   		params[:tenant_id]=@tenant.id
   	end
-
   end
 
 end

@@ -1,0 +1,10 @@
+<div class='nested-fields'>
+<div class='pli'>
+     <%=f.collection_select(:lot_id,Lot.where(tenant_id:11),:id,:lot,{:class=>'form-control'})%>
+     </div>
+     <div class='form-group'>
+      <%=f.label :cartons,class:'control-label'%>
+	  <%=f.text_field :cartons,class:'form-control'%>
+</div>
+ <%= link_to_remove_association "remove lot", f %>
+ </div>

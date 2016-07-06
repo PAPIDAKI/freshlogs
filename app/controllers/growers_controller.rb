@@ -1,10 +1,11 @@
 class GrowersController < ApplicationController
+  before_action :set_tenant
   before_action :set_grower, only: [:show, :edit, :update, :destroy]
 
   # GET /growers
   # GET /growers.json
   def index
-    @growers = Grower.all
+    @growers = Grower.where(tenant_id:params[:tenant_id]).order(name: :asc)
   end
 
   # GET /growers/1
@@ -13,8 +14,9 @@ class GrowersController < ApplicationController
   end
 
   # GET /growers/new
-  def new
+  def new    
     @grower = Grower.new
+
   end
 
   # GET /growers/1/edit
@@ -25,10 +27,11 @@ class GrowersController < ApplicationController
   # POST /growers.json
   def create
     @grower = Grower.new(grower_params)
+    @grower.tenant_id=params[:tenant_id]
 
     respond_to do |format|
       if @grower.save
-        format.html { redirect_to @grower, notice: 'Grower was successfully created.' }
+        format.html { redirect_to tenant_growers_path , notice: 'Grower was successfully created.' }
         format.json { render :show, status: :created, location: @grower }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class GrowersController < ApplicationController
   def update
     respond_to do |format|
       if @grower.update(grower_params)
-        format.html { redirect_to @grower, notice: 'Grower was successfully updated.' }
+        format.html { redirect_to tenant_grower_path(@tenant,@grower), notice: 'Grower was successfully updated.' }
         format.json { render :show, status: :ok, location: @grower }
       else
         format.html { render :edit }
@@ -56,19 +59,24 @@ class GrowersController < ApplicationController
   def destroy
     @grower.destroy
     respond_to do |format|
-      format.html { redirect_to growers_url, notice: 'Grower was successfully destroyed.' }
+      format.html { redirect_to tenant_growers_path, notice: 'Grower was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_tenant
+    @tenant=Tenant.find(params[:tenant_id])
+    end
+
     def set_grower
       @grower = Grower.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def grower_params
+      def grower_params
       params.require(:grower).permit(:name, :address, :phone, :mobile, :vat, :picture)
     end
 end

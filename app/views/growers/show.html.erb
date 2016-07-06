@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @grower.name %>
@@ -30,5 +28,33 @@
   <%= @grower.picture %>
 </p>
 
-<%= link_to 'Edit', edit_grower_path(@grower) %> |
-<%= link_to 'Back', growers_path %>
+<%= link_to 'Edit', edit_tenant_grower_path(@tenant,@grower) %> |
+<%= link_to 'Back', tenant_growers_path %> |
+<%= link_to 'Delete',tenant_grower_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+</td>
+<hr>
+
+<div>
+<%=link_to 'Add Pmu',new_tenant_grower_pmu_path(@tenant,@grower) %>
+</div>
+<hr>
+<div>
+List of growers pms goes in here 
+</div>
+<hr>
+<div>
+Purchases
+</div>
+<hr>
+<div>
+Lots
+</div>
+<hr>
+<div>
+Loose Berries
+</div>
+<hr>
+<div>
+Financials
+</div>
+

@@ -1,0 +1,14 @@
+Palet
+ <h3> <%=@palet.code%></h3>
+<h3><%=@palet.packed_for%></h3>
+<%=@palet.date%></br>
+<%=@palet.note%></br>
+<%= link_to 'Edit', edit_tenant_palet_path(@tenant,@palet) %> |
+<td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %></td> |
+<%= link_to 'Back', tenant_palets_path(@tenant) %> 
+ 
+<hr>
+<h3>Lots:</h3>
+<% @palet_line_items.each do |palet_line_item| %>
+	<h3><%=palet_line_item.lot.lot%> (<%=palet_line_item.cartons %>)</h3> <%=palet_line_item.lot.purchase.pmu.grower.name%><br>
+<%end%>

@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<h3>Lot for </h3>
+<%=@lot.lot%><br>
+<%= @lot.kg%><br>
+<%= @lot.plastics%><br>
+<%= link_to 'Edit', edit_tenant_lot_path(@tenant,@lot) %> |
+<%= link_to 'Back', tenant_lots_path(@tenant) %>

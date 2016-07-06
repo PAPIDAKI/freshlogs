@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Purchase:</strong>
+  <%= @loose_berry.purchase_id %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @loose_berry.tenant_id %>
+</p>
+
+<p>
+  <strong>Kg:</strong>
+  <%= @loose_berry.kg %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @loose_berry.note %>
+</p>
+
+<%= link_to 'Edit', edit_loose_berry_path(@loose_berry) %> |
+<%= link_to 'Back', loose_berries_path %>

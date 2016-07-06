@@ -1,15 +1,21 @@
 
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+
 <br>
 
 <div class='raw'>
   <div>
     <h1>Listing Pmus</h1>
   </div>
-  <div>
-    <%= link_to 'New Pmu', new_tenant_project_pmu_path(@tenant,@project) %>
+  <div id="cof">
+    <%= link_to 'New Pmu', new_tenant_grower_pmu_path(@tenant,@grower) %>
   </div>
 </div>
-<table>
+<table id="table">
   <thead>
     <tr>
       <th>Produce</th>
@@ -39,10 +45,10 @@
         <td><%= pmu.certification %></td>
         <td><%= pmu.latitude %></td>
         <td><%= pmu.longitude %></td>
-        <td><%= link_to 'Show',tenant_project_pmu_path(@tenant,@project,pmu)%></td>
-        <td><%= link_to 'Edit', edit_tenant_project_pmu_path(@tenant,@project,pmu) %></td>
+        <td><%= link_to 'Show',tenant_grower_pmu_path(@tenant,@grower,pmu)%></td>
+        <td><%= link_to 'Edit', edit_tenant_grower_pmu_path(@tenant,@grower,pmu) %></td>
        <% #TODO: add destroy path to destroy link%>
-        <td><%= link_to 'Destroy',tenant_project_pmu_path(@tenant,@project,pmu),method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy',tenant_grower_pmu_path(@tenant,@grower,pmu),method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -50,5 +56,13 @@
 
 
 
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json%>);
+      handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+});
 
-
+   
+</script>

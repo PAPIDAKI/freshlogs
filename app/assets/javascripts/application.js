@@ -13,8 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//=require bootstrap-sprockets
-// =require underscore
-//=require gmaps/google
+//= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require bootstrap-datepicker
+//= require cocoon
 //= require_tree .
+
+

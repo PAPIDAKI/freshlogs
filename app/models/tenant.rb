@@ -6,6 +6,13 @@ class Tenant < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  has_many :growers
+  has_many :pmus ,through: :growers
+  has_many :purchases,through: :pmus
+  has_many :lots ,through: :purchases
+  has_many :palet_line_items ,through: :lots
+  has_many :palets,through: :palet_line_items
+  
     def can_create_projects?
         (plan=='free' && projects.count <1 ) || (plan=='premium') 
     end

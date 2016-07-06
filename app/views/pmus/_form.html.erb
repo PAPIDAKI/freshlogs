@@ -1,4 +1,4 @@
-<%= form_for([@tenant,@project,@pmu]) do |f| %>
+<%= form_for([@tenant,@grower,@pmu]) do |f| %>
   <% if @pmu.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pmu.errors.count, "error") %> prohibited this pmu from being saved:</h2>
@@ -10,35 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :produce %><br>
-    <%= f.text_field :produce %>
-  </div>
-  <div class="field">
-    <%= f.label :village %><br>
-    <%= f.text_field :village %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :size %><br>
-    <%= f.number_field :size %>
-  </div>
-  <div class="field">
-    <%= f.label :plants %><br>
-    <%= f.number_field :plants %>
-  </div>
-  <div class="field">
-    <%= f.label :production %><br>
-    <%= f.number_field :production %>
-  </div>
-  <div class="field">
-    <%= f.label :facilities %><br>
-    <%= f.text_field :facilities %>
-  </div>
   <div class="field">
     <%= f.label :certification %><br>
     <%= f.text_field :certification %>
@@ -59,3 +30,36 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+	handler = Gmaps.build('Google');    // map init
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+			 // show the empty map
+			handler.fitMapToBounds();
+			handler.map.centerOn([52.10, 19.30]);
+			handler.getMap().setZoom(6);
+		}
+	});
+
+	var markerOnMap;
+function placeMarker(location) {    // simply method for put new marker on map
+		if (markerOnMap) {
+			markerOnMap.setPosition(location);
+		}
+		else {
+			markerOnMap = new google.maps.Marker({
+				position: location,
+				map: handler.getMap()
+			});
+		}
+	}
+
+	google.maps.event.addListener(handler.getMap(), 'click', function(event) {    // event for click-put marker on map and pass coordinates to hidden fields in form
+		placeMarker(event.latLng);
+		document.getElementById("map_lat").value = event.latLng.lat();
+		document.getElementById("map_lng").value = event.latLng.lng();
+	});
+}
+
+</script>

@@ -1,0 +1,34 @@
+
+<%= form_for(@paralavi) do |f| %>
+  <% if @paralavi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paralavi.errors.count, "error") %> prohibited this paralavi from being saved:</h2>
+
+      <ul>
+      <% @paralavi.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   
+  <div class="field">
+    <%= f.label :lot %><br>
+    <%= f.number_field :lot ,placeholder: @lot.lot,default:@lot.lot%>
+  </div>
+  <div class="field">
+    <%= f.label :plastics %><bro>
+    <%= f.number_field :plastics %>
+  </div>
+  <div class="field">
+    <%= f.label :kgs %><br>
+    <%= f.number_field :kgs %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -39,6 +39,8 @@ gem 'aws-sdk'
 gem 'devise'
 gem 'milia'
 
+gem "cocoon"
+
 
 
 

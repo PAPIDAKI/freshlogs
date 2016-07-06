@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @grower %> |
-<%= link_to 'Back', growers_path %>
+<%= link_to 'Show', tenant_grower_path(@tenant,@grower) %> |
+<%= link_to 'Back', tenant_growers_path %>

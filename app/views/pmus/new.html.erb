@@ -1,8 +1,5 @@
 <h1>New Pmu</h1>
-
-
-
-<%= form_for([@tenant,@project,@pmu]) do |f| %>
+<%= form_for([@tenant,@grower,@pmu]) do |f| %>
 	<% if @pmu.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@pmu.errors.count, "error") %> prohibited this pmu from being saved:</h2>
@@ -20,38 +17,33 @@
 		<%= f.text_field :produce %>
 	</div>
 	<div class="field">
-		<%= f.label :village %><br>
+		<%= f.label :village ,'Nearest Village'%><br>
 		<%= f.text_field :village %>
 	</div>
 	<div class="field">
-		<%= f.label :location %><br>
+		<%= f.label :location,'Local area name' %><br>
 		<%= f.text_field :location %>
 	</div>
 	<div class="field">
-		<%= f.label :size %><br>
+		<%= f.label :size ,'Area in sq kms'%><br>
 		<%= f.number_field :size %>
 	</div>
 	<div class="field">
-		<%= f.label :plants %><br>
+		<%= f.label :plants,'Number of plants' %><br>
 		<%= f.number_field :plants %>
 	</div>
 	<div class="field">
-		<%= f.label :production %><br>
+		<%= f.label :production,'Typical production in tons' %><br>
 		<%= f.text_field :production %>
 	</div>
 	<div class="field">
 		<%= f.label :facilities %><br>
-		<%= f.text_field :facilities %>
+		<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance'])) %>
 	</div>
 	<div class="field">
 		<%= f.label :certification %><br>
-	<%= f.select(:certification,options_for_select(['globalGAP','Agro','Nature\'s Choice']))%>
+	<%= f.select(:certification,options_for_select(['globalGAP','Agro','Nature\'s Choice','Bio']))%>
  		</div>
-
- 		<div class="field">
-		<%= f.label :project_id %><br>
-		<%= f.text_field :project_id %>
-	</div>
 
 	<div class="field">
 		<%= f.label :longitude %><br>
@@ -74,7 +66,7 @@
 
 <% end %>
 
-<%= link_to 'Back', tenant_project_pmus_path %>
+<%= link_to 'Back', tenant_grower_path(@tenant,@grower)%>
 
 
 
@@ -82,6 +74,9 @@
 $(document).ready(function(){
 	gmap_form(null);
 });
+// $(document).ready(function(){
+// 	initMap();
+// });
 
 </script>
 

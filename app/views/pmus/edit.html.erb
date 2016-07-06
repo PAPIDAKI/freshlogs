@@ -1,6 +1,87 @@
 <h1>Editing Pmu</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @pmu %> |
-<%= link_to 'Back', pmus_path %>
+<%= form_for([@tenant,@grower,@pmu]) do |f| %>
+	<% if @pmu.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@pmu.errors.count, "error") %> prohibited this pmu from being saved:</h2>
+
+			<ul>
+			<% @pmu.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :produce %><br>
+		<%= f.text_field :produce %>
+	</div>
+	<div class="field">
+		<%= f.label :village ,'Nearest Village'%><br>
+		<%= f.text_field :village %>
+	</div>
+	<div class="field">
+		<%= f.label :location,'Local area name' %><br>
+		<%= f.text_field :location %>
+	</div>
+	<div class="field">
+		<%= f.label :size ,'Area in sq kms'%><br>
+		<%= f.number_field :size %>
+	</div>
+	<div class="field">
+		<%= f.label :plants,'Number of plants' %><br>
+		<%= f.number_field :plants %>
+	</div>
+	<div class="field">
+		<%= f.label :production,'Typical production in tons' %><br>
+		<%= f.text_field :production %>
+	</div>
+	<div class="field">
+		<%= f.label :facilities %><br>
+		<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance'])) %>
+	</div>
+	<div class="field">
+		<%= f.label :certification %><br>
+	<%= f.select(:certification,options_for_select(['globalGAP','Agro','Nature\'s Choice','Bio']))%>
+ 		</div>
+
+	<div class="field">
+		<%= f.label :longitude %><br>
+		<%= f.text_field :longitude,id:"map_lng" %>
+	</div>
+	<div class="field">
+		<%= f.label :latitude %><br>
+		<%= f.text_field :latitude ,id:"map_lat"%>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+ </div>
+
+
+<% end %>
+
+<%= link_to 'Back to Grower', tenant_grower_path(@tenant,@grower)%>
+<%= link_to 'Back to Pmus ',tenant_grower_pmus_path(@tenant,@grower) %>
+
+
+
+ <!-- map -->
+ 
+
+ <div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type:text/javascript>
+//  handler = Gmaps.build('Google');
+// handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+//         markers = handler.addMarkers(<%=raw @hash.to_json%>);
+//         handler.bounds.extendWith(markers);
+//         handler.fitMapToBounds();
+//         handler.getMap().setZoom(15);    // set the default zoom of the map
+// });   
+
+
+</script>

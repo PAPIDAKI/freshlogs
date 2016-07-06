@@ -1,0 +1,39 @@
+<h1>Listing Lots</h1>
+<%= link_to 'New Lot', new_tenant_lot_path %>
+
+<div class="media">
+    <div class="media-body">
+    <table class='table table-hover'>
+      <thead>
+        <tr>
+        <th>Date</th>
+        <th>Lot</th>
+        <th>Location</th>
+        <th>Grower</th>
+        <th>Boxes</th>
+        <th>Kilos</th>
+        <th>Note</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @lots.each do |lot| %>
+          <tr>
+            <td><%=lot.created_at.strftime("%d-%m-%Y")%>
+            <td><%=link_to lot.lot,tenant_lot_path(@tenant,lot)%></td>
+            <td><%=lot.purchase.pmu.location%></td>
+            <td><%=lot.purchase.pmu.grower.name%></td>
+            <td><%=lot.plastics%></td>
+            <td><%=lot.kg%></td>
+            <td><%=lot.note%></td>
+            <td><%=link_to "Show",tenant_lot_path(@tenant,lot),class:"btn btn-mini"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+
+<%= link_to 'New Lot', new_tenant_lot_path %>

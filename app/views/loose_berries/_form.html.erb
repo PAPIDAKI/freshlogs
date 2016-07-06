@@ -1,0 +1,33 @@
+<%= form_for(@loose_berry) do |f| %>
+  <% if @loose_berry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loose_berry.errors.count, "error") %> prohibited this loose_berry from being saved:</h2>
+
+      <ul>
+      <% @loose_berry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :purchase_id %><br>
+    <%= f.number_field :purchase_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tenant_id %><br>
+    <%= f.number_field :tenant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :kg %><br>
+    <%= f.text_field :kg %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

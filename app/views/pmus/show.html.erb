@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Produce:</strong>
@@ -42,7 +41,6 @@
 
 <p>
   <strong>Project:</strong>
-  <%= @pmu.project %>
 </p>
 
 <p>
@@ -55,10 +53,36 @@
   <%= @pmu.longitude %>
 </p>
 
-<%= link_to 'Edit', edit_tenant_project_pmu_path(@tenant,@project,@pmu) %> |
-<%= link_to 'Back', tenant_project_pmus_path %>
-<div style='width: 800px;'>
+<%= link_to 'Edit', edit_tenant_grower_pmu_path(@tenant,@grower,@pmu) %> |
+<%= link_to 'Back', tenant_grower_pmus_path %>
+<hr>
+<!-- <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
+</div> -->
+<div id="map-container">
+  <div id="map-canvas"></div>
 </div>
 
 
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id:'map-canvas'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json%>, {draggable: true});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(15);    // set the default zoom of the map
+});   
+
+// function initialize() {
+//     var latlng = new google.maps.LatLng(-34.397, 150.644);
+//     var myOptions = {
+//         zoom: 8,
+//         center: latlng,
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     };
+//     var map = new google.maps.Map(document.getElementById("map_canvas"),
+//             myOptions);
+// }
+// google.maps.event.addDomListener(window, "load", initialize);
+
+</script>
