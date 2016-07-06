@@ -4,7 +4,7 @@ Palet
 <%=@palet.date%></br>
 <%=@palet.note%></br>
 <%= link_to 'Edit', edit_tenant_palet_path(@tenant,@palet) %> |
-<td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %></td> |
+<%= link_to 'Destroy',[@tenant,@palet], method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', tenant_palets_path(@tenant) %> 
  
 <hr>
