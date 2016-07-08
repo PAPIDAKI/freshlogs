@@ -1,4 +1,5 @@
-<h1>Listing Lots</h1>
+
+<h3>Listing Lots</h3>
 <%= link_to 'New Lot', new_tenant_lot_path %>
 
 <div class="media">
@@ -10,7 +11,7 @@
         <th>Lot</th>
         <th>Location</th>
         <th>Grower</th>
-        <th>Boxes</th>
+      <th>Boxes</th>
         <th>Kilos</th>
         <th>Note</th>
         </tr>
@@ -26,14 +27,13 @@
             <td><%=lot.plastics%></td>
             <td><%=lot.kg%></td>
             <td><%=lot.note%></td>
-            <td><%=link_to "Show",tenant_lot_path(@tenant,lot),class:"btn btn-mini"%></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-
     <br>
   </div>
 </div>
 
 <%= link_to 'New Lot', new_tenant_lot_path %>
+

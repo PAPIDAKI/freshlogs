@@ -11,6 +11,7 @@ class GrowersController < ApplicationController
   # GET /growers/1
   # GET /growers/1.json
   def show
+    @pmus=Pmu.where(grower_id:params[:id])
   end
 
   # GET /growers/new

@@ -5,20 +5,19 @@
 			<div class="col-md-4" >
 				<h4><%=link_to 'Growers',tenant_growers_path(@tenant)%></h4>
 				<%= render partial: "growers/list", locals: {growers:  Grower.where(tenant_id:@tenant.id)} %>
-
-			</div>
+				</div>
 			<div class="col-md-4" >
 				<h4><%=link_to 'Pmus',tenant_pmus_path(@tenant)%> </h4>
-			</div>
+				</div>
 			<div class="col-md-4" >
 				<h4><%=link_to "Purchases",tenant_purchases_path(@tenant)%></h4>
-			</div>
+				</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="container">
-			<div class="col-md-4" >
+			<div class="col-md-6" >
 				<h4><%=link_to 'Lots',tenant_lots_path(@tenant)%></h4>
 				<%= render partial: "growers/list", locals: {growers:  Grower.where(tenant_id:@tenant.id)} %>
 

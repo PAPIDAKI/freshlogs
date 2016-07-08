@@ -1,20 +1,23 @@
 class LooseBerriesController < ApplicationController
+  before_action :set_tenant
   before_action :set_loose_berry, only: [:show, :edit, :update, :destroy]
 
   # GET /loose_berries
   # GET /loose_berries.json
   def index
-    @loose_berries = LooseBerry.all
+    @loose_berries = LooseBerry.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
   end
 
   # GET /loose_berries/1
   # GET /loose_berries/1.json
   def show
+
   end
 
   # GET /loose_berries/new
   def new
     @loose_berry = LooseBerry.new
+    @loose_berry.tenant_id=@tenant.id
   end
 
   # GET /loose_berries/1/edit
@@ -28,7 +31,7 @@ class LooseBerriesController < ApplicationController
 
     respond_to do |format|
       if @loose_berry.save
-        format.html { redirect_to @loose_berry, notice: 'Loose berry was successfully created.' }
+        format.html { redirect_to tenant_loose_berries_path, notice: 'Loose berry was successfully created.' }
         format.json { render :show, status: :created, location: @loose_berry }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class LooseBerriesController < ApplicationController
   def update
     respond_to do |format|
       if @loose_berry.update(loose_berry_params)
-        format.html { redirect_to @loose_berry, notice: 'Loose berry was successfully updated.' }
+        format.html { redirect_to tenant_loose_berries_path , notice: 'Loose berry was successfully updated.' }
         format.json { render :show, status: :ok, location: @loose_berry }
       else
         format.html { render :edit }
@@ -56,13 +59,16 @@ class LooseBerriesController < ApplicationController
   def destroy
     @loose_berry.destroy
     respond_to do |format|
-      format.html { redirect_to loose_berries_url, notice: 'Loose berry was successfully destroyed.' }
+      format.html { redirect_to tenant_loose_berries_path, notice: 'Loose berry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_tenant
+      @tenant=Tenant.find(params[:tenant_id])
+    end
     def set_loose_berry
       @loose_berry = LooseBerry.find(params[:id])
     end

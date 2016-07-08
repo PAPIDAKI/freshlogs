@@ -10,15 +10,19 @@ class LoadingsController < ApplicationController
   # GET /loadings/1
   # GET /loadings/1.json
   def show
+    @palets=@loading.palets
   end
 
   # GET /loadings/new
   def new
     @loading = Loading.new
+    @palets=Palet.where(loading_id:nil)
   end
 
   # GET /loadings/1/edit
   def edit
+
+    @palets=@loading.palets
   end
 
   # POST /loadings
@@ -40,9 +44,10 @@ class LoadingsController < ApplicationController
   # PATCH/PUT /loadings/1
   # PATCH/PUT /loadings/1.json
   def update
+  
     respond_to do |format|
       if @loading.update(loading_params)
-        format.html { redirect_to @loading, notice: 'Loading was successfully updated.' }
+        format.html { redirect_to tenant_loadings_path, notice: 'Loading was successfully updated.' }
         format.json { render :show, status: :ok, location: @loading }
       else
         format.html { render :edit }
@@ -73,6 +78,6 @@ class LoadingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loading_params
-      params.require(:loading).permit(:date, :customer, :eta, :delivered)
+      params.require(:loading).permit(:date, :customer, :eta, :delivered,palet_ids:[])
     end
 end

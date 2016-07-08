@@ -41,8 +41,8 @@
 		<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance'])) %>
 	</div>
 	<div class="field">
-		<%= f.label :certification %><br>
-	<%= f.select(:certification,options_for_select(['globalGAP','Agro','Nature\'s Choice','Bio']))%>
+		<%= label_tag :certification,:globalgap %><br>
+	<%= check_box_tag :certification[],:globalgap,checked(:globalGAP),id: :certification_globalgap%>
  		</div>
 
 	<div class="field">

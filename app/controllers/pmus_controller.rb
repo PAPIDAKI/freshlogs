@@ -5,10 +5,7 @@ class PmusController < ApplicationController
   # GET /pmus
   # GET /pmus.json
   def index
-     @tenant=Tenant.find(params[:tenant_id])
-     @grower=@tenant.growers.find(params[:grower_id])
-    #@pmus = @grower.pmus.where(tenant_id:params[:tenant_id])
-     @pmus=@grower.pmus
+    @pmus=Pmu.where(tenant_id:params[:tenant_id])
     
     @hash=Gmaps4rails.build_markers(@pmus) do |pmu,marker|
       marker.lat pmu.latitude

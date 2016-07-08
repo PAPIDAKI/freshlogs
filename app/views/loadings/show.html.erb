@@ -21,4 +21,12 @@
 <%= link_to 'Edit', edit_tenant_loading_path(@tenant,@loading) %> |
 <%= link_to 'Destroy',[@tenant, @loading], method: :delete, data: { confirm: 'Are you sure?' } %> | 
 <%= link_to 'Back', tenant_loadings_path %>
+<hr>
+	<h3>Palets</h3>
+		<ul>
+			<% @palets.each do |palet| %>
+				<li><%=palet.code%></li>
+			<%end%>
+		</ul>
+
  

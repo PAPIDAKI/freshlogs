@@ -13,11 +13,16 @@ class LotsController < ApplicationController
   # GET /lots/1
   # GET /lots/1.json
   def show
+  @qr = RQRCode::QRCode.new( 'https://github.com/whomwah/rqrcode', :size => 4, :level => :h )
+
+
   end
 
   # GET /lots/new
   def new
     @lot =Lot.create!
+     @qr = RQRCode::QRCode.new( 'Manolis Papidakis', :size => 4, :level => :h )
+
   end
 
   # GET /lots/1/edit

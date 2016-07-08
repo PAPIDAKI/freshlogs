@@ -1,21 +1,23 @@
-
-
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
-
-
-<br>
-
 <div class='raw'>
+
   <div>
-    <h1>Listing Pmus</h1>
+    <h3>Listing Pmus</h3>
+
   </div>
   <div id="cof">
-    <%= link_to 'New Pmu', new_tenant_grower_pmu_path(@tenant,@grower) %>
+    <%= link_to 'New Pmu', new_tenant_pmu_path(@tenant) %>
   </div>
+
+<div style='width: 100%;'>
+  <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
-<table id="table">
+
+<hr>
+
+</div>
+<div class='media'>
+  <div class="media-body">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Produce</th>
@@ -45,14 +47,16 @@
         <td><%= pmu.certification %></td>
         <td><%= pmu.latitude %></td>
         <td><%= pmu.longitude %></td>
-        <td><%= link_to 'Show',tenant_grower_pmu_path(@tenant,@grower,pmu)%></td>
-        <td><%= link_to 'Edit', edit_tenant_grower_pmu_path(@tenant,@grower,pmu) %></td>
+        <td><%= link_to 'Show',tenant_pmu_path(@tenant,pmu)%></td>
+        <td><%= link_to 'Edit', edit_tenant_pmu_path(@tenant,pmu) %></td>
        <% #TODO: add destroy path to destroy link%>
-        <td><%= link_to 'Destroy',tenant_grower_pmu_path(@tenant,@grower,pmu),method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy',[@tenant,pmu],method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
 
 
 

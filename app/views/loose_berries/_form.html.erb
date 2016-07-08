@@ -1,4 +1,5 @@
-<%= form_for(@loose_berry) do |f| %>
+<div class='row'>
+<%= form_for([@tenant,@loose_berry]) do |f| %>
   <% if @loose_berry.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@loose_berry.errors.count, "error") %> prohibited this loose_berry from being saved:</h2>
@@ -11,23 +12,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :purchase_id %><br>
-    <%= f.number_field :purchase_id %>
+  <div class="form-group">
+    <%= f.hidden_field:tenant_id %>
   </div>
-  <div class="field">
-    <%= f.label :tenant_id %><br>
-    <%= f.number_field :tenant_id %>
+  <div class="form-group">
+    <%= f.label :kg, class:'control-label'%><br>
+    <%= f.text_field :kg , class: 'form-control'%>
   </div>
-  <div class="field">
-    <%= f.label :kg %><br>
-    <%= f.text_field :kg %>
+  <div class="form-group">
+    <%= f.label :purchase_id,"From",class:'control-label' %><br>
+    <%= f.collection_select(:purchase_id,Purchase.where(tenant_id:params[:tenant_id]),:id,:details,{prompt: true},{:class=>'form-control'}) %>
   </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
+  <div class="form-group">
+    <%= f.label :note ,class:'control-label'%><br>
+    <%= f.text_field :note, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:'btn btn-default'%>
   </div>
 <% end %>
+</div>
