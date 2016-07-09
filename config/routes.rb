@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :tenants do 
-    resources :purchases
+      resources :purchases
     resources :pmus
     resources :paralavis
     resources :lots

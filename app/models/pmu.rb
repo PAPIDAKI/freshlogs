@@ -4,6 +4,6 @@ class Pmu < ActiveRecord::Base
   has_many :purchases	
 
   #add geocoding and maps 
-  # geocoded_by :village
-  # after_validation :geocode
+  geocoded_by :latitude
+  after_validation :geocode
 end
