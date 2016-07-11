@@ -6,7 +6,13 @@
     <table class='table table-hover'>
       <thead>
         <tr>
-          <th colspan="3"></th>
+          <th>Date</th>
+          <th>Code</th>
+          <th>Lot  info </th>
+         
+          <th>Note</th>
+         
+          
         </tr>
       </thead>
 
@@ -15,7 +21,13 @@
           <tr> 
             <td><%= palet.date.strftime("%e %b %H:%y") %></td>
             <td><%=link_to palet.code,tenant_palet_path(@tenant,palet)%></td>
+            <td><%  palet.palet_line_items.each do |pli|%>
+            <%=pli.lot.lot%>
+            <%=pli.cartons%> cartons
+          (<%=pli.lot.purchase.details%><br/>
+            <%end%></td>
             <td><%=palet.note%></td>
+           
             
            
           </tr>

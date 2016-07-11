@@ -19,44 +19,49 @@
 				</div>
 			<% end %>
 
-			<div class="field">
+			<div class="form-group">
+				<%= f.label :grower_id,class:'control-label' %><br>
+				<%= f.collection_select(:grower_id,Grower.where(tenant_id:params[:tenant_id]),:id,:grower_details,{:prompt=>true},{:class=>'form-control'}) %>
+			</div>
+
+			<div class="form-group">
 				<%= f.label :produce %><br>
 				<%= f.text_field :produce %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :village ,'Nearest Village'%><br>
 				<%= f.text_field :village %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :location,'Local area name' %><br>
 				<%= f.text_field :location %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :size ,'Area in sq kms'%><br>
 				<%= f.number_field :size %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :plants,'Number of plants' %><br>
 				<%= f.number_field :plants %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :production,'Typical production in tons' %><br>
 				<%= f.text_field :production %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :facilities %><br>
 				<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance'])) %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= label_tag :certification,:globalgap %><br>
 			
 		 		</div>
 
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :longitude %><br>
 				<%= f.text_field :longitude,id:"map_lng" %>
 			</div>
-			<div class="field">
+			<div class="form-group">
 				<%= f.label :latitude %><br>
 				<%= f.text_field :latitude ,id:"map_lat"%>
 			</div>

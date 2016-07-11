@@ -34,21 +34,16 @@
 </td>
 <hr>
 
-<%=link_to 'Add Pmu',new_tenant_grower_pmu_path(@tenant,@grower) %>
 <div>
+Purchases:
 <% @pmus.each do |pmu|%>
-  <%="#{pmu.village} #{pmu.location}"%><br/>
+  <%="#{pmu.village} #{pmu.location}"%>
+  <%= pmu.purchases.last.price%><br/>
   <%end%>
+<%=link_to 'Add Pmu',new_tenant_grower_pmu_path(@tenant,@grower) %>
 </div>
 <hr>
-<div>
-List of growers pms goes in here 
-</div>
-<hr>
-<div>
-Purchases
-</div>
-<hr>
+
 <div>
 Lots
 </div>

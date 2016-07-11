@@ -14,4 +14,6 @@ class Palet < ActiveRecord::Base
 	has_many :lots,through: :palet_line_items 
       accepts_nested_attributes_for :palet_line_items,allow_destroy: true 
       accepts_nested_attributes_for :lots,allow_destroy: true
+
+      validates :code ,presence: true
 end

@@ -60,11 +60,7 @@
         <%= link_to 'Edit', edit_tenant_pmu_path(@tenant,@pmu) %> |
         <%= link_to 'Back', tenant_pmus_path %>
                 <h5>Nearby Locations</h5>
-        <ul>
-        <% for pmu in @pmu.nearbys(100) %>
-          <li><%= link_to pmu.location, tenant_pmu_path(@tenant,pmu) %> (<%= pmu.distance.round(2) %>km )</li>
-        <% end %>
-        </ul>
+        
 
     </div>
 

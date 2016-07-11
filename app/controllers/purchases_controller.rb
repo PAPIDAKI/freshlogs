@@ -17,6 +17,8 @@ class PurchasesController < ApplicationController
   def new
     @purchase = Purchase.new
     @purchase.tenant_id=params[:tenant_id]
+    
+
   end
 
   # GET /purchases/1/edit
