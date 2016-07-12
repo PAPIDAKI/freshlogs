@@ -1,0 +1,3 @@
+class Pur < ActiveRecord::Base
+	
+end

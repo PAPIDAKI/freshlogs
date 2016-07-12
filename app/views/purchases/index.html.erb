@@ -1,35 +1,32 @@
-<h3>Listing Purchases</h3>
-<%= link_to 'New Purchase', new_tenant_purchase_path(params[:tenant_id]) %>
 
-<div class="media">
-  <div class='media-body'>
-    <table class='table table-hover'>
-    <thead>
+<h1>Listing Purchases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Note</th>
+      <th>Tenant</th>
+      <th>Pmu</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
       <tr>
-        <th>Date</th>
-        <th>Grower</th>
-        <th>Location</th>
-        <th>Price</th>
-        <th>per</th>
-        <th>Note</th>
+        <td><%= purchase.price %></td>
+        <td><%= purchase.note %></td>
+        <td><%= purchase.tenant_id %></td>
+        <td><%= purchase.pmu_id %></td>
+        <td><%= link_to 'Show',[ @tenant,purchase]%></td>
+        <td><%= link_to 'Edit', edit_tenant_purchase_path(@tenant,purchase) %></td>
+        <td><%= link_to 'Destroy', [@tenant,purchase], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    </thead>
+    <% end %>
+  </tbody>
+</table>
 
-    <tbody>
-      <% @purchases.each do |purchase| %>
-        <tr>
-          <td><%=purchase.created_at.strftime("%d-%m-%Y")%></td>
-          <td><%=purchase.pmu.grower.name%></td>
-          <td><%=purchase.pmu.location%></td>
-          <td><%=purchase.price%></td>
-          <td><%=purchase.unit%></td>
-          <td><%=purchase.note%></td>
-          <td><%=link_to "Show",tenant_purchase_path(@tenant,purchase),class:"btn btn-mini"%></td>
-        </tr>
-      <% end %>
-    </tbody>
-    </table>
-        <br>
-  </div>
-</div>
-<%= link_to 'New Purchase', new_tenant_purchase_path(params[:tenant_id]) %>
+<br>
+
+<%= link_to 'New Purchase', new_tenant_purchase_path(@tenant) %>

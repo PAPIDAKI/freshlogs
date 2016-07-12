@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @shift_list.course_id %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @shift_list.tenant_id %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @shift_list.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @shift_list.end_at %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @shift_list.note %>
+</p>
+
+<%= link_to 'Edit', edit_shift_list_path(@shift_list) %> |
+<%= link_to 'Back', shift_lists_path %>

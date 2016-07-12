@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  
   resources :tenants do 
-      resources :purchases
     resources :pmus
+    resources :purchases
     resources :paralavis
     resources :lots
     resources :loose_berries
+
+    # workforce 
+    resources :courses
+    resources :shift_lists
+    resources :attendances
+    resources :worker 
   end 
 
 
@@ -14,8 +19,7 @@ Rails.application.routes.draw do
       resources :loadings
       resources :growers do
         resources :pmus 
-        resources :purchases
-        resources :lots  
+              resources :lots  
       end
 
       resources :loadings

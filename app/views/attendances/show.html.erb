@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shift list:</strong>
+  <%= @attendance.shift_list %>
+</p>
+
+<p>
+  <strong>Worker:</strong>
+  <%= @attendance.worker %>
+</p>
+
+<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
+<%= link_to 'Back', attendances_path %>

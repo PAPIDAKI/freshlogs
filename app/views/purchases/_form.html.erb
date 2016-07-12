@@ -1,52 +1,36 @@
-<div class="row">
-  <%= form_for([@tenant,@purchase]) do |f| %>
-    <% if @purchase.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+<div class='row'>
+<%= form_for([@tenant,@purchase]) do |f| %>
+  <% if @purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
 
-        <ul>
-        <% @purchase.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    
-    <div class='form-group'>
-      <%=f.hidden_field:tenant_id%>
-    </div>
-
-    <div class='form-group'>
-     <%=f.label :pmu_id,class:'control-label'%>
-     <div>
-    <!--   <%=f.collection_select(:pmu_id,Pmu.all,:id , :location ,{:prompt=> true},{:class=>'form-control'})%> -->
-    <%=f.grouped_collection_select(:pmu_id,Grower.where(tenant_id:params[:tenant_id]),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
-     </div>
-    </div>
-  
-    <div class='form-group'>
-      <%=f.label :price,class:'control-label' %>
-      <div>
-      <%=f.text_field :price, class: 'form-control'%>
-      </div>
-    </div>
-
-    <div class='form-group'>
-      <%=f.label :unit,class:"control-label"%>
-       <div>
-      <%=f.text_field :unit, class: 'form-control'%>
-      </div>
-    </div>
-  
-     <div class='form-group'>
-      <%=f.label :note,class:"control-label"%>
-      <div>
-      <%=f.text_field :note,class: 'form-control'%>
-      </div>
-    </div>
-
-    <div class="actions">
-      <%= f.submit class: 'btn btn-default' %>
+      <ul>
+      <% @purchase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
   <% end %>
+
+     </div>
+  <div class="form-group">
+    <%= f.label :pmu_id,class:'control-label' %><br>
+        <%=f.grouped_collection_select(:pmu_id,Grower.where(tenant_id:params[:tenant_id]),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
+
+  </div>
+  <div class="form-group">
+    <%= f.label :price,class:'control-label' %><br>
+    <%= f.text_field :price,class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :note,class:'form-label' %><br>
+    <%= f.text_field :note ,class:'form-control'%>
+  </div>
+  <div class="form-group">
+    <%= f.hidden_field :tenant_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 </div>

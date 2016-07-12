@@ -1,7 +1,7 @@
 <div class='nested-fields'>
 <div class='row'>
 	<div class='col-md-6'>
-	     <%=f.collection_select(:lot_id,Lot.where(tenant_id:11),:id,:lot,{:prompt=>true},{:class=>'form-control'})%>
+	     <%=f.collection_select(:lot_id,Lot.where(tenant_id:params[:tenant_id]),:id,:lot,{:prompt=>true},{:class=>'form-control'})%>
      </div>
      <div class='col-md-3'>
 		 <%= link_to_remove_association "remove lot", f %>

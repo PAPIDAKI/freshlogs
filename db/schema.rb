@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707031639) do
+ActiveRecord::Schema.define(version: 20160712154454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20160707031639) do
 
   add_index "artifacts", ["project_id"], name: "index_artifacts_on_project_id", using: :btree
 
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "shift_list_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "worker_id"
+  end
+
+  add_index "attendances", ["shift_list_id"], name: "index_attendances_on_shift_list_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -60,6 +69,13 @@ ActiveRecord::Schema.define(version: 20160707031639) do
   end
 
   add_index "contact_infos", ["contactable_type", "contactable_id"], name: "index_contact_infos_on_contactable_type_and_contactable_id", using: :btree
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "growers", force: :cascade do |t|
     t.string   "name"
@@ -179,13 +195,22 @@ ActiveRecord::Schema.define(version: 20160707031639) do
   add_index "projects", ["tenant_id"], name: "index_projects_on_tenant_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
+    t.float    "price"
+    t.string   "note"
+    t.integer  "tenant_id"
+    t.integer  "pmu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "purs", force: :cascade do |t|
     t.float    "price"
     t.string   "unit"
     t.string   "note"
     t.integer  "pmu_id"
     t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -197,6 +222,16 @@ ActiveRecord::Schema.define(version: 20160707031639) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "shift_lists", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "tenant_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tenant_users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -248,11 +283,15 @@ ActiveRecord::Schema.define(version: 20160707031639) do
 
   create_table "workers", force: :cascade do |t|
     t.string   "name"
+    t.string   "mobile"
+    t.integer  "tenant_id"
+    t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "artifacts", "projects"
+  add_foreign_key "attendances", "shift_lists"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "projects", "tenants"
