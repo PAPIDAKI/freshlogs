@@ -78,7 +78,7 @@
 <script>
 var mapOptions = {mapTypeId: google.maps.MapTypeId.SATELLITE};
 handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id:'map-canvas'}}, function(){
+handler.buildMap({ provider: mapOptions, internal: {id:'map-canvas'}}, function(){
         markers = handler.addMarkers(<%=raw @hash.to_json%>, {draggable: false});
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();

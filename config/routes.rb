@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     resources :paralavis
     resources :lots
     resources :loose_berries
-
     # workforce 
-    resources :courses
-    resources :shift_lists
+      resources :shift_lists
+    resources :courses do 
+      resources :shift_lists
+    end
     resources :attendances
-    resources :worker 
+    resources :workers
   end 
 
 

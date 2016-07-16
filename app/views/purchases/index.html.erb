@@ -4,10 +4,10 @@
 <table>
   <thead>
     <tr>
+      <th>Pmu</th>
       <th>Price</th>
       <th>Note</th>
       <th>Tenant</th>
-      <th>Pmu</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,13 +15,11 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
+        <td><%= link_to purchase.pmu.location ,tenant_purchase_path(@tenant,purchase) %></td>
         <td><%= purchase.price %></td>
         <td><%= purchase.note %></td>
         <td><%= purchase.tenant_id %></td>
-        <td><%= purchase.pmu_id %></td>
-        <td><%= link_to 'Show',[ @tenant,purchase]%></td>
-        <td><%= link_to 'Edit', edit_tenant_purchase_path(@tenant,purchase) %></td>
-        <td><%= link_to 'Destroy', [@tenant,purchase], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       
       </tr>
     <% end %>
   </tbody>

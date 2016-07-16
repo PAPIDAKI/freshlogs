@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Price:</strong>
@@ -20,5 +20,7 @@
   <%= @purchase.pmu_id %>
 </p>
 
-<%= link_to 'Edit', edit_purchase_path(@purchase) %> |
-<%= link_to 'Back', purchases_path %>
+<%= link_to 'Edit', edit_tenant_purchase_path(@tenant,@purchase) %>  | 
+<%= link_to 'Delete',tenant_purchase_path(@tenant,@purchase),method: :delete,date:{confirm:'Are you sure ?'}%>
+<%= link_to 'Back',tenant_purchases_path %>
+

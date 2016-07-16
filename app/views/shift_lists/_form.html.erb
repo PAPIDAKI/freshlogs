@@ -1,4 +1,5 @@
-<%= form_for(@shift_list) do |f| %>
+
+<%= form_for([@tenant,@course,@shift_list]) do |f| %>
   <% if @shift_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shift_list.errors.count, "error") %> prohibited this shift_list from being saved:</h2>
@@ -11,27 +12,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course_id %><br>
-    <%= f.number_field :course_id %>
+  
+  
+
+ <div class="form-group">
+    <%= f.label :start_at ,class:'control-label'%><br>
+    <%= f.datetime_select :start_at ,class:'form-control'%>
   </div>
-  <div class="field">
-    <%= f.label :tenant_id %><br>
-    <%= f.number_field :tenant_id %>
+ <div class="form-group">
+    <%= f.label :end_at,class:'control-label' %><br>
+    <%= f.datetime_select :end_at,class:'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :start_at %><br>
-    <%= f.datetime_select :start_at %>
+ <div class="form-group">
+    <%= f.label :note, class: 'control-label' %><br>
+    <%= f.text_field :note,class:'form-control'%>
   </div>
-  <div class="field">
-    <%= f.label :end_at %><br>
-    <%= f.datetime_select :end_at %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
-  </div>
+
+  <hr>
+  <h4>Staff:</h4>
+
+  
+   <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ? AND course_id= ?', params[:tenant_id], params[:course_id]),:id,:name)%>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

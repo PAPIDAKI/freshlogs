@@ -1,26 +1,24 @@
-
-<h1>Listing Courses</h1>
-
-<table>
+<h3>Listing Courses</h3>
+<%= link_to 'New Course', new_tenant_course_path(@tenant) %>
+<div class='media'>
+  <div class='media-body'>
+<table class='table table-hover'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.name %></td>
-        <td><%= link_to 'Show', tenant_course_path(@tenant,course) %></td>
-        <td><%= link_to 'Edit', edit_tenant_course_path(@tenant,course) %></td>
-        <td><%= link_to 'Destroy', [@tenant,course], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to course.name,tenant_course_shift_lists_path(@tenant,course) %></td>
+      
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
+</div>
+</div>
 
-<%= link_to 'New Course', new_tenant_course_path(@tenant) %>

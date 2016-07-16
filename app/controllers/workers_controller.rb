@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
+  before_action :set_tenant
 
   # GET /workers
   # GET /workers.json
@@ -15,6 +16,7 @@ class WorkersController < ApplicationController
   # GET /workers/new
   def new
     @worker = Worker.new
+    @worker.tenant_id=@tenant.id
   end
 
   # GET /workers/1/edit
@@ -28,7 +30,7 @@ class WorkersController < ApplicationController
 
     respond_to do |format|
       if @worker.save
-        format.html { redirect_to @worker, notice: 'Worker was successfully created.' }
+        format.html { redirect_to [@tenant, @worker], notice: 'Worker was successfully created.' }
         format.json { render :show, status: :created, location: @worker }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class WorkersController < ApplicationController
   def update
     respond_to do |format|
       if @worker.update(worker_params)
-        format.html { redirect_to @worker, notice: 'Worker was successfully updated.' }
+        format.html { redirect_to [@tenant,@worker], notice: 'Worker was successfully updated.' }
         format.json { render :show, status: :ok, location: @worker }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class WorkersController < ApplicationController
   def destroy
     @worker.destroy
     respond_to do |format|
-      format.html { redirect_to workers_url, notice: 'Worker was successfully destroyed.' }
+      format.html { redirect_to tenant_workers_path, notice: 'Worker was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +67,9 @@ class WorkersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_worker
       @worker = Worker.find(params[:id])
+    end
+    def set_tenant
+      @tenant=Tenant.find(params[:tenant_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

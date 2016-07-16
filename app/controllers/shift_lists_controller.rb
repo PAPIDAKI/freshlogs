@@ -1,10 +1,12 @@
 class ShiftListsController < ApplicationController
   before_action :set_shift_list, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_tenant
+  before_action :set_course
   # GET /shift_lists
   # GET /shift_lists.json
   def index
-    @shift_lists = ShiftList.all
+    # @shift_lists = ShiftList.where(tenant_id:params[:tenant_id])
+    @shift_lists=ShiftList.where(course_id:params[:course_id]).order(start_at: :DESC)
   end
 
   # GET /shift_lists/1
@@ -14,7 +16,12 @@ class ShiftListsController < ApplicationController
 
   # GET /shift_lists/new
   def new
-    @shift_list = ShiftList.new
+    @course=Course.find(params[:course_id])
+    @shift_list = @course.shift_lists.new
+     @workers=@course.workers
+     @shift_list.attendances = @course.worker_ids.map do |worker_id|
+      @shift_list.attendances.build(worker_id: worker_id)
+    end
   end
 
   # GET /shift_lists/1/edit
@@ -24,11 +31,13 @@ class ShiftListsController < ApplicationController
   # POST /shift_lists
   # POST /shift_lists.json
   def create
-    @shift_list = ShiftList.new(shift_list_params)
+    @shift_list = @course.shift_lists.new(shift_list_params)
+    @shift_list.tenant_id=params[:tenant_id]
+
 
     respond_to do |format|
       if @shift_list.save
-        format.html { redirect_to @shift_list, notice: 'Shift list was successfully created.' }
+        format.html { redirect_to tenant_course_shift_lists_path(@tenant,@course), notice: 'Shift list was successfully created.' }
         format.json { render :show, status: :created, location: @shift_list }
       else
         format.html { render :new }
@@ -42,7 +51,7 @@ class ShiftListsController < ApplicationController
   def update
     respond_to do |format|
       if @shift_list.update(shift_list_params)
-        format.html { redirect_to @shift_list, notice: 'Shift list was successfully updated.' }
+        format.html { redirect_to tenant_course_shift_lists_path(@tenant,@course), notice: 'Shift list was successfully updated.' }
         format.json { render :show, status: :ok, location: @shift_list }
       else
         format.html { render :edit }
@@ -56,7 +65,7 @@ class ShiftListsController < ApplicationController
   def destroy
     @shift_list.destroy
     respond_to do |format|
-      format.html { redirect_to shift_lists_url, notice: 'Shift list was successfully destroyed.' }
+      format.html { redirect_to tenant_course_shift_lists_path(@tenant,@course), notice: 'Shift list was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +76,16 @@ class ShiftListsController < ApplicationController
       @shift_list = ShiftList.find(params[:id])
     end
 
+    def set_tenant
+      @tenant=Tenant.find(params[:tenant_id])
+    end
+
+    def set_course
+      @course=Course.find(params[:course_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_list_params
-      params.require(:shift_list).permit(:course_id, :tenant_id, :start_at, :end_at, :note)
+      params.require(:shift_list).permit(:course_id, :tenant_id, :start_at, :end_at, :note,worker_ids:[])
     end
 end

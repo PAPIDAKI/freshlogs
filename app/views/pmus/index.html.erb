@@ -46,7 +46,7 @@
   <tbody>
     <% @pmus.each do |pmu| %>
       <tr>
-        <td><%= pmu.grower.name %></td>
+        <td><%= pmu.grower %></td>
         <td><%= pmu.produce %></td>
         <td><%= pmu.village %></td>
         <td><%= link_to pmu.location,tenant_pmu_path(@tenant,pmu) %></td>

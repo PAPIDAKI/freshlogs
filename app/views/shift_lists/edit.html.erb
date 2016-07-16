@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @shift_list %> |
-<%= link_to 'Back', shift_lists_path %>
+<%= link_to 'Show', tenant_shift_list_path(@tenant,@shift_list) %> |
+<%= link_to 'Back', tenant_shift_lists_path %>

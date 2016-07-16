@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @worker %> |
-<%= link_to 'Back', workers_path %>
+<%= link_to 'Show', tenant_worker_path(@tenant,@worker) %> |
+<%= link_to 'Back', tenant_workers_path %>

@@ -1,23 +1,19 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @shift_list.course_id %>
-</p>
 
-<p>
-  <strong>Tenant:</strong>
-  <%= @shift_list.tenant_id %>
-</p>
+<h3>
+  <strong>
+  <%= @shift_list.course.name %> <br> <%= @shift_list.start_at.strftime('%a %d %b %y') %></strong>
+</h3>
+
 
 <p>
   <strong>Start at:</strong>
-  <%= @shift_list.start_at %>
+  <%= @shift_list.start_at.strftime('%H:%M') %>
 </p>
 
 <p>
   <strong>End at:</strong>
-  <%= @shift_list.end_at %>
+  <%= @shift_list.end_at.strftime('%H:%M') %>
 </p>
 
 <p>
@@ -25,5 +21,6 @@
   <%= @shift_list.note %>
 </p>
 
-<%= link_to 'Edit', edit_shift_list_path(@shift_list) %> |
-<%= link_to 'Back', shift_lists_path %>
+<%= link_to 'Edit', edit_tenant_course_shift_list_path(@tenant,@course,@shift_list) %> |
+ <%= link_to 'Destroy',[@tenant,@course,@shift_list], method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', tenant_course_shift_lists_path %>
