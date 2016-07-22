@@ -31,11 +31,12 @@
   <hr>
   <h4>Staff:</h4>
 
-  
+ <div class="col-md-4 checkbox-list"> 
    <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ? AND course_id= ?', params[:tenant_id], params[:course_id]),:id,:name)%>
- 
+ <hr>
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>
 </div>

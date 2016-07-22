@@ -94,7 +94,7 @@ padding-right: 0 !important;
 }
 
 #map-container {
-   height: 400px;
+   height: 800px;
    border-radius: 16px 16px;
    border-color: #fff;
    border-style: solid;
@@ -104,6 +104,17 @@ padding-right: 0 !important;
    // marging-bottom:25px;
  }
  #map-canvas {
-   height: 384px;
+   height: 786px;
    width: 100%;
  }
+
+ .checkbox-list input[type="checkbox"] {
+  display: inline-block;
+  width: 10%;
+}
+
+.checkbox-list input[type="checkbox"] + label {
+  display: inline-block;
+  margin-left: 5%;
+  width: 80%;
+}

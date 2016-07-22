@@ -2,10 +2,13 @@ class WorkersController < ApplicationController
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
   before_action :set_tenant
 
-  # GET /workers
-  # GET /workers.json
+  def import
+  Worker.import(params[:file])
+  redirect_to tenant_workers_path(@tenant), notice: "Worker list  imported."
+  end
+
   def index
-    @workers = Worker.all
+    @workers = Worker.where(tenant_id:params[:tenant_id])
   end
 
   # GET /workers/1
@@ -17,6 +20,7 @@ class WorkersController < ApplicationController
   def new
     @worker = Worker.new
     @worker.tenant_id=@tenant.id
+
   end
 
   # GET /workers/1/edit
@@ -30,7 +34,7 @@ class WorkersController < ApplicationController
 
     respond_to do |format|
       if @worker.save
-        format.html { redirect_to [@tenant, @worker], notice: 'Worker was successfully created.' }
+        format.html { redirect_to tenant_workers_path, notice: 'Worker was successfully created.' }
         format.json { render :show, status: :created, location: @worker }
       else
         format.html { render :new }
@@ -74,6 +78,6 @@ class WorkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def worker_params
-      params.require(:worker).permit(:name, :mobile, :tenant_id, :course_id)
+      params.require(:worker).permit(:last_name, :mobile, :tenant_id, :course_id,:first_name,:age,:insurance,:age,:active)
     end
 end

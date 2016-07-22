@@ -1,6 +1,13 @@
 
 <h3>Listing Workers</h3>
 <%= link_to 'New Worker', new_tenant_worker_path %>
+
+<h5>Import Workers</h5>
+<%= form_tag import_tenant_workers_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
 <div class='media'>
   <div class='media-body'>
     <table class='table table-hover'>

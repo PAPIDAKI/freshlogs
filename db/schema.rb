@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712154454) do
+ActiveRecord::Schema.define(version: 20160722035654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20160712154454) do
   end
 
   add_index "artifacts", ["project_id"], name: "index_artifacts_on_project_id", using: :btree
+
+  create_table "att_performances", force: :cascade do |t|
+    t.integer  "attendance_id"
+    t.integer  "tenant_id"
+    t.string   "work_position"
+    t.integer  "cartons_packed"
+    t.datetime "late_arrival"
+    t.datetime "early_leave"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "shift_list_id"
@@ -282,12 +293,20 @@ ActiveRecord::Schema.define(version: 20160712154454) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "workers", force: :cascade do |t|
-    t.string   "name"
+    t.string   "last_name"
     t.string   "mobile"
     t.integer  "tenant_id"
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "first_name"
+    t.string   "phone"
+    t.string   "insurance"
+    t.boolean  "active"
+    t.integer  "age"
+    t.string   "area"
+    t.string   "working_experience"
+    t.integer  "w_id"
   end
 
   add_foreign_key "artifacts", "projects"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :att_performances
   resources :tenants do 
     resources :pmus
     resources :purchases
@@ -6,12 +7,14 @@ Rails.application.routes.draw do
     resources :lots
     resources :loose_berries
     # workforce 
-      resources :shift_lists
+    resources :shift_lists
     resources :courses do 
       resources :shift_lists
     end
     resources :attendances
-    resources :workers
+    resources :workers do
+        collection{ post :import }
+      end
   end 
 
 

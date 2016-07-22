@@ -12,6 +12,7 @@ class ShiftListsController < ApplicationController
   # GET /shift_lists/1
   # GET /shift_lists/1.json
   def show
+    @attendances=Attendance.where(shift_list_id:params[:id ])
   end
 
   # GET /shift_lists/new
@@ -37,7 +38,7 @@ class ShiftListsController < ApplicationController
 
     respond_to do |format|
       if @shift_list.save
-        format.html { redirect_to tenant_course_shift_lists_path(@tenant,@course), notice: 'Shift list was successfully created.' }
+        format.html { redirect_to tenant_course_shift_list_path(@tenant,@course,@shift_list), notice: 'Shift list was successfully created.' }
         format.json { render :show, status: :created, location: @shift_list }
       else
         format.html { render :new }
@@ -51,7 +52,7 @@ class ShiftListsController < ApplicationController
   def update
     respond_to do |format|
       if @shift_list.update(shift_list_params)
-        format.html { redirect_to tenant_course_shift_lists_path(@tenant,@course), notice: 'Shift list was successfully updated.' }
+        format.html { redirect_to tenant_course_shift_list_path(@tenant,@course,@shift_list), notice: 'Shift list was successfully updated.' }
         format.json { render :show, status: :ok, location: @shift_list }
       else
         format.html { render :edit }

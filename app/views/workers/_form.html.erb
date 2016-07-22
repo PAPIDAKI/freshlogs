@@ -17,13 +17,47 @@
     </div>
 
   <div class="form-group">
-    <%= f.label :name ,class:'control-label'%><br>
-    <%= f.text_field :name ,class:'form-control'%>
+    <%= f.label :last_name ,class:'control-label'%><br>
+    <%= f.text_field :last_name ,class:'form-control'%>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :first_name ,class:'control-label'%><br>
+    <%= f.text_field :first_name ,class:'form-control'%>
   </div>
   <div class="form-group">
     <%= f.label :mobile,class:'control-label' %><br>
     <%= f.text_field :mobile ,class:'form-control'%>
   </div>
+  
+<div class="form-group">
+    <%= f.label :phone,class:'control-label' %><br>
+    <%= f.text_field :phone ,class:'form-control'%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age,class:'control-label' %><br>
+    <%= f.text_field :age ,class:'form-control'%>
+  </div>
+  
+
+<div class="form-group">
+    <%= f.label :insurance,class:'control-label' %><br>
+    <%= f.select :insurance,[['IKA','IKA'],['ΟΓΑ','OGA']],{},{class:'form-control'}%>
+</div>
+
+
+
+
+<div class="form-group">
+    <%= f.label :active,class:'control-label' %><br>
+    <%= f.check_box :active ,class:'form-control'%>
+  </div>
+    
+  
+
+
+
   <div class="form-group">
     <%= f.hidden_field :tenant_id %>
   </div>

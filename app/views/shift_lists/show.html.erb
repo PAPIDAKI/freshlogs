@@ -22,5 +22,20 @@
 </p>
 
 <%= link_to 'Edit', edit_tenant_course_shift_list_path(@tenant,@course,@shift_list) %> |
- <%= link_to 'Destroy',[@tenant,@course,@shift_list], method: :delete, data: { confirm: 'Are you sure?' } %>
+ <%= link_to 'Destroy',[@tenant,@course,@shift_list], method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', tenant_course_shift_lists_path %>
+
+<hr>
+<p>
+attendees:<strong><%=@attendances.count%></strong>
+</p>
+<table class='table table-condensed'>
+<tbody>
+<% @attendances.each do |attendance| %>
+<tr>
+<td><%=attendance.worker.name%></td>
+</tr>
+<%end%>
+</tbody>
+
+</table>

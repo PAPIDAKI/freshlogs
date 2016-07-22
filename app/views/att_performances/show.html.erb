@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Attendance:</strong>
+  <%= @att_performance.attendance_id %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @att_performance.tenant_id %>
+</p>
+
+<p>
+  <strong>Work position:</strong>
+  <%= @att_performance.work_position %>
+</p>
+
+<p>
+  <strong>Cartons packed:</strong>
+  <%= @att_performance.cartons_packed %>
+</p>
+
+<p>
+  <strong>Late arrival:</strong>
+  <%= @att_performance.late_arrival %>
+</p>
+
+<p>
+  <strong>Early leave:</strong>
+  <%= @att_performance.early_leave %>
+</p>
+
+<%= link_to 'Edit', edit_att_performance_path(@att_performance) %> |
+<%= link_to 'Back', att_performances_path %>

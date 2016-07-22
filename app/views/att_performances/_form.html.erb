@@ -1,0 +1,41 @@
+<%= form_for(@att_performance) do |f| %>
+  <% if @att_performance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@att_performance.errors.count, "error") %> prohibited this att_performance from being saved:</h2>
+
+      <ul>
+      <% @att_performance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :attendance_id %><br>
+    <%= f.number_field :attendance_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tenant_id %><br>
+    <%= f.number_field :tenant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :work_position %><br>
+    <%= f.text_field :work_position %>
+  </div>
+  <div class="field">
+    <%= f.label :cartons_packed %><br>
+    <%= f.number_field :cartons_packed %>
+  </div>
+  <div class="field">
+    <%= f.label :late_arrival %><br>
+    <%= f.datetime_select :late_arrival %>
+  </div>
+  <div class="field">
+    <%= f.label :early_leave %><br>
+    <%= f.datetime_select :early_leave %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
