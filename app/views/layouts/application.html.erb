@@ -47,13 +47,21 @@
     <div class="container">
     
       <div class="row">
-       <div class='col-md-3'>
-        
+      <% if @tenant%>
+       <div class='col-md-2'>
+         <%=render 'layouts/left_sidebar'%>
          </div>  
-        <div class="col-md-9">
+        <div class="col-md-8">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
+        <%else%>
+         <div class="col-md-12">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+
+         <%end%>
      </div>
 
     <!-- Footer   -->
