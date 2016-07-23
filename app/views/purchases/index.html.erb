@@ -15,7 +15,7 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= link_to purchase.pmu.location ,tenant_purchase_path(@tenant,purchase) %></td>
+        <td><%= link_to purchase.pmu.try(:location) ,tenant_purchase_path(@tenant,purchase) %></td>
         <td><%= purchase.price %></td>
         <td><%= purchase.note %></td>
         <td><%= purchase.tenant_id %></td>

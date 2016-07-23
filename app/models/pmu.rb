@@ -6,6 +6,7 @@ class Pmu < ActiveRecord::Base
   #add geocoding and maps 
   geocoded_by :latitude
   after_validation :geocode
+  validates :location,presence: true
 
 
 end
