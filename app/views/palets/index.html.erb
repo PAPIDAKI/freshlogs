@@ -1,4 +1,7 @@
 <h3>Listing the Palets</h3>
+<h4><%=@palets.count%>|<%=@palets_kgs=@palets.count*960/2%></h4>
+
+
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
 
 <div class="media">

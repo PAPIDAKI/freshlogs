@@ -3,10 +3,16 @@ class PaletsController < ApplicationController
   before_action :set_palet, only: [:show, :edit, :update, :destroy]
   
   def index
-    @tenant=Tenant.find(params[:tenant_id])
     @palets = Palet.where(tenant_id:@tenant.id).order(date: :desc)
+    @palets_kgs=@palets.count*960/2
   end 
 
+  def report
+    # @palets = Palet.where(tenant_id:@tenant.id)order(date: :desc))
+    # @total_kgs=@palets.count*960/2
+    # @palets_by_grower
+
+  end
   
   def show
     @palet=Palet.find(params[:id])
