@@ -1,6 +1,12 @@
 
-
 <p>
+  <strong>Pmu:</strong>
+  <%= @purchase.pmu.details %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @purchase.date%>
+</p>
   <strong>Price:</strong>
   <%= @purchase.price %>
 </p>
@@ -10,15 +16,7 @@
   <%= @purchase.note %>
 </p>
 
-<p>
-  <strong>Tenant:</strong>
-  <%= @purchase.tenant_id %>
-</p>
 
-<p>
-  <strong>Pmu:</strong>
-  <%= @purchase.pmu_id %>
-</p>
 
 <%= link_to 'Edit', edit_tenant_purchase_path(@tenant,@purchase) %>  | 
 <%= link_to 'Delete',tenant_purchase_path(@tenant,@purchase),method: :delete,date:{confirm:'Are you sure ?'}%>

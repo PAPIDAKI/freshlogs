@@ -48,7 +48,7 @@ class PmusController < ApplicationController
     @pmu.tenant_id=Tenant.find(params[:tenant_id]).id  
     respond_to do |format|
       if @pmu.save
-        format.html { redirect_to tenant_pmu_path(@tenant,@pmu), notice: 'Pmu was successfully created.' }
+        format.html { redirect_to edit_tenant_pmu_path(@tenant,@pmu), notice: 'Pmu was successfully created.' }
       else
         format.html { render :new }
       end

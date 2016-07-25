@@ -26,7 +26,7 @@
 
 			<div class="form-group">
 				<%= f.label :produce %><br>
-				<%= f.text_field :produce %>
+				<%= f.select(:produce,options_for_select(['Thomson Seedless','Sultana','Crimson']),{},{class:'form-control'} )%>
 			</div>
 			<div class="form-group">
 				<%= f.label :village ,'Nearest Village'%><br>
@@ -37,24 +37,24 @@
 				<%= f.text_field :location %>
 			</div>
 			<div class="form-group">
-				<%= f.label :size ,'Area in sq kms'%><br>
+				<%= f.label :size ,'How big is it sq kms ?'%><br>
 				<%= f.number_field :size %>
 			</div>
 			<div class="form-group">
-				<%= f.label :plants,'Number of plants' %><br>
+				<%= f.label :plants,'How many plants ?' %><br>
 				<%= f.number_field :plants %>
 			</div>
 			<div class="form-group">
-				<%= f.label :production,'Typical production in tons' %><br>
+				<%= f.label :production,'How many  tons ?' %><br>
 				<%= f.text_field :production %>
 			</div>
 			<div class="form-group">
 				<%= f.label :facilities %><br>
-				<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance'])) %>
+				<%= f.select(:facilities,options_for_select(['Water','WC','Sleeping Quorters','Cool Storage','Warehoue','Fence','Lockable entrance']),{},{class:'form-control'}) %>
 			</div>
 			<div class="form-group">
-				<%= label_tag :certification,:globalgap %><br>
-			
+				<%=f.label :certification%><br>
+				<%= f.select(:certification,options_for_select(['none','globalgap','agro','bio']),{:multiple => true },{class:'form-control'}) %><br>
 		 		</div>
 
 			<div class="form-group">

@@ -1,4 +1,4 @@
-class AddColumnTenantIdToLot < ActiveRecord::Migration
+blass AddColumnTenantIdToLot < ActiveRecord::Migration
   def up
   	add_column :lots,:tenant_id,:integer,index: :true
   end

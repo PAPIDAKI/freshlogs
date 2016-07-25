@@ -9,10 +9,9 @@
         <tr>
         <th>Date</th>
         <th>Lot</th>
-        <th>Location</th>
-        <th>Grower</th>
-      <th>Boxes</th>
+        <th>Details</th>
         <th>Kilos</th>
+      <th>Plastics</th>
         <th>Note</th>
         </tr>
       </thead>
@@ -22,10 +21,10 @@
           <tr>
             <td><%=lot.created_at.strftime("%d-%m-%Y")%>
             <td><%=link_to lot.lot,tenant_lot_path(@tenant,lot)%></td>
-            <td><%=lot.purchase.pmu.location%></td>
-            <td><%=lot.purchase.pmu.grower.name%></td>
-            <td><%=lot.plastics%></td>
+           
+            <td><%=lot.purchase.pmu.details%></td>
             <td><%=lot.kg%></td>
+            <td><%=lot.plastics%></td>
             <td><%=lot.note%></td>
           </tr>
         <% end %>

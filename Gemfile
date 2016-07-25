@@ -46,7 +46,9 @@ gem "cocoon"
 
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem 'bootstrap-datepicker-rails'
 gem "flat-ui-rails"
+
 
 gem 'bootstrap-datepicker-rails'
 gem 'rqrcode'
