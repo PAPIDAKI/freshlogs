@@ -2,6 +2,7 @@
 <h4><%=@palets.count%>|<%=@palets_kgs=@palets.count*960/2%></h4>
 
 
+
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
 
 <div class="media">
@@ -11,6 +12,7 @@
         <tr>
           <th>Date</th>
           <th>Code</th>
+          <th>For</th>
           <th>Lot  info </th>
          
           <th>Note</th>
@@ -23,7 +25,8 @@
         <% @palets.each do |palet| %>
           <tr> 
             <td><%= palet.date.strftime("%e %b %H:%y") %></td>
-            <td><%=link_to palet.code,tenant_palet_path(@tenant,palet)%></td>
+            <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
+             <td><%=palet.packed_for%></td>
             <td><%  palet.palet_line_items.each do |pli|%>
             <%=pli.lot.lot%>
             <%=pli.cartons%> cartons
@@ -40,4 +43,4 @@
         <br>
     </div>
 </div>
-    <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
+   

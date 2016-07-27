@@ -57,7 +57,7 @@ class PaletsController < ApplicationController
   def update
     respond_to do |format|
       if @palet.update(palet_params)
-        format.html { redirect_to tenant_palet_path(@tenant,@palet), notice: 'Palet was successfully updated.' }
+        format.html { redirect_to tenant_palets_path(@tenant,@palet), notice: 'Palet was successfully updated.' }
         format.json { render :show, status: :ok, location: @palet }
       else
         format.html { render :edit }
@@ -87,6 +87,6 @@ class PaletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def palet_params
-      params.require(:palet).permit(:date,:code,:note,:tenant_id,:loading_id,palet_line_items_attributes: [:id,:lot_id, :palet_id,:cartons,:_destroy,:tenant_id]) 
+      params.require(:palet).permit(:date,:code,:note,:tenant_id,:loading_id,:packed_for,palet_line_items_attributes: [:id,:lot_id, :palet_id,:cartons,:_destroy,:tenant_id]) 
     end
 end

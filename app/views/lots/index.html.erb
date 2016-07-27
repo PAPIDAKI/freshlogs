@@ -1,6 +1,7 @@
 
 <h3>Listing Lots</h3>
-<h4><%=@lots.count%>|<%=@lots_kgs%></h4>
+<h4><%=@lots.count%>|<%=number_with_precision(@lots_kgs,precision: 0,separator:',',delimiter:'.') %></h4>
+
 <%= link_to 'New Lot', new_tenant_lot_path %>
 
 <div class="media">
