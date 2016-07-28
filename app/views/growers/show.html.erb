@@ -37,7 +37,8 @@
 <div>
 Purchases:
 <% @pmus.each do |pmu|%>
-  <%="#{pmu.village} #{pmu.location}"%>
+<br>
+  <%="#{pmu.location} " %>
   <%= pmu.purchases.last.try(:price)%><br/>
   <%end%>
 <%=link_to 'Add Pmu',new_tenant_grower_pmu_path(@tenant,@grower) %>

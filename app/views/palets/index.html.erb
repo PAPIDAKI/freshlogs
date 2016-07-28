@@ -28,7 +28,7 @@
             <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
              <td><%=palet.packed_for%></td>
             <td><%  palet.palet_line_items.each do |pli|%>
-            <%=pli.lot.lot%>
+            <%=pli.lot.try(:lot)%>
             <%=pli.cartons%> cartons
           (<%=pli.lot.purchase.details%><br/>
             <%end%></td>
