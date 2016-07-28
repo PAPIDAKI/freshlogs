@@ -29,6 +29,7 @@ class LoadingsController < ApplicationController
   # POST /loadings.json
   def create
     @loading = Loading.new(loading_params)
+    @loading.tenant_id=params[:tenant_id]
 
     respond_to do |format|
       if @loading.save
@@ -78,6 +79,6 @@ class LoadingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loading_params
-      params.require(:loading).permit(:date, :customer, :eta, :delivered,palet_ids:[])
+      params.require(:loading).permit(:date, :customer, :eta, :delivered,:tenant_id,palet_ids:[])
     end
 end

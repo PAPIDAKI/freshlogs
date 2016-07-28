@@ -7,6 +7,6 @@ class Purchase < ActiveRecord::Base
 	
 
 	def details
-		"#{pmu.grower.name} - #{pmu.village} #{pmu.location}"
+		"#{pmu.grower.name} - #{pmu.location}"
 	end
 end

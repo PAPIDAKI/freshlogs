@@ -71,7 +71,6 @@ class PmusController < ApplicationController
   # DELETE /pmus/1
   # DELETE /pmus/1.json
   def destroy
-    @grower=Grower.find(params[:grower_id])
     @pmu.destroy
     respond_to do |format|
       format.html { redirect_to tenant_pmus_path(@tenant), notice: 'Pmu was successfully destroyed.' }

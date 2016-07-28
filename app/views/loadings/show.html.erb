@@ -25,7 +25,8 @@
 	<h3>Palets</h3>
 		<ul>
 			<% @palets.each do |palet| %>
-				<li><%=palet.code%></li>
+				<li><%=link_to palet.code,tenant_palet_path(@tenant,palet)%>
+        </li>
 			<%end%>
 		</ul>
 

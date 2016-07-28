@@ -58,7 +58,9 @@
         </p>
 
         <%= link_to 'Edit', edit_tenant_pmu_path(@tenant,@pmu) %> |
+        <%=link_to 'Delete',tenant_pmu_path(@tenant,@pmu),method: :delete,data:{confirm: 'Are you sure?'}%> |  
         <%= link_to 'Back', tenant_pmus_path %>
+
                 <h5>Nearby Locations</h5>
         
 

@@ -4,6 +4,7 @@ class Grower < ActiveRecord::Base
 	has_many :pmus ,dependent: :destroy
 	has_many :purchases,through: :pmus
 	has_many :lots,through: :purchases
+	has_many :loose_berries,through: :purchases
 	has_many :palet_line_items,through: :lots
 	has_many :palets,through: :palet_line_items
 	has_many :loadings,through: :palets
