@@ -30,7 +30,7 @@
             <td><%  palet.palet_line_items.each do |pli|%>
             <%=pli.lot.try(:lot)%>
             <%=pli.cartons%> cartons
-          (<%=pli.lot.try(:purchase).details%><br/>
+          (<%=pli.lot.try(:purchase).try(:details)%><br/>
             <%end%></td>
             <td><%=palet.note%></td>
            
