@@ -70,7 +70,7 @@ class LotsController < ApplicationController
   def destroy
     @lot.destroy
     respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
+      format.html { redirect_to tenant_lots_path, notice: 'Lot was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

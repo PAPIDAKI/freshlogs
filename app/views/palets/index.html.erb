@@ -30,6 +30,8 @@
              <td><%=palet.packed_for.capitalize%></td>
              <td><%= palet.palet_line_items.sum(:cartons)%></td>
             <td><%  palet.palet_line_items.each do |pli|%>
+            <%=pli.id%>
+            <%=pli.tenant_id%>
             <%=pli.lot.try(:lot)%>
             <%=pli.cartons%> cartons
           (<%=pli.lot.try(:purchase).try(:details)%><br/>
