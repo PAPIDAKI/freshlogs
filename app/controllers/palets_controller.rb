@@ -3,7 +3,7 @@ class PaletsController < ApplicationController
   before_action :set_palet, only: [:show, :edit, :update, :destroy]
   
   def index
-    @palets = Palet.where(tenant_id:@tenant.id).order(date: :desc)
+    @palets = Palet.where(tenant_id:@tenant.id).order(code: :desc)
     @palets_kgs=@palets.count*960/2
   end 
 

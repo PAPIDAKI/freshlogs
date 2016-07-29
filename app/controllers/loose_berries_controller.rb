@@ -75,6 +75,6 @@ class LooseBerriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loose_berry_params
-      params.require(:loose_berry).permit(:purchase_id, :tenant_id, :kg, :note)
+      params.require(:loose_berry).permit(:date,:purchase_id, :tenant_id, :kg, :note)
     end
 end
