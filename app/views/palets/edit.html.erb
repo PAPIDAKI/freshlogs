@@ -3,4 +3,5 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', edit_tenant_palet_path(@tenant,@palet) %> |
+<%= link_to 'Destroy',[@tenant,@palet], method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', tenant_palets_path(@tenant) %>
