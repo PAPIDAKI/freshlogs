@@ -16,4 +16,8 @@ class Palet < ActiveRecord::Base
       accepts_nested_attributes_for :lots,allow_destroy: true
 
       validates :code ,presence: true,uniqueness: true
+
+      def cartons
+      	palet_line_items.sum(:cartons)
+      end
 end

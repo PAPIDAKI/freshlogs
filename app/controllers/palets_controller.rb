@@ -4,9 +4,10 @@ class PaletsController < ApplicationController
   
   def index
     @palets = Palet.where(tenant_id:@tenant.id).order(code: :desc)
-    @palet_line_items=PaletLineItem.where(tenant_id:@tenant.id)
-    @total_cartons=@palet_line_items.sum(:cartons)
-    @kg_packed=@total_cartons*5
+    # @palet_line_items=PaletLineItem.where(tenant_id:@tenant.id)
+    # @total_cartons=@palet_line_items.sum(:cartons)
+    # @kg_packed=@total_cartons*5
+    @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
   end 
 
   def report
@@ -38,11 +39,10 @@ class PaletsController < ApplicationController
   def create
     @palet = Palet.new(palet_params)
     @palet.tenant_id=@tenant.id
-    @palet.palet_line_items.last.tenant_id=params[:tenant_id]
-    
-
-
-
+    # @palet.palet_line_items.last.tenant_id=params[:tenant_id]
+        @palet.palet_line_items.each do |pli|
+          pli.tenant_id=params[:tenant_id]
+        end
     respond_to do |format|
       if @palet.save
         format.html { redirect_to tenant_palets_path(@tenant), notice: 'Palet was successfully created.' }

@@ -21,6 +21,9 @@ class Lot < ActiveRecord::Base
     self.lot  ||="#{a_part}#{b_part}#{c_part}"
   end
 
+  def lot_description
+    "#{lot}   #{purchase.pmu.grower.name}-#{purchase.pmu.location}"
+ end
 
 end
 

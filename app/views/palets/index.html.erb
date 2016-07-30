@@ -1,5 +1,5 @@
 <h3>Listing the Palets</h3>
-<h4><%=@palets.count%>|<%=@total_cartons%>|<%=@kg_packed%></h4>
+<h4><%=@palets.count%>|<%=@cartons%>|<%=@kg_packed%></h4>
 
 
 
@@ -12,8 +12,8 @@
         <tr>
           <th>Date</th>
           <th>Code</th>
-          <th>Cartons</th>
           <th>For</th>
+          <th>Cartons</th>
           <th>Lot  info </th>
          
           <th>Note</th>
@@ -28,7 +28,7 @@
             <td><%= palet.date.strftime("%e %b %H:%y") %></td>
             <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
              <td><%=palet.packed_for.capitalize%></td>
-             <td><%= palet.palet_line_items.sum(:cartons)%></td>
+             <td><%= palet.cartons%></td>
             <td><%  palet.palet_line_items.each do |pli|%>
             <%=pli.id%>
             <%=pli.tenant_id%>
