@@ -28,13 +28,11 @@
             <td><%= palet.date.strftime("%e %b %H:%y") %></td>
             <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
              <td><%=palet.packed_for.capitalize%></td>
-             <td><%= palet.cartons%></td>
-            <td><%  palet.palet_line_items.each do |pli|%>
-            <%=pli.id%>
-            <%=pli.tenant_id%>
+             <td><%= palet.palet_line_items.sum(:cartons)%></td>
+            <td><%  palet.palet_line_items.each do |pli|%> 
             <%=pli.lot.try(:lot)%>
             <%=pli.cartons%> cartons
-          (<%=pli.lot.try(:purchase).try(:details)%><br/>
+          <%=pli.lot.try(:purchase).try(:details) %><br/>
             <%end%></td>
             <td><%=palet.note%></td>
             

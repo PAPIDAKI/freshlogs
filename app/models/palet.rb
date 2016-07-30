@@ -17,7 +17,4 @@ class Palet < ActiveRecord::Base
 
       validates :code ,presence: true,uniqueness: true
 
-      def cartons
-      	palet_line_items.sum(:cartons)
-      end
 end

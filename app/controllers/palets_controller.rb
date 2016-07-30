@@ -4,10 +4,8 @@ class PaletsController < ApplicationController
   
   def index
     @palets = Palet.where(tenant_id:@tenant.id).order(code: :desc)
-    # @palet_line_items=PaletLineItem.where(tenant_id:@tenant.id)
-    # @total_cartons=@palet_line_items.sum(:cartons)
-    # @kg_packed=@total_cartons*5
     @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
+    @kg_packed=@cartons*5
   end 
 
   def report

@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(version: 20160730041319) do
     t.integer  "tenant_id"
     t.string   "note"
     t.string   "packed_for"
-    t.integer  "cartons"
   end
 
   create_table "paralavis", force: :cascade do |t|
