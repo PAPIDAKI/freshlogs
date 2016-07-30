@@ -9,6 +9,8 @@ class LotsController < ApplicationController
   def index
     @lots = Lot.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
    @lots_kgs=@lots.sum(:kg) 
+   @lots=@lots.to_a
+   @daily_lots=@lots.group_by {|t| t.created_at.beginning_of_day}
   end
 
   # GET /lots/1

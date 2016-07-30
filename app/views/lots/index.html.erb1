@@ -1,0 +1,41 @@
+
+<h3>Listing Lots</h3>
+<h4><%=@lots.count%>|<%=number_with_precision(@lots_kgs,precision: 0,separator:',',delimiter:'.') %></h4>
+
+<%= link_to 'New Lot', new_tenant_lot_path %>
+
+<div class="media">
+    <div class="media-body">
+    <table class='table table-hover'>
+      <thead>
+        <tr>
+        <th>Date</th>
+        <th>Lot</th>
+        <th>Details</th>
+        <th>Kilos</th>
+      <th>Plastics</th>
+        <th>Note</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @lots.each do |lot| %>
+          <tr>
+            <td><%=lot.created_at.strftime("%d-%m-%Y")%>
+            <td><%=link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%></td>
+           
+            <td><%=lot.purchase.pmu.details%></td>
+            <td><%=lot.kg%></td>
+            <td><%=lot.plastics%></td>
+            <td><%=lot.note%></td>
+          
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+  </div>
+</div>
+
+
+
