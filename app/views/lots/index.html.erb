@@ -13,7 +13,11 @@
   <tbody>
       <% @daily_lots.each do |day, lots| %>
       <h4><strong><%= day.strftime('%d %b ') %></strong>
+
+  <% unless lots.nil? %>
       <span><%=number_with_precision(lots.inject(0){|sum,e| sum += e.kg},precision:0,seperator:',',delimiter:'.')%></span></h4>
+  <% end %>
+
 
       <tr>
         <% for lot in lots %>
