@@ -3,7 +3,8 @@ class PaletsController < ApplicationController
   before_action :set_palet, only: [:show, :edit, :update, :destroy]
   
   def index
-    @palets = Palet.where(tenant_id:@tenant.id).order(code: :desc)
+
+    @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC,code DESC')
     @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
     @kg_packed=@cartons*5
   end 

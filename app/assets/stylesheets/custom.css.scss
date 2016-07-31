@@ -1,7 +1,9 @@
 // $navbar-default-bg:#c4f902;
+$navbar-default-bg :#F5EFE6;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "flat-ui";
+
 
 .user-name {
 		padding: 0 !important ;
@@ -21,12 +23,13 @@
 .nav.navbar-right {
 			padding-bottom: 10px;
 			padding-top: 5px;
+			color: #1ABC9C;
 			}
 
 .nav.navbar-nav {
 				.navbar-link {
 						border-radius: 5px;
-						color: #fff;
+						color: #F5FE6;
 						margin-top: 15px;
 						padding: 8px;
 					}

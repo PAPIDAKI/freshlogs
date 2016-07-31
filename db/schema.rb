@@ -207,12 +207,12 @@ ActiveRecord::Schema.define(version: 20160730214936) do
   add_index "projects", ["tenant_id"], name: "index_projects_on_tenant_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
-    t.float    "price"
+    t.float    "price",      default: 0.0
     t.string   "note"
     t.integer  "tenant_id"
     t.integer  "pmu_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.date     "date"
   end
 

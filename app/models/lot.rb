@@ -27,5 +27,9 @@ class Lot < ActiveRecord::Base
     "#{lot}   #{purchase.pmu.grower.name}-#{purchase.pmu.location}"
  end
 
+ def worth
+  self.kg * self.purchase.price/100
+  end
+
 end
 

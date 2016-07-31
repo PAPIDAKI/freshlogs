@@ -8,6 +8,13 @@ class GrowersController < ApplicationController
     @growers = Grower.where(tenant_id:params[:tenant_id]).order(name: :asc)
   end
 
+  def position
+    @grower=Grower.find(params[:grower_id])
+    @grower_lots=@grower.lots.order(created_at: :DESC)
+    @purchase_prices=@grower_lots.map {|l| l.purchase.price}
+  end
+
+
   # GET /growers/1
   # GET /growers/1.json
   def show
@@ -46,7 +53,7 @@ class GrowersController < ApplicationController
   def update
     respond_to do |format|
       if @grower.update(grower_params)
-        format.html { redirect_to tenant_grower_path(@tenant,@grower), notice: 'Grower was successfully updated.' }
+        format.html { redirect_to tenant_growers_path(@tenant,@grower), notice: 'Grower was successfully updated.' }
         format.json { render :show, status: :ok, location: @grower }
       else
         format.html { render :edit }

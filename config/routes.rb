@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :palets
       resources :loadings
       resources :growers do
+        get :position
         resources :pmus 
               resources :lots  
       end

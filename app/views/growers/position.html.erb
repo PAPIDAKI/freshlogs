@@ -1,0 +1,38 @@
+<h4><%=link_to @grower.name,edit_tenant_grower_path(@tenant,@grower)%> position</h4>
+
+<div class='media'>
+	<div class='media-body'>
+		<table class='table table-hover'>
+		 <thead>
+		 </thead>
+		 <tbody>
+		 <% @grower_lots.each do |lot|%>
+		 <tr>
+		 
+		    <td><%=lot.created_at.strftime("%d-%m-%Y")%></td>
+		    <td><%=link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%></td>
+		    <td><%=lot.purchase.pmu.location%></td>
+            <td><%=number_with_precision(lot.kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
+            <td><%=lot.purchase.price/100%> </td><td>=</td>
+            <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
+            </tr>
+            <%end%>
+            <tr>
+            <td></td>
+            <td></td><td></td>
+            <td><strong><%=number_with_precision(@grower_lots.sum(:kg),precision: 0 ,separator:',',delimiter:'.')%> </strong></td>
+            <td></td><td></td><td></td>
+            <td><strong><%= number_with_precision(@grower_lots.to_a.sum {|l| l.worth},precision: 2 ,separator:',',delimiter:'.')%></strong></td>
+         
+
+
+            </tr>
+
+
+
+		 </tbody>
+		 </table>
+	 </div>
+ </div>
+
+'
