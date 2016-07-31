@@ -9,4 +9,8 @@ class Purchase < ActiveRecord::Base
 	def details
 		"#{pmu.grower.name} - #{pmu.location}"
 	end
+
+	def price_to_decimal
+		price/100
+	end
 end
