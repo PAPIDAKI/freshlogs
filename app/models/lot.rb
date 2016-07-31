@@ -7,6 +7,8 @@ class Lot < ActiveRecord::Base
   accepts_nested_attributes_for :palet_line_items
   accepts_nested_attributes_for :palets
 
+
+
  
 
 

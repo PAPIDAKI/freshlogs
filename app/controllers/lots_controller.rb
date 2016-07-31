@@ -30,6 +30,7 @@ class LotsController < ApplicationController
 
   # GET /lots/1/edit
   def edit
+  
         @lot.tenant_id=@tenant.id
   end
 
