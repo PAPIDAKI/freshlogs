@@ -13,7 +13,7 @@
 		    <td><%=link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%></td>
 		    <td><%=lot.purchase.pmu.location%></td>
             <td><%=number_with_precision(lot.kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
-            <td><%=lot.purchase.price_to_decimal %> </td><td>=</td>
+            <td><%=lot.purchase.price_to_decimal if lot.purchase.price %> </td><td>=</td>
             <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
             </tr>
             <%end%>
