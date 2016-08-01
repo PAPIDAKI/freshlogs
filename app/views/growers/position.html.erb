@@ -23,16 +23,12 @@
             <td><strong><%=number_with_precision(@grower_lots.sum(:kg),precision: 0 ,separator:',',delimiter:'.')%> </strong></td>
             <td></td><td></td><td></td>
             <td><strong><%= number_with_precision(@grower_lots.to_a.sum {|l| l.worth},precision: 2 ,separator:',',delimiter:'.')%></strong></td>
-         
-
-
             </tr>
-
-
-
 		 </tbody>
 		 </table>
+         <h4>Palets grapes are in:<%=@grower.palets.count%></h4>
+         <h4>Packed:<%=@grower.palet_line_items.sum(:cartons)%>cartons</h4>
+         <h4>kg:<%=@grower.palet_line_items.sum(:cartons)*5%>
+         
 	 </div>
  </div>
-
-'

@@ -1,9 +1,6 @@
 class Palet < ActiveRecord::Base
-	# belongs_to :tenant
-	# belongs_to :grower
-	# belongs_to :purchase
-	# belongs_to :lot
-	
+    before_create :capitalize_packed_for
+    before_update :capitalize_packed_for
 
 	belongs_to :loading
 	has_many :purchases, through: :lots
@@ -16,5 +13,11 @@ class Palet < ActiveRecord::Base
       accepts_nested_attributes_for :lots,allow_destroy: true
 
       validates :code ,presence: true,uniqueness: true
+
+     private 
+
+     	def capitalize_packed_for
+     		self.packed_for.capitalize!
+     	end
 
 end
