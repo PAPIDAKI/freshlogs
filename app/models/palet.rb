@@ -20,4 +20,8 @@ class Palet < ActiveRecord::Base
      		self.packed_for.capitalize!
      	end
 
+      def description
+        '#{note}'
+      end
+
 end
