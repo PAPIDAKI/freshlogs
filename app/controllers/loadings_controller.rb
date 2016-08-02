@@ -10,7 +10,7 @@ class LoadingsController < ApplicationController
   # GET /loadings/1
   # GET /loadings/1.json
   def show
-    @palets=@loading.palets
+    @palets=@loading.palets.order(code: :desc)
   end
 
   # GET /loadings/new
@@ -23,6 +23,8 @@ class LoadingsController < ApplicationController
   def edit
 
     @palets=@loading.palets
+    @unloaded_palets=Palet.where(loading_id:nil)
+
   end
 
   # POST /loadings

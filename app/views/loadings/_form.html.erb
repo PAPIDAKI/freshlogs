@@ -29,7 +29,11 @@
   </div>
   <hr>
   <div class='field'>
-    <%=f.collection_check_boxes(:palet_ids,@palets,:id,:code)%>
+    <%=f.collection_check_boxes(:palet_ids,@palets.order(:code),:id,:code)%>
+    </div>
+    <hr>
+    <div class='field'>
+    <%=f.collection_check_boxes(:palet_ids,@unloaded_palets,:id,:code)%>
     </div>
   <div class="actions">
     <%= f.submit %>
