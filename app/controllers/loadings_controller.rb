@@ -81,6 +81,6 @@ class LoadingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loading_params
-      params.require(:loading).permit(:date, :customer,:order, :eta, :delivered,:tenant_id,palet_ids:[])
+      params.require(:loading).permit(:date, :customer,:ref, :eta, :delivered,:tenant_id,palet_ids:[])
     end
 end

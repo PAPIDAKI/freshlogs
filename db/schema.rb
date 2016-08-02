@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160802134820) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "tenant_id"
-    t.string   "order_no"
+    t.string   "ref"
   end
 
   create_table "loose_berries", force: :cascade do |t|

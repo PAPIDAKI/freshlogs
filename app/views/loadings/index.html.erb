@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to loading.date.strftime("%e %b %a"),tenant_loading_path(@tenant,loading) %></td>
         <td><%= loading.customer %></td>
-        <td><%= loading.order_no %></td>
+        <td><%= loading.ref %></td>
         <td><%= loading.palets.count %></td>
         <td><%= loading.eta.strftime("%a %e %b") %></td>
         <td><%= loading.delivered  %></td>
@@ -33,4 +33,3 @@
 
 <br>
 
-<%= link_to 'New Loading', new_tenant_loading_path(@tenant) %>

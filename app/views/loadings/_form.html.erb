@@ -20,8 +20,8 @@
     <%= f.text_field :customer %>
   </div>
   <div class="field">
-    <%= f.label :order_no %><br>
-    <%= f.text_field :order_no %>
+    <%= f.label :ref %><br>
+    <%= f.text_field :ref %>
   </div>
   <div class="field">
     <%= f.label :eta %><br>
@@ -32,13 +32,9 @@
     <%= f.check_box :delivered %>
   </div>
   <hr>
-  <div class='field'>
+ <div class='field'>
     <%=f.collection_check_boxes(:palet_ids,@palets,:id,:code)%>
-    </div>,:id,:code)%>
     </div>
-    <hr>
-    <hr>
-    
   <div class="actions">
     <%= f.submit %>
   </div>
