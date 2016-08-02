@@ -1,6 +1,46 @@
 <h1>Editing Loading</h1>
 
-<%= render 'form' %>
+<%= form_for([@tenant,@loading]) do |f| %>
+  <% if @loading.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loading.errors.count, "error") %> prohibited this loading from being saved:</h2>
+
+      <ul>
+      <% @loading.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :customer %><br>
+    <%= f.text_field :customer %>
+  </div>
+  <div class="field">
+    <%= f.label :eta %><br>
+    <%= f.date_select :eta %>
+  </div>
+  <div class="field">
+    <%= f.label :delivered %><br>
+    <%= f.check_box :delivered %>
+  </div>
+  <hr>
+  <div class='field'>
+    <%=f.collection_check_boxes(:palet_ids,@palets.order(:code),:id,:code)%>
+    </div>
+    <hr>
+    <div class='field'>
+    <%=f.collection_check_boxes(:palet_ids,@unloaded_palets,:id,:code)%>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', tenant_loading_path(@tenant,@loading) %> |
 <%= link_to 'Back', tenant_loadings_path %>
