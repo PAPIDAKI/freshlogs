@@ -4,7 +4,7 @@ class LoadingsController < ApplicationController
   # GET /loadings
   # GET /loadings.json
   def index
-    @loadings = Loading.all
+    @loadings = Loading.where(tenant_id:params[:tenant_id]).order(date: :DESC)
   end
 
   # GET /loadings/1
@@ -81,6 +81,6 @@ class LoadingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loading_params
-      params.require(:loading).permit(:date, :customer, :eta, :delivered,:tenant_id,palet_ids:[])
+      params.require(:loading).permit(:date, :customer,:order, :eta, :delivered,:tenant_id,palet_ids:[])
     end
 end

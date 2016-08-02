@@ -20,6 +20,10 @@
     <%= f.text_field :customer %>
   </div>
   <div class="field">
+    <%= f.label :order %><br>
+    <%= f.text_field :order %>
+  </div>
+  <div class="field">
     <%= f.label :eta %><br>
     <%= f.date_select :eta %>
   </div>
@@ -30,7 +34,9 @@
   <hr>
   <div class='field'>
     <%=f.collection_check_boxes(:palet_ids,@palets,:id,:code)%>
+    </div>,:id,:code)%>
     </div>
+    <hr>
     <hr>
     
   <div class="actions">
