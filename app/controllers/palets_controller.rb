@@ -4,10 +4,12 @@ class PaletsController < ApplicationController
   
   
   def index
-
     @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC,code DESC')
     @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
+
     @kg_packed=@cartons*5
+    @palets=@palets.to_a
+    @daily_palets=@palets.group_by {|p| p.created_at.beginning_of_day}
   end 
 
   def report

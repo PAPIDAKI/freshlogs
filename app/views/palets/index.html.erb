@@ -1,46 +1,41 @@
-<h3>Listing the Palets</h3>
-<h4><%=@palets.count%>|<%=@cartons%>|<%=@kg_packed%></h4>
-
-
+<h3>Palets</h3>
 
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
 
-<div class="media">
-  <div class='media-body'>
-    <table class='table table-hover'>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Code</th>
-          <th>For</th>
-          <th>Cartons</th>
-          <th>Lot  info </th>
-         
-          <th>Note</th>
-         
-          
-        </tr>
-      </thead>
+    <table class='table'>
+      <tbody>
+        <% @daily_palets.each do |day,palets|%>
+        
+         <table class='table table-hover'> 
+      <h4><strong><%=day.strftime('%d %b')%></strong>
+      <% unless palets.nil?%>
+      <%=palets.count%> |
+      <span><%=number_with_precision(palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)},precision:0,seperator:',',delimiter:'.')%></span> | kg est in here 
+       </h4>
 
-      <tbody> 
-        <% @palets.each do |palet| %>
-          <tr> 
-            <td><%= palet.date.strftime("%e %b %H:%y") %></td>
-            <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
-             <td><%=palet.packed_for%></td>
-             <td><%= palet.palet_line_items.sum(:cartons)%></td>
-            <td><%  palet.palet_line_items.each do |pli|%> 
-            <%=pli.lot.try(:lot)%>
-            <%=pli.cartons%> cartons
-          <%=pli.lot.try(:purchase).try(:details) %><br/>
-            <%end%></td>
-            <td><%=palet.note%></td>
-            
-          </tr>
+      
+      <% for palet in palets %> 
+          <tr>
+              <td><%= palet.date.strftime(" %H:%y") %></td>
+              <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
+               <td><%=palet.packed_for%></td>
+               <td><%= palet.palet_line_items.sum(:cartons)%></td>
+
+              <td><% palet.palet_line_items.each do |pli|%> 
+                    <%=pli.lot.try(:lot)%>
+                    <%=pli.cartons%> cartons
+                    <%=pli.lot.try(:purchase).try(:details) %><br/>
+                      <%end%>
+              </td>
+              <td><%=palet.note%></td>
+                </tr>
+              <%end%>
+                  </table>
+              <%end%>
         <% end %>
       </tbody>
-    </table>
-        <br>
+        <br/>
+        </div>
     </div>
 </div>
    
