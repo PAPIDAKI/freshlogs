@@ -10,14 +10,14 @@
       <h4><strong><%=day.strftime('%d %b')%></strong>
       <% unless palets.nil?%>
       <%=palets.count%> |
-      <span><%=number_with_precision(palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)},precision:0,seperator:',',delimiter:'.')%></span> | kg est in here 
+      <span><%=number_with_precision(palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)},precision:0,seperator:',',delimiter:'.')%></span> | <%= palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)}*5%> 
        </h4>
 
       
       <% for palet in palets %> 
           <tr>
-              <td><%= palet.date.strftime(" %H:%y") %></td>
               <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
+              <td><%=palet.note%></td>
                <td><%=palet.packed_for%></td>
                <td><%= palet.palet_line_items.sum(:cartons)%></td>
 
@@ -27,7 +27,7 @@
                     <%=pli.lot.try(:purchase).try(:details) %><br/>
                       <%end%>
               </td>
-              <td><%=palet.note%></td>
+              <td><%= palet.date.strftime(" %H:%y") %></td>
                 </tr>
               <%end%>
                   </table>
