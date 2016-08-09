@@ -1,7 +1,8 @@
 <h3>Palets</h3>
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
 <div>
-Avail for loading:<%= @available_palets.count%>
+Ready for loading:<%= @available_palets.count%> palets <br>
+Last Palet packed <%=Palet.where(loading_id:nil).last.code%> on  <%=Palet.where(loading_id:nil).last.created_at.strftime('%A %H:%M')%>
 <br/>
 
 </div>
