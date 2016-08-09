@@ -4,12 +4,14 @@ class PaletsController < ApplicationController
   
   
   def index
-    @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC,code DESC')
+    @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC')
     @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
-
+    @available_palets=@palets.where(loading_id:nil)
     @kg_packed=@cartons*5
     @palets=@palets.to_a
     @daily_palets=@palets.group_by {|p| p.created_at.beginning_of_day}
+
+
   end 
 
   def report
@@ -59,6 +61,13 @@ class PaletsController < ApplicationController
   # PATCH/PUT /palets/1
   # PATCH/PUT /palets/1.json
   def update
+    
+    # @palet.tenant_id=@tenant.id
+        @palet.palet_line_items.each do |pli|
+          pli.tenant_id=params[:tenant_id]
+        end
+
+    
     respond_to do |format|
       if @palet.update(palet_params)
         format.html { redirect_to tenant_palets_path(@tenant,@palet), notice: 'Palet was successfully updated.' }

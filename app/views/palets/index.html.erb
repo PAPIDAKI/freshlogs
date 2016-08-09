@@ -1,6 +1,10 @@
 <h3>Palets</h3>
-
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
+<div>
+Avail for loading:<%= @available_palets.count%>
+<br/>
+
+</div>
 
     <table class='table'>
       <tbody>

@@ -29,7 +29,11 @@
 			<% @palets.each do |palet| %>
 				<li><%=link_to palet.code,tenant_palet_path(@tenant,palet)%>
         
-        <%=palet.note%></li>
+        <%=palet.note%>
+          <% palet.lots.each do |lot|%>
+          <%=lot.lot%>
+          <%end%>
+        </li>
 			<%end%>
 		</ul>
 </div>

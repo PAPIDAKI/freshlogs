@@ -23,7 +23,7 @@ class LoadingsController < ApplicationController
   def edit
 
     @palets=@loading.palets
-    @unloaded_palets=Palet.where(loading_id:nil)
+    @unloaded_palets=Palet.where("loading_id = ? AND tenant_id = ?",nil,params[:tenant_id])
 
   end
 

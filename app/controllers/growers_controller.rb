@@ -12,6 +12,7 @@ class GrowersController < ApplicationController
     @grower=Grower.find(params[:grower_id])
     @grower_lots=@grower.lots.order(created_at: :DESC)
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
+    # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
   end
 
 

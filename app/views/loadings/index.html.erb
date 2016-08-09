@@ -1,5 +1,7 @@
 <h3>Listing Loadings</h3>
 <%= link_to 'New Loading', new_tenant_loading_path(@tenant) %>
+<br>
+ <h4><%= Palet.where(loading_id:nil).count%></h4>
 
 <div class="media">
 <div class="media-body">

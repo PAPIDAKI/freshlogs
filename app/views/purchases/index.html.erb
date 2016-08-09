@@ -21,7 +21,7 @@
   <tbody>
     <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.date%></td>
+        <td><%= purchase.created_at.strftime('%d %m %Y')%></td>
         <td><%= link_to purchase.pmu.try(:details) ,tenant_purchase_path(@tenant,purchase) %></td>
         <td><%= purchase.price %></td>
         <td><%= purchase.note %></td>
