@@ -9,7 +9,7 @@ class PaletsController < ApplicationController
     @available_palets=@palets.where(loading_id:nil)
     @kg_packed=@cartons*5
     @palets=@palets.to_a
-    @daily_palets=@palets.group_by {|p| p.created_at.beginning_of_day}
+    @daily_palets=@palets.group_by {|p| p.date.beginning_of_day}
 
 
   end 

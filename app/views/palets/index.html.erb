@@ -19,7 +19,7 @@ Last Palet packed <%=Palet.where(loading_id:nil).last.code%> on  <%=Palet.where(
        </h4>
 
       
-      <% for palet in palets %> 
+      <% for palet in palets.sort.reverse %> 
           <tr>
               <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
               <td><%=palet.note%></td>
