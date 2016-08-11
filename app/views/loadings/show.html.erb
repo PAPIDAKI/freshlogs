@@ -1,54 +1,66 @@
+<h3>
+Loading</h3>
 <p>
-  <strong>Date:</strong>
-  <%= @loading.date %>
+  Date:
+  <strong><%= @loading.date.strftime('%d %b %Y %H:%M') %></strong>
 </p>
 
 <p>
-  <strong>Customer:</strong>
-  <%= @loading.customer %>
+ Customer:
+ <strong> <%= @loading.customer %></strong>
+</p>
+<p>
+Purchase Order:
+<strong><%=@loading.purchase_order%></strong>
+
+<p>
+  Edta:
+  <%= @loading.eta.strftime('%d %b') %>
 </p>
 
 <p>
-  <strong>Eta:</strong>
-  <%= @loading.eta %>
-</p>
-
-<p>
-  <strong>Delivered:</strong>
-  <%= @loading.delivered %>
+ Delivered:
+  <%=@loading.delivered%>
 </p>
 
 <%= link_to 'Edit', edit_tenant_loading_path(@tenant,@loading) %> |
-<%= link_to 'Destroy',[@tenant, @loading], method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<%= link_to 'Delete',[@tenant, @loading], method: :delete, data: { confirm: 'Are you sure?' } %> | 
 <%= link_to 'Back', tenant_loadings_path %>
 <hr>
 <div class='row'>
-<div class='col-md-4'>
+<div class='col-md-2'>
   <h4><%=@palets.count%> palets: </h4>
-		<ul>
+  </div>
+  <div class='col-md-4'>
+		
 			<% @palets.each do |palet| %>
-				<li><%=link_to palet.code,tenant_palet_path(@tenant,palet)%>
-        
-        <%=palet.note%>
+				<strong><%=link_to palet.code,tenant_palet_path(@tenant,palet)%> </strong><%=palet.lots.count %> lots <%=palet.note%></br>
+    
           <% palet.lots.each do |lot|%>
           <%=lot.lot%>
           <%end%>
-        </li>
+        <br>
 			<%end%>
-		</ul>
+		
 </div>
 
-<div class='col-md-4'>
+<div class='col-md-2'>
+        <h4> <%=@loading.lots.distinct.count%> Lots:</h4>
+        </div>
   <div class='media'>
   <div class='media-body'>
 
       <div class='table table-hover'>
-        <h4>Lots: <%=@loading.lots.distinct.count%></h4>
         <thead></thead>
         <tbody>
-          <% @loading.lots.distinct.each do |lot|%>
+          <% @loading.lots.group(:id).each do |lot|%>
             <tr>
-              <td><%=lot.lot_description%></td>
+              <td><strong><%=link_to lot.lot,tenant_lot_path(@tenant,lot)%></strong> in <%=lot.palets.count%> palets
+            <br/>           
+              </td>
+              <td><%lot.palets.each do |palet|%>
+              <%=palet.code%>
+              <%end%><br>
             </tr>
           <%end%>
         </tbody>

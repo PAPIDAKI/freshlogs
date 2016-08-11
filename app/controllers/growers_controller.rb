@@ -25,6 +25,7 @@ class GrowersController < ApplicationController
   # GET /growers/new
   def new    
     @grower = Grower.new
+    @grower.tenant_id=params[:tenant_id]
 
   end
 
@@ -86,6 +87,6 @@ class GrowersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
       def grower_params
-      params.require(:grower).permit(:name, :address, :phone, :mobile, :vat, :picture)
+      params.require(:grower).permit(:name, :address, :phone, :mobile, :vat, :picture,:ggn)
     end
 end

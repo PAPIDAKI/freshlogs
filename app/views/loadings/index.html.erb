@@ -24,10 +24,10 @@
       <tr>
         <td><%= link_to loading.date.strftime("%e %b %a"),tenant_loading_path(@tenant,loading) %></td>
         <td><%= loading.customer %></td>
-        <td></td>
+        <td><%= loading.purchase_order%></td>
         <td><%= loading.palets.count %></td>
         <td><%= loading.eta.strftime("%a %e %b") %></td>
-        <td><%= loading.delivered  %></td>
+        <td><%= loading.delivered %></td>
        
       </tr>
     <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802134820) do
+ActiveRecord::Schema.define(version: 20160811024548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160802134820) do
     t.datetime "updated_at", null: false
     t.integer  "project_id"
     t.integer  "tenant_id"
+    t.string   "ggn"
   end
 
   add_index "growers", ["project_id"], name: "index_growers_on_project_id", using: :btree
@@ -108,10 +109,11 @@ ActiveRecord::Schema.define(version: 20160802134820) do
     t.string   "customer"
     t.date     "eta"
     t.boolean  "delivered"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "tenant_id"
-    t.string   "ref"
+    t.string   "order_no"
+    t.string   "purchase_order"
   end
 
   create_table "loose_berries", force: :cascade do |t|
@@ -214,7 +216,7 @@ ActiveRecord::Schema.define(version: 20160802134820) do
     t.integer  "pmu_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.date     "date"
+    t.string   "analysis"
   end
 
   create_table "purs", force: :cascade do |t|

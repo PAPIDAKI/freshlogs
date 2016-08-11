@@ -5,25 +5,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">freshlogs</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <a class="navbar-brand" href="/">freshlogs</a>
 
-          <ul class="nav navbar-nav">
+         <div class='tenant-name'>
              <% if current_user %>
-              <li>  <%= link_to "<i class='fa fa-users'></i> Add Members".html_safe,new_member_path,class: 'navbar-link btn btn-primary' %>
-              </li>
               <% end %>
-          </ul>
-        <ul class="nav navbar-right col-md-4">
+              </div>
+        <ul class="nav navbar-right col-md-6">
           <% if current_user %>
-                <li class="col-md-8 user-name">
-                 <%= @tenant.name %>
+                 <%= @tenant.name%>
+                <%= link_to "<i class='fa fa-users'></i> Add Members".html_safe,new_member_path %>
                 <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile' %>
-                </li>
+              
+                  <%= link_to('Logout', destroy_user_session_path, title: 'Logout', :method => :delete) %>
 
-              <li class="col-md-1"> </li>
+              <li class="col-md-4 pull-right"> </li>
                 <li class="col-md-4 logout">
-                  <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %>
                 </li>
             <% else %>
                 <li class="col-md-4 pull-right">

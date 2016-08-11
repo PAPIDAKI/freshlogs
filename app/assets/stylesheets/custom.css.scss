@@ -5,6 +5,13 @@ $navbar-default-bg :#F5EFE6;
 @import "flat-ui";
 
 
+// .navbar-brand{
+// 	padding-bottom: 5px;
+// 			padding-top: 10px;
+// 			color: #1ABC9C;
+// }
+
+
 .user-name {
 		padding: 0 !important ;
 		padding-left: 5px;
@@ -21,17 +28,19 @@ $navbar-default-bg :#F5EFE6;
 			}
 
 .nav.navbar-right {
-			padding-bottom: 10px;
-			padding-top: 5px;
+			padding: 15px;
+			padding-top: 15px;
 			color: #1ABC9C;
 			}
-
+.tenant-name{
+	 		padding-top: 15px;
+}
 .nav.navbar-nav {
 				.navbar-link {
 						border-radius: 5px;
 						color: #F5FE6;
 						margin-top: 15px;
-						padding: 8px;
+						padding-top: 15px;
 					}
 				.navbar-link:focus, .navbar-link:hover {
 					background: #3071a9;
@@ -45,7 +54,7 @@ $navbar-default-bg :#F5EFE6;
 .nav.navbar-right li {
 	.btn {
 			color: #fff !important;
-			margin-top: 5%;
+			// margin-top: 5%;
 		}
 
 .btn-danger:hover, .btn-danger:focus {
@@ -110,7 +119,21 @@ padding-right: 0 !important;
    height: 786px;
    width: 100%;
  }
+#map-container-lot-show{
+	 height: 250px;
+	 width: 100%;
+   border-radius: 16px 16px;
+   border-color: #fff;
+   border-style: solid;
+   box-shadow: 2px 2px 10px #B1B1B1;
+   margin-top: 25px;
+   border-width: 7px;
+}
 
+#map-canvas-lot {
+   height: 100%;
+   width: 100%;
+ }
  .checkbox-list input[type="checkbox"] {
   display: inline-block;
   width: 10%;
