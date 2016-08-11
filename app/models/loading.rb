@@ -5,8 +5,16 @@ class Loading < ActiveRecord::Base
 	validates :customer,presence: true
 
  
- # def de
- # 	self.delivered
- # end
+ class TrueClass
+  def yesno
+    "Yes"
+  end
+end
+
+class FalseClass
+  def yesno
+    "No"
+  end
+end
 	
 end

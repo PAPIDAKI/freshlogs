@@ -19,10 +19,12 @@ Rails.application.routes.draw do
 
 
   resources :tenants do
+      resources :reports
       resources :palets
       resources :loadings
       resources :growers do
         get :position
+        get :xposition
         resources :pmus 
               resources :lots  
       end

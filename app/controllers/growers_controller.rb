@@ -15,6 +15,16 @@ class GrowersController < ApplicationController
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
   end
 
+  def xposition
+    # @growers=Grower.where(tenant_id:params[:teant_id])
+    @lots=Lot.where(tenant_id:params[:tenant_id]).sum(:kg)
+    @kgs_packed=PaletLineItem.where(tenant_id:params[:tenant_id]).sum(:cartons)*5
+    @fyra=@kgs_packed-@lots
+    @fyra_percent=@kgs_packed/@lots
+
+  end
+
+
 
   # GET /growers/1
   # GET /growers/1.json

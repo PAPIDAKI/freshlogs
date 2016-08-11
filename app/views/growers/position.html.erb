@@ -26,24 +26,21 @@
             </tr>
 		 </tbody>
 		 </table>
-         <h4>Palets grapes are in:<%=@grower.palets.count%></h4>
-         <h4>Packed:<%=@grower.palet_line_items.sum(:cartons)%>cartons</h4>
-         <h4>kg:<%=@grower.palet_line_items.sum(:cartons)*5%></h4> 
-         <h4>Missing:<%=@grower.lots.sum(:kg)-@grower.palet_line_items.sum(:cartons)*5%></h4>
-         <h4>Added cost:<%=(@grower.lots.sum(:kg)-@grower.palet_line_items.sum(:cartons)*5)/(@grower.lots.sum(:kg).to_f)%> %</h4>
-         <h4>Distribution:</h4>
-       
-         <% @grower.palets.group(:packed_for).count.each do |k,v|%>
-            <% gr_kgs=@grower.lots.sum(:kg)%>
-            <%=k%> <%=v%> 
-            <br/>
-             <%=v/gr_kgs.to_f*100%>
-             <br>
-        
-
-            <%end%>
-            </ul>
-
+       <hr>
+        <span> <h4>
+        Cartons: <%=@grower.palet_line_items.sum(:cartons)%>  Palets grapes are in:<%=@grower.palets.count%> </h4></span>
+        <span> <h4>kg:<%=@grower.palet_line_items.sum(:cartons)*5%>
+         | Missing:<%=@grower.lots.sum(:kg)-@grower.palet_line_items.sum(:cartons)*5%> kg |
+         Added cost:<%=number_with_precision((@grower.lots.sum(:kg)-@grower.palet_line_items.sum(:cartons)*5)/(@grower.lots.sum(:kg).to_f/100),precision: 1,seperator:',',delimiter:'.')%> %</h4></span>
          
+           <% palet_hash= @grower.palets.group(:packed_for).count%>
+           <%total_palets=palet_hash.inject(0) {|sum ,tuple| sum+=tuple[1]}%>
+          <br>
+             <div>
+            <% palet_hash.each do |k,v|%>    
+              <h4> <%=k%>:<%= number_to_percentage(v/total_palets.to_f*100,precision:0)%></h4>          
+               <%end%>
+             
+         </div>
 	 </div>
  </div>

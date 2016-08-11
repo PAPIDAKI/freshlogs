@@ -16,7 +16,7 @@
         <% for lot in lots %> 
            <tr>
             <td> 
-              <%= link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%>
+              <%= link_to lot.lot,tenant_lot_path(@tenant,lot)%>
                <%= lot.kg %>kg  <strong><%=lot.note%></strong> <br>
          <%= lot.purchase.details%>
            </td>
