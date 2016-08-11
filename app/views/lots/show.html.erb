@@ -4,17 +4,26 @@
 
 
 <h3><%=@lot.lot%></h3>
-<h4>Grower: <%=@lot.purchase.pmu.grower.name%></h4>
-<h4>Field:<%=@lot.purchase.pmu.location%> <%=@lot.purchase.pmu.village%></h4>
+<div class='row'>
+	 <div class='col-md-6'>
+	<h4>Grower: <%=@lot.purchase.pmu.grower.name%></h4>
+	<h4>Field:<%=@lot.purchase.pmu.location%> <%=@lot.purchase.pmu.village%></h4>
+	</div>
+	<div class='col-md-6'>
+ <h4>GGN: <%=@lot.purchase.pmu.grower.ggn%></h4>
+ <h4> Pest Analysis:<%=@lot.purchase.analysis%></h4>
+ </div>
+ </div>
+
+ 
   <div id="map-container-lot-show">
             <div id="map-canvas-lot"></div>
           </div>
 <div class='row'>
 	<div class='col-md-8'>
-Weight upon arrival: <%= @lot.kg%> kg<br>
-packed in: <%= pluralize(@lot.plastics,'crate')%> <br>
-<hr>
-<h4>Packed in :<%=pluralize(@lot.palet_line_items.sum(:cartons),'box')%> <br>
+
+<br>
+<h4>Packed in :<%=pluralize(@lot.palet_line_items.sum(:cartons),'box')%> 
 in <%=pluralize(@lot.palets.count,'palet')%></h4>
 <ol>
 <%@lot.palets.each  do |palet| %>
