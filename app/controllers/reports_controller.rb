@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+	    before_action :set_tenant
 		before_action :load_growers,:load_pmus,:load_purchases,:load_lots,:load_palet_line_items
 		before_action :load_palets,:load_loadings
 
@@ -6,10 +7,9 @@ class ReportsController < ApplicationController
 		@kgs_in=@lots.sum(:kg)
 		@kgs_packed=@palet_line_items.sum(:cartons)*5
 		@fyra=@kgs_packed-@kgs_in
-		@fyra_percentage=@fyra/@kgs_in
+		@fyra_percentage=@fyra/@kgs_in.to_f*100
 		
-
-		
+	
 	end
 
 
@@ -44,6 +44,10 @@ class ReportsController < ApplicationController
 
 	def load_loadings
 		@loadiing=Loading.where(tenant_id:params[:tenant_id])
+	end
+
+	def set_tenant
+		@tenant=Tenant.find(params[:tenant_id])
 	end
 			
 
