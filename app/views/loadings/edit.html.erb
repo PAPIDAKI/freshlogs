@@ -35,10 +35,12 @@
     <%= f.check_box :delivered %>
   </div>
   <hr>
+  <h4>Loaded:</h4>
   <div class='field'>
     <%=f.collection_check_boxes(:palet_ids,@palets.order(:code),:id,:code)%>
     </div>
     <hr>
+    <h4>Available for loading:</h4>
     <div class='field'>
     <%=f.collection_check_boxes(:palet_ids,@unloaded_palets,:id,:code)%>
     </div>
