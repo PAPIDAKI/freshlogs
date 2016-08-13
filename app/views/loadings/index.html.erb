@@ -14,7 +14,7 @@
       <th>Order</th>
       <th>Palets</th>
       <th>Eta</th>
-      <th>Delivered</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
         <td><%= loading.purchase_order%></td>
         <td><%= loading.palets.count %></td>
         <td><%= loading.eta.strftime("%a %e %b") %></td>
-        <td><%= loading.delivered %></td>
+        <td><%= human_boolean(loading.delivered) %></td>
        
       </tr>
     <% end %>

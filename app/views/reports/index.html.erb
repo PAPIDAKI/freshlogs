@@ -1,8 +1,8 @@
 <h1>Reports</h1>
 
-Kgs in :<%=@kgs_in%>(last_update:<%=@lots.last.created_at.strftime('%H:%M  %d %m')%>)<br>
+Kgs in :<%=@kgs_in%>  updated:<%=@lots.last.created_at.strftime('%H:%M  %d %m')%>
+<br>
 
-kgs out:<%=@kgs_packed%>(last_update:<%=@palet_line_items.last.created_at.strftime('%H:%M %d %m')%>)<br>a
-
-fyra: <%=@fyra%><br>
-fyra_percentage:<%=number_to_percentage(@fyra_percentage,precision: 2)%><br>
+kgs out:<%=@kgs_packed%> updated:<%=@palet_line_items.last.created_at.strftime('%H:%M %d %m')%>
+<br>
+fyra: <%=@fyra%> <%=number_to_percentage(@fyra_percentage,precision: 2)%><br>

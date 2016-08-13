@@ -13,6 +13,9 @@ class GrowersController < ApplicationController
     @grower_lots=@grower.lots.order(created_at: :DESC)
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
+    @grower_purchases=@grower.purchases
+
+
   end
 
   def xposition

@@ -20,7 +20,7 @@ Purchase Order:
 
 <p>
  Delivered:
-  <%=@loading.delivered%>
+  <%=human_boolean(@loading.delivered)%>
 </p>
 
 <%= link_to 'Edit', edit_tenant_loading_path(@tenant,@loading) %> |

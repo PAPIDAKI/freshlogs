@@ -27,6 +27,18 @@
 		 </tbody>
 		 </table>
        <hr>
+       <div>
+           <% @grower_purchases.each do |purchase|%>
+   <%=purchase.pmu.location%>
+
+   Lots:<%= purchase.lots_count%>
+   in:<%=purchase.weight_in%>
+   out:<%=purchase.weight_out%>
+   missing:<%=purchase.missing_kgs%>
+   fyra:<%=number_to_percentage(purchase.fyra_percent,precision: 2)%>
+   <br>
+<%end%>
+</div>
         <span> <h4>
         Cartons: <%=@grower.palet_line_items.sum(:cartons)%>  Palets grapes are in:<%=@grower.palets.count%> </h4></span>
         <span> <h4>kg:<%=@grower.palet_line_items.sum(:cartons)*5%>
@@ -40,7 +52,7 @@
             <% palet_hash.each do |k,v|%>    
               <h4> <%=k%>:<%= number_to_percentage(v/total_palets.to_f*100,precision:0)%></h4>          
                <%end%>
-             
          </div>
+
 	 </div>
  </div>

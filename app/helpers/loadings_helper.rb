@@ -1,5 +1,7 @@
 module LoadingsHelper
- def human_boolean(boolean)
-    boolean ? 'Delivered' : 'Travelling'
-end
+
+ def human_boolean(delivered)
+    delivered ? 'Delivered' : 'Travelling'
+ end
+
 end
