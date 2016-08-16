@@ -15,6 +15,7 @@
             <td><%=number_with_precision(lot.kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
             <td><%=lot.purchase.price%> </td><td>=</td>
             <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
+            <td><%=lot.note%></td>
             </tr>
             <%end%>
             <tr>
@@ -29,16 +30,24 @@
        <hr>
        <div>
            <% @grower_purchases.each do |purchase|%>
-   <%=purchase.pmu.location%>
-
-   Lots:<%= purchase.lots_count%>
+   <strong><%=purchase.pmu.location%></strong>
+   (<%= purchase.lots_count%> lots):
+   <br>
    in:<%=purchase.weight_in%>
    out:<%=purchase.weight_out%>
-   missing:<%=purchase.missing_kgs%>
-   fyra:<%=number_to_percentage(purchase.fyra_percent,precision: 2)%>
+   missing:<%=purchase.missing_kgs%> 
+   <strong><%=number_to_percentage(purchase.fyra_percent,precision: 2)%></strong>
+   <br>
+   <% palet_hash=purchase.palets.group(:packed_for).count%>
+   <% total_palets=palet_hash.inject(0) {|sum,tuple| sum+=tuple[1]}%>
+   <%palet_hash.each do |k,v|%>
+   <%=k%>: <%=number_to_percentage(v/total_palets.to_f*100,precision:0)%>
+   
+   <%end%>
    <br>
 <%end%>
 </div>
+<hr>
         <span> <h4>
         Cartons: <%=@grower.palet_line_items.sum(:cartons)%>  Palets grapes are in:<%=@grower.palets.count%> </h4></span>
         <span> <h4>kg:<%=@grower.palet_line_items.sum(:cartons)*5%>
