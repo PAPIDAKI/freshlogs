@@ -1,7 +1,7 @@
 class Lot < ActiveRecord::Base
   
 	belongs_to :purchase
-  has_many :palet_line_items
+  has_many :palet_line_items,dependent: :destroy
   has_many :palets, through: :palet_line_items
   has_many :loadings,through: :palets
   accepts_nested_attributes_for :palet_line_items

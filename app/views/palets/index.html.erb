@@ -2,7 +2,13 @@
 <%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
 <div>
 Ready for loading:<%= @available_palets.count%> palets <br>
-Last Palet packed <%=Palet.where(loading_id:nil).last.code%> on  <%=Palet.where(loading_id:nil).last.created_at.strftime('%A %H:%M')%>
+
+Last Palet packed <%=Palet.where(loading_id:nil).last.try(:code)%> 
+
+
+
+
+
 <br/>
 
 </div>
@@ -18,10 +24,10 @@ Last Palet packed <%=Palet.where(loading_id:nil).last.code%> on  <%=Palet.where(
       <span><%=number_with_precision(palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)},precision:0,seperator:',',delimiter:'.')%></span> | <%= palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)}*5%> 
        </h4>
 
-      
-      <% for palet in palets.sort.reverse %> 
+      <% for palet in palets.sort.reverse  %> 
+      <% if palet %>
           <tr>
-              <td><%=link_to palet.code,edit_tenant_palet_path(@tenant,palet)%></td>
+              <td><%=link_to palet.code ,edit_tenant_palet_path(@tenant,palet)%></td>
               <td><%=palet.note%></td>
                <td><%=palet.packed_for%></td>
                <td><%= palet.palet_line_items.sum(:cartons)%></td>
@@ -34,6 +40,7 @@ Last Palet packed <%=Palet.where(loading_id:nil).last.code%> on  <%=Palet.where(
               </td>
               <td><%= palet.date.strftime(" %H:%y") %></td>
                 </tr>
+                <%end%>
               <%end%>
                   </table>
               <%end%>

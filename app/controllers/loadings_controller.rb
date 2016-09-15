@@ -32,6 +32,8 @@ class LoadingsController < ApplicationController
   def create
     @loading = Loading.new(loading_params)
     @loading.tenant_id=params[:tenant_id]
+   @palets=Palet.where(loading_id:nil).order(code: :desc)
+
 
     respond_to do |format|
       if @loading.save
