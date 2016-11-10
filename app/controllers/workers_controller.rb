@@ -1,6 +1,8 @@
 class WorkersController < ApplicationController
-  before_action :set_worker, only: [:show, :edit, :update, :destroy]
   before_action :set_tenant
+  before_action :set_worker, only: [:show, :edit, :update, :destroy]
+  # before_action :set_type
+# for sti 
 
   def import
   Worker.import(params[:file])
@@ -8,7 +10,18 @@ class WorkersController < ApplicationController
   end
 
   def index
-    @workers = Worker.where(tenant_id:params[:tenant_id])
+    case params[:scope]
+    when 'packhouse'
+    @workers = Worker.where(tenant_id:params[:tenant_id]).packhouse
+    @workers_hash=@workers.group_by {|k| k.status} 
+    when 'fields'
+    @workers =Worker.where(tenant_id:params[:tenant_id]).fields
+    @workers_hash=@workers.group_by {|k| k.status} 
+    else
+      @workers=Worker.where(tenant_id:params[:tenant_id]).all_workers
+    @workers_hash=@workers.group_by {|k| k.work_for}
+    end
+    
   end
 
   # GET /workers/1
@@ -76,8 +89,22 @@ class WorkersController < ApplicationController
       @tenant=Tenant.find(params[:tenant_id])
     end
 
+    def set_type
+      # @type=type
+    end
+
+    def type
+      # Worker.types.include?(params[:type]) ? params[:type]  :  "Worker"
+    end
+
+    def type_class
+      # type.constantize
+      # type.constantize if type.in? type_classes
+    end
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def worker_params
-      params.require(:worker).permit(:last_name, :mobile, :tenant_id, :course_id,:first_name,:age,:insurance,:age,:active)
+      params.require(:worker).permit(:name,:work_for,:workgroup,:mobile, :tenant_id,:phone,:area,:working_experience,:photo,:birthday,:insurance,:status)
     end
 end

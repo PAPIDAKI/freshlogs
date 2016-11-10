@@ -1,9 +1,9 @@
 body {
-  background-color:#F5EFE6;
+  background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px ;
+  line-height: 18px;
 }
 
 p, ol, ul, td {
@@ -22,12 +22,11 @@ a {
   color: #000;
 
   &:visited {
-    // color: #666;
+    color: #666;
   }
 
   &:hover {
-      color: #1ABC9C;
-    // color: #fff;
+    color: #fff;
     background-color: #000;
   }
 }
@@ -70,12 +69,5 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
-  }
-
- hr {
-    color: #c00;
-    background-color: green;
-    // border: none;
-    height: 5px;
   }
 }

@@ -12,18 +12,17 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :course_id ,class:'control-label'%><br>
-    <%= f.collection_select(:course_id,Course.where(tenant_id:params[:tenant_id]),:id,:name,{prompt: true},{class:'form-control'}) %>
-    </div>
-
+    <%= f.hidden_field :tenant_id %>
+  </div>
+  
   <div class="form-group">
-    <%= f.label :last_name ,class:'control-label'%><br>
-    <%= f.text_field :last_name ,class:'form-control'%>
+    <%= f.label :name ,class:'control-label'%><br>
+    <%= f.text_field :name ,class:'form-control'%>
   </div>
 
    <div class="form-group">
-    <%= f.label :first_name ,class:'control-label'%><br>
-    <%= f.text_field :first_name ,class:'form-control'%>
+    <%= f.label :work_for ,class:'control-label'%><br>
+    <%= f.text_field :work_for ,class:'form-control'%>
   </div>
   <div class="form-group">
     <%= f.label :mobile,class:'control-label' %><br>
@@ -36,32 +35,43 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :age,class:'control-label' %><br>
-    <%= f.text_field :age ,class:'form-control'%>
+    <%= f.label :area,class:'control-label' %><br>
+    <%= f.text_field :area ,class:'form-control'%>
   </div>
-  
+
+  <div class="form-group">
+    <%= f.label :birthday,class:'control-label' %><br>
+    <%= f.text_field :birthday ,class:'form-control'%>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :working_experience,class:'control-label' %><br>
+    <%= f.text_field :working_experience ,class:'form-control'%>
+  </div>
+
 
 <div class="form-group">
     <%= f.label :insurance,class:'control-label' %><br>
     <%= f.select :insurance,[['IKA','IKA'],['ΟΓΑ','OGA']],{},{class:'form-control'}%>
 </div>
 
+  <div class="form-group">
+    <%= f.label :photo,class:'control-label' %><br>
+    <%= f.text_field :photo ,class:'form-control'%>
+  </div>
 
 
 
 <div class="form-group">
-    <%= f.label :active,class:'control-label' %><br>
-    <%= f.check_box :active ,class:'form-control'%>
+    <%= f.label :status,class:'control-label' %><br>
+    <%= f.select :status ,Worker.statuses.keys,{},{class:'form-control'}%>
+    <!--Formating  the f.select list: the list array is mapped to a new array and using  the humanize method converts lower case to upper -->
   </div>
     
   
 
 
 
-  <div class="form-group">
-    <%= f.hidden_field :tenant_id %>
-  </div>
-  
   <div class="actions">
     <%= f.submit %>
   </div>

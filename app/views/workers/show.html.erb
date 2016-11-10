@@ -1,22 +1,47 @@
 
 <p>
+  <strong>Photo:</strong>
+  <%= @worker.photo %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @worker.name %>
 </p>
 
 <p>
+  <strong>Works at:</strong>
+  <%= @worker.work_for %>
+</p>
+<p>
   <strong>Mobile:</strong>
   <%= @worker.mobile %>
 </p>
-
 <p>
-  <strong>Tenant:</strong>
-  <%= @worker.tenant_id %>
+  <strong>Phone:</strong>
+  <%= @worker.phone %>
+</p>
+<p>
+  <strong>Birthday:</strong>
+  <%= @worker.birthday %>
+</p>
+<p>
+  <strong>Area:</strong>
+  <%= @worker.area %>
+</p>
+<p>
+<p>
+  <strong>Insurance:</strong>
+  <%= @worker.insurance %>
+</p>
+  <strong>Working Experience:</strong>
+  <%= @worker.working_experience %>
 </p>
 
 <p>
-  <strong>Course:</strong>
-  <%= @worker.course_id %>
+  <strong>Status:</strong>
+  <%= @worker.status.capitalize %>
+  <!-- use humanize to capitalize the status integer -->
 </p>
 
 <%= link_to 'Edit', edit_tenant_worker_path(@tenant,@worker) %> |

@@ -1,0 +1,108 @@
+.grower{
+	height: 100%;
+	width:100%;
+	border-style: solid;
+	matgin-top:50px;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;
+	#photo{
+		margin:30px;
+		border-style:solid;
+		border-color:#fff;
+		border-width:1px;
+	}
+}
+
+.ggn{
+	height: 100%;
+	width:100%;
+	border-style: solid;
+	matgin-top:50px;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;;
+}
+.analysis{
+	height: 100%;
+	width:100%;
+	border-style: solid;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;
+}
+
+.field{
+	text-align:center;
+	margin-bottom:0px;
+}
+
+#map-container-lot-show{
+	 height: 250px;
+	 width: 100%;
+   border-radius: 10px ;
+   border-color: #fff;
+   border-style: solid;
+   box-shadow: 2px 2px 10px #B1B1B1;
+   border-width: 7px;
+   margin-bottom: 25px;
+}
+
+#map-canvas-lot {
+   height: 100%;
+   width: 100%;
+   // border-radius:16px 16px;
+   // border-width:5px;
+   // border-style:solid;
+ }
+
+.lot{
+	height: 100%;
+	width:100%;
+	border-style: solid;
+	// matgin-top:50px;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;
+	h3{	
+		font-size: 3.7em;
+	}
+}
+
+.box{
+	height: 100%;
+	width:100%;
+	border-style: solid;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;
+	h4{
+		font-size: 1.7em;
+	}
+}
+.palet{height: 100%;
+	width:100%;
+	border-style: solid;
+	border-width:5px;
+	border-color: #fff;
+	border-radius:16px;
+	text-align: center;
+	margin-bottom:25px;
+	h4{
+		font-size: 1.7em;
+	}
+}
+#palet-details{
+	text-align: center;
+	align:center;
+}

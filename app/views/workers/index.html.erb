@@ -1,42 +1,41 @@
 
 <h3>Listing Workers</h3>
-<%= link_to 'New Worker', new_tenant_worker_path %>
 
+<%=link_to"add Worker",new_tenant_worker_path(@tenant)%>
 <h5>Import Workers</h5>
 <%= form_tag import_tenant_workers_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
+  <div>
+  <%= submit_tag "Import",class:'import' %>
+  </div>
 <% end %>
 
 <div class='media'>
   <div class='media-body'>
-    <table class='table table-hover'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Mobile</th>
-      <th>Days worked</th>
-      <th>Course</th>
-    
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workers.each do |worker| %>
-      <tr>
-        <td><%= link_to worker.name ,tenant_worker_path(@tenant,worker) %></td>
-        <td><%= worker.mobile %></td>
-        <td><%= worker.shift_lists.count %></td>
-        <td>WORKER HOURS WORKED TOTAL</td>
-        <td><%= worker.course.name%></td>
-        
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+  <table>
+                        <thead>Header test </thead>
+           <%if @workers_hash %>
+            <% @workers_hash.each do |k,v| %>
+                       <h4><%=k.capitalize%>:</h4>
+                    <table class='table table-hover'>
+                        <tbody>
+                           <% v.each do |worker|%>
+                              <tr>
+                                 <td><%= worker.name%></td>
+                                 <td><%=worker.mobile %></td>
+                                 <td><%=worker.status %></td>
+                               </tr>
+                              <%end%>
+                       </tbody>
+                    </table>
+                 <%end%>
+          <%end%>
+             
+              
+          </table>
+  </div>
 </div>
-</div>
+
+
+
 

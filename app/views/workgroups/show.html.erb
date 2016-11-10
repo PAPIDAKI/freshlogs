@@ -1,0 +1,17 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @workgroup.title %>
+</p>
+
+<div>
+	<%@workgroup.workers.each do |w|%>
+	<%= w.name %>
+	<%end%>
+
+
+
+</div>
+
+<%= link_to 'Edit', edit_tenant_workgroup_path(@tenant,@workgroup) %> |
+<%= link_to 'Back',tenant_workgroups_path %>

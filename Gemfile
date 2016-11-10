@@ -1,10 +1,9 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.2.1'
 gem 'rails', '4.2.5'
 
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
@@ -13,9 +12,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'better_errors'
+  gem 'byebug'
+  gem 'awesome_print', :require => 'ap'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.6', '>= 1.6.1'
 end
 
@@ -23,7 +25,6 @@ group :production do
   gem 'rails_12factor'
 end
 	
-gem 'awesome_print', :require => 'ap'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
@@ -43,6 +44,7 @@ gem "cocoon"
 
 
 
+gem 'bootstrap-sass'
 
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
@@ -50,7 +52,6 @@ gem 'bootstrap-datepicker-rails'
 gem "flat-ui-rails"
 
 
-gem 'bootstrap-datepicker-rails'
 gem 'rqrcode'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'

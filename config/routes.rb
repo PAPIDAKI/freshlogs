@@ -1,17 +1,34 @@
 Rails.application.routes.draw do
+  resources :agreements
   resources :att_performances
+  
   resources :tenants do 
     resources :pmus
     resources :purchases
     resources :paralavis
     resources :lots
     resources :loose_berries
+
     # workforce 
+    resources :workgroups
     resources :shift_lists
-    resources :courses do 
-      resources :shift_lists
-    end
     resources :attendances
+
+
+    # resources :workers
+    #sti
+        # # get 'tanant/:id/workers' =>'workers#index'
+        # resources :supervisors,controller:'workers',type: 'Supervisor'
+        # resources :fields,controller:'workers',type: 'Field'
+        # resources :packers,controller: 'workers',type: 'Packer'
+        # resources :assistants ,controller: 'workers',type: 'Assistant'
+        # resources :drivers,controller:'workers',type:'Driver'
+
+     get 'workers/packhouse'=>'workers#index',scope: 'packhouse'
+     get 'workers/fields'=>'workers#index',scope: 'fields'
+     get 'workers'=>'workers#index',scope: 'all_workers'
+
+    #importing  workers 
     resources :workers do
         collection{ post :import }
       end
@@ -37,8 +54,8 @@ Rails.application.routes.draw do
 
   end
 
-  resources :paralavis
-  resources :artifacts
+  # resources :paralavis
+  # resources :artifacts
 
 
   resources :members

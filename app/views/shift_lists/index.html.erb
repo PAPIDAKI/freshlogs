@@ -1,6 +1,6 @@
 
-<h3><%=@course.name.upcase %> Shift Lists</h3>
-<%= link_to 'New Shift list', new_tenant_course_shift_list_path(@tenant,@course) %>
+<h3><%=@course.name.upcase if @course %> Shift Lists</h3>
+<%= link_to 'New Shift list', new_tenant_shift_list_path(@tenant) %>
 <div class='media'>
 <div class='media-body'>
 <table class='table table-hover'>
@@ -19,7 +19,8 @@
   <tbody>
     <% @shift_lists.each do |shift_list| %>
       <tr>
-        <td><%= link_to shift_list.start_at.strftime('%d %b %y'), tenant_course_shift_list_path(@tenant,@course,shift_list)%></td>
+        <% if shift_list.start_at %> <%end%>
+        <td><%= link_to shift_list.start_at.strftime('%d %b %y'), tenant_shift_list_path(@tenant,shift_list)%></td>
       
         <td><%=shift_list.start_at.strftime('%H:%M')%></td>
         <td><%= shift_list.end_at.strftime('%H:%M') %></td>

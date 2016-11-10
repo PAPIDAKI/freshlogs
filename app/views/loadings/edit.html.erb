@@ -14,24 +14,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :date %>
     <%= f.datetime_select :date %>
   </div>
   <div class="field">
-    <%= f.label :customer %><br>
+    <%= f.label :customer %>
     <%= f.text_field :customer %>
   </div>
 
    <div class="field">
-     <%= f.label :purchase_order %><br>
+     <%= f.label :purchase_order %>
     <%= f.text_field :purchase_order %>
   </div>
   <div class="field">
-    <%= f.label :eta %><br>
+    <%= f.label :eta %>
     <%= f.date_select :eta %>
   </div>
   <div class="field">
-    <%= f.label :delivered %><br>
+    <%= f.label :delivered %>
     <%= f.check_box :delivered %>
   </div>
   <hr>
@@ -41,8 +41,14 @@
     </div>
     <hr>
     <h4>Available for loading:</h4>
-    <div class='field'>
-    <%=f.collection_check_boxes(:palet_ids,@unloaded_palets,:id,:code)%>
+
+    <div class='field' >
+    <%=f.collection_check_boxes(:palet_ids,@unloaded_palets,:id,:code) do |b| %>
+      <%=b.label class:"label-checkbox" do  %>
+      <%=b.check_box+b.text %>
+      <%end%>
+     
+    <%end%>
     </div>
   <div class="actions">
     <%= f.submit %>

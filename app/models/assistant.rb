@@ -1,0 +1,3 @@
+class Assistant < Worker
+
+end

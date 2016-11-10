@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @agreement.year %>
+</p>
+
+<p>
+  <strong>Payble:</strong>
+  <%= @agreement.payble %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @agreement.note %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @agreement.tenant_id %>
+</p>
+
+<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
+<%= link_to 'Back', agreements_path %>

@@ -28,7 +28,12 @@ class Lot < ActiveRecord::Base
  end
 
  def worth
+  if purchase
   self.kg * self.purchase.price/100
+    else 
+   0
+   end
+
   end
 
 end

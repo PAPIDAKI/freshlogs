@@ -1,5 +1,5 @@
 
-<%= form_for([@tenant,@course,@shift_list]) do |f| %>
+<%= form_for([@tenant,@shift_list]) do |f| %>
   <% if @shift_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shift_list.errors.count, "error") %> prohibited this shift_list from being saved:</h2>
@@ -32,8 +32,8 @@
   <h4>Staff:</h4>
 
  <div class="col-md-4 checkbox-list"> 
-   <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ? AND course_id= ?', params[:tenant_id], params[:course_id]),:id,:name)%>
- <hr>
+   <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ?', params[:tenant_id]),:id,:name)%>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

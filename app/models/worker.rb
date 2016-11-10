@@ -1,13 +1,39 @@
 class Worker < ActiveRecord::Base
-	belongs_to :course
-	has_many :attendances
+	has_many :attendances ,dependent: :destroy 
 	has_many :shift_lists,through: :attendances
+	has_many :workgroup_workers
+	has_many :workgroups,through: :workgroup_workers
 
-	def name
-		"#{last_name} #{first_name}"
-	end
+	# sti implementation
+	# self.inheritance_column = :type
 
-	def self.import(file)
+	# def self.types
+		# %(Packer Assistant Driver Field Supervisor) 
+	# end
+
+
+	# scope :drivers, -> {where(type:'Driver') }
+	# scope :packers, -> {where(type:'Packer')}
+	# scope :supervisors, -> {where(type:"Supervisor")}
+	# scope :assistants, -> {where(type:'Assistant')}
+    # scope :fields, -> {where(type:'Field')}
+	# end of sti
+
+	scope :packhouse, -> {where(work_for:'Packhouse')}
+	scope :fields, ->{where(work_for:'Fields')}
+	scope :active,->{where(status: :active)}
+	scope :inactive,->{where(status: :inactive)}
+	scope :reserve,-> {where(status: :reserve)}
+    scope :all_workers,->{all}	
+ 
+	# # enum for status 
+
+     enum status: [:active, :inactive,:reserve]
+	# def name
+		# "#{last_name} #{first_name}"
+	# end
+
+	 def self.import(file)
 	  CSV.foreach(file.path, headers: true) do |row|
 	  	worker_hash=row.to_hash
 	  	worker=Worker.where(w_id: worker_hash['w_id'])
@@ -16,8 +42,8 @@ class Worker < ActiveRecord::Base
 	  	else
 	  		Worker.create!(worker_hash)
 	  	end
-	  end
- end
+	   end
+	 end
 end
 
 

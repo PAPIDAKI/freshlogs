@@ -39,26 +39,28 @@
 </td>
 <hr>
 
-<div>
-Purchases:
-<% @pmus.each do |pmu|%>
-<br>
-  <%="#{pmu.location} " %>
-  <%= pmu.purchases.last.try(:price)%><br/>
-  <%end%>
+<p> 
 <%=link_to 'Add Pmu',new_tenant_grower_pmu_path(@tenant,@grower) %>
-</div>
-<hr>
+</p>
 
-<div>
-Lots
+<hr>
+<div class='raw'>
+
+  <div class='col-md-3'>
+    <strong>Purchases:</strong>
+  </div>
+  <div class='col-md-9'>
+      <% @pmus.each do |pmu|%>
+        <%="#{pmu.location} " %>
+        <%= pmu.purchases.last.try(:price)%><br/>
+        <%end%>
+  </div>
 </div>
 <hr>
-<div>
-Loose Berries
+<!-- <div class='row'> -->
+  <div class='col-md-3'>
+   <strong>Lot:</strong>
 </div>
-<hr>
-<div>
-Financials
-</div>
+<!-- </div> -->
+
 
