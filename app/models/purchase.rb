@@ -16,15 +16,15 @@ class Purchase < ActiveRecord::Base
 # Methods used in  grower- position 
 	def lots_count		
        lots.count
-   end
+    end
 
    def weight_in
    	  lots.sum(:kg)
-   	end
+   	 end
 
    	def weight_out
      palet_line_items.sum(:cartons)*5
-	 end
+	  end
 
 	 def missing_kgs
 	 	weight_in-weight_out
