@@ -10,3 +10,4 @@ class ApplicationController < ActionController::Base
   rescue_from ::Milia::Control::InvalidTenantAccess, :with => :invalid_tenant
 
 end
+

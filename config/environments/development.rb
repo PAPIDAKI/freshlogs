@@ -5,7 +5,7 @@ Rails.application.configure do
 
   # set up for email sending even in dev mode
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true 
 
   config.action_mailer.delivery_method = :smtp
   
@@ -13,8 +13,8 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => "587",
     :authentication => :plain,
-    :user_name => "do-not-reply@example.com",
-    :password => ENV["SMTP_ENTRY"],
+    :user_name => ENV["GMAIL_EMAIL"],
+    :password => ENV["GMAIL_PASSWORD"],
     :enable_starttls_auto => true
   }
 
