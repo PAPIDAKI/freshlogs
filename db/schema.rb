@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103124940) do
+ActiveRecord::Schema.define(version: 20161129123545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,13 @@ ActiveRecord::Schema.define(version: 20161103124940) do
     t.datetime "date"
   end
 
+  create_table "lot_process_lots", force: :cascade do |t|
+    t.integer  "lot_id"
+    t.integer  "process_lot_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "lots", force: :cascade do |t|
     t.integer  "purchase_id"
     t.string   "lot"
@@ -202,6 +209,15 @@ ActiveRecord::Schema.define(version: 20161103124940) do
     t.datetime "updated_at",    null: false
     t.integer  "grower_id"
     t.integer  "tenant_id"
+  end
+
+  create_table "process_lots", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "lot"
+    t.integer  "quantity"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|

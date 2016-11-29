@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @process_lot.date %>
+</p>
+
+<p>
+  <strong>Lot:</strong>
+  <%= @process_lot.lot %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @process_lot.quantity %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @process_lot.note %>
+</p>
+
+<%= link_to 'Edit', edit_process_lot_path(@process_lot) %> |
+<%= link_to 'Back', process_lots_path %>
