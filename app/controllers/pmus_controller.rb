@@ -30,35 +30,33 @@ class PmusController < ApplicationController
     @pmu = Pmu.new
   end
 
-  # GET /pmus/1/edit
-  def edit
-    @hash = Gmaps4rails.build_markers(@pmu) do |pmu, marker|
-      marker.lat pmu.latitude
-      marker.lng pmu.longitude
-    end
- 
-    
-  end
-
   # POST /pmus
   # POST /pmus.json
   def create
-   
     @pmu =Pmu.create(pmu_params)
     @pmu.tenant_id=Tenant.find(params[:tenant_id]).id  
     respond_to do |format|
       if @pmu.save
-        format.html { redirect_to edit_tenant_pmu_path(@tenant,@pmu), notice: 'Pmu was successfully created.' }
+        format.html { redirect_to edit_tenant_pmu_path(@tenant,@pmu), notice: 'Produce field  was successfully created.' }
       else
         format.html { render :new }
       end
     end
   end
 
+
+
+  # GET /pmus/1/edit
+  def edit
+    @hash = Gmaps4rails.build_markers(@pmu) do |pmu, marker|
+      marker.lat pmu.latitude
+      marker.lng pmu.longitude
+    end  
+  end
+
   # PATCH/PUT /pmus/1
   # PATCH/PUT /pmus/1.json
   def update
-   
     respond_to do |format|
       if @pmu.update(pmu_params)
         format.html { redirect_to tenant_pmu_path(@tenant,@pmu), notice: 'Pmu was successfully updated.' }

@@ -83,7 +83,7 @@ to  <%=palet.packed_for %>
 <hr>
 
 <script>
-var mapOptions = {mapTypeId: google.maps.MapTypeId.SATELLITE};
+var mapOptions = {mapTypeId: google.maps.MapTypeId.SATELLITE,scrollwheel:false,disableDefaultUI:true};
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: mapOptions, internal: {id:'map-canvas-lot'}}, function(){
         markers = handler.addMarkers(<%=raw @hash.to_json%>, {draggable: false});

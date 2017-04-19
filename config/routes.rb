@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :purchases
     resources :paralavis
     resources :lots
-    resourses :process_lots
+    resources :process_lots
     resources :loose_berries
 
     # workforce 

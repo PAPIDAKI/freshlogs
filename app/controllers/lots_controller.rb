@@ -7,6 +7,7 @@ class LotsController < ApplicationController
   # GET /lots
   # GET /lots.json
   def index
+
     @lots = Lot.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
    @lots_kgs=@lots.sum(:kg) 
    @lots=@lots.to_a

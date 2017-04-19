@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
+  gem 'rails-erd'
+  gem 'annotate'
   gem 'better_errors'
   gem 'byebug'
   gem 'awesome_print', :require => 'ap'
@@ -53,4 +55,5 @@ gem "flat-ui-rails"
 gem 'dotenv-rails'
 gem 'rqrcode'
 gem 'recaptcha', require: 'recaptcha/rails'
+
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'

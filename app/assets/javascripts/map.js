@@ -1,32 +1,34 @@
 	
-function gmap_show(pmu) {
+// function gmap_show(pmu) {
   // if (pmu) {    // validation check if coordinates are there
     // return 0;
   // }
 
-  handler = Gmaps.build('Google');    // map init
-  handler.buildMap({ provider: {
-  }, internal: {id: 'map-canvas'}}, function(){
-    markers = handler.addMarkers([    // put marker method
-      {
-        "lat": pmu.latitude,    // coordinates from parameter pmu
-        "lng": pmu.longitude,
-        "picture": {    // setup marker icon
-          "url": 'http://www.planet-action.org/img/2009/interieur/icons/orange-dot.png',
-          "width": 35  ,
-          "height": 25
-        },
-        "infowindow": "<b>" + pmu.produce + "</b><br/> " + pmu.nearest_village 
-      }
-    ]);
+  // handler = Gmaps.build('Google');    // map init
+  // // handler.buildMap({ provider: {
+  // }, internal: {id: 'map-canvas'}}, 
+  // function(){
+  //   markers = handler.addMarkers([    // put marker method
+  //     {
+  //       "lat": pmu.latitude,    // coordinates from parameter pmu
+  //       "lng": pmu.longitude,
+  //       "picture": {    // setup marker icon
+  //         "url": 'http://www.planet-action.org/img/2009/interieur/icons/orange-dot.png',
+  //         "width": 35  ,
+  //         "height": 25
+  //       },
+  //       "infowindow": "<b>" + pmu.produce + "</b><br/> " + pmu.nearest_village 
+  //     }
+  //   ]);
   
-    handler.map.centerOn([25.1152474, 35.3148737]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);    // set the default zoom of the map
-  });
-}
+  //   handler.map.centerOn([25.1152474, 35.3148737]);
+  //  handler.bounds.extendWith(markers);
+  //  handler.fitMapToBounds();
+  //  handler.getMap().setZoom(12);    // set the default zoom of the map
+  // });
+// }
 
+//called from a <script> in pmu#new view with pmu value null 
 function gmap_form(pmu) {
   handler = Gmaps.build('Google');    // map init
   handler.buildMap({ provider: {}, internal: {id: 'map-canvas'}}, function(){

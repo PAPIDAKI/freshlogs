@@ -66,21 +66,22 @@
     </div>
 
       <div class='col-md-9'>
-          <div id="map-container">
+          <!-- <div id="map-container"> -->
             <div id="map-canvas"></div>
-          </div>
+          <!-- </div> -->
       </div>
     </div>
-<!-- <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div> -->
+
 
 
 <script>
 var mapOptions = {mapTypeId: google.maps.MapTypeId.SATELLITE};
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: mapOptions, internal: {id:'map-canvas'}}, function(){
-        markers = handler.addMarkers(<%=raw @hash.to_json%>, {draggable: false});
+  markers = handler.addMarkers(
+          <%=raw @hash.to_json%>,
+           {draggable: false}
+          );
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         handler.getMap().setZoom(18);
