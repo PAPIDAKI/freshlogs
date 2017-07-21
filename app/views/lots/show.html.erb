@@ -6,7 +6,9 @@
 
 	 <!-- <div class='col-md-12'> -->
 	<div class='grower'>
+	<!--
 	<%= image_tag gravatar_url("papidakis@gmail.com", 128), alt: "",class:"img-circle",id:'photo' %>
+	-->
 	<h4>Grower: <br>
 	<%=@lot.purchase.pmu.grower.name%></h4>
 
@@ -45,6 +47,13 @@
 <%= link_to 'Back', tenant_lots_path(@tenant) %></span>
 </div>
 
+<div class='box'>
+<h4>Weight: <%=@lot.kg%> kgs </h4>
+<h4>Packed: <%=@lot.palet_line_items.sum(:cartons)*5%> kgs</h4>
+<!--<h4>Loose: <%=1-(@lot.palet_line_items.sum(:cartons)*5.00/@lot.kg) %></h4> -->
+<h4>LostBerries:<%= number_with_precision(@lot.loose_berries,precision:2) %> %</h4>
+
+</div>
 
 <div class='box'>
 <h4><%=pluralize(@lot.palet_line_items.sum(:cartons),'box')%> </h4>

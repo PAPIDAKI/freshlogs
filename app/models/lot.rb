@@ -33,7 +33,10 @@ class Lot < ActiveRecord::Base
     else 
    0
    end
+  end
 
+  def loose_berries
+     (1-self.palet_line_items.sum(:cartons)*5.00/self.kg)*100
   end
 
 end
