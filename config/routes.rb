@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :lots
     resources :process_lots
     resources :loose_berries
-
+  
     # workforce 
     resources :workgroups
     resources :shift_lists

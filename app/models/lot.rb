@@ -4,6 +4,7 @@ class Lot < ActiveRecord::Base
   has_many :palet_line_items,dependent: :destroy
   has_many :palets, through: :palet_line_items
   has_many :loadings,through: :palets
+  has_many :weighings
   accepts_nested_attributes_for :palet_line_items
   accepts_nested_attributes_for :palets
 
@@ -15,7 +16,7 @@ class Lot < ActiveRecord::Base
 	 before_validation :set_default_lot, unless: :persisted?
   # The set_defaults will only work if the object is new
   def set_default_lot
-  	lot_date_time=DateTime.now
+  	lot_date_time=DateTime.current
   	a_part=lot_date_time.strftime("D%d")
   	b_part=lot_date_time.strftime("%H%M")
   	c_part=lot_date_time.strftime("%uM%m")

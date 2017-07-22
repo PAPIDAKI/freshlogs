@@ -14,9 +14,23 @@ class GrowersController < ApplicationController
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
     @grower_purchases=@grower.purchases
+  end
+
+  def position_last_3_months
+     @grower=Grower.find(params[:grower_id])
+    @grower_lots=@grower.lots.where(created_at: Date.today.month-3).order(created_at: :DESC)
+    @purchase_prices=@grower_lots.map {|l| l.purchase.price}
+    # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
+    @grower_purchases=@grower.purchases
 
 
   end
+
+  def position_last_6_months
+
+  end
+
+
 
   def xposition
     # @growers=Grower.where(tenant_id:params[:teant_id])
