@@ -8,8 +8,8 @@
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Lot count</th>
-        <th>kg sum</th>
+        <!-- <th>Lot count</th> -->
+        <!-- <th>kg sum</th> -->
         <th>Mobile</th>
         <th>Phone</th>
        
@@ -22,8 +22,8 @@
         <tr>
           <td><%= link_to 'P', tenant_grower_position_path(@tenant,grower)%></td>
           <td><%=link_to  grower.name,tenant_grower_path(@tenant,grower) %></td>
-          <td><%= grower.lots.count %></td>
-          <td><%= grower.lots.sum(:kg)%></td>
+          <!-- <td><%= grower.lots.count %></td> -->
+          <!-- <td><%= grower.lots.sum(:kg)%></td> -->
           <td><%= grower.mobile %></td>
           <td><%= grower.phone %></td>
         </tr>

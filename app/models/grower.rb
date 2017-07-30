@@ -12,4 +12,12 @@ class Grower < ActiveRecord::Base
 	def grower_details
 		"#{name} - #{address}"
 	end
+
+	def lots_2016
+		self.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2016','12/31/2016')
+	end
+
+	def lots_2017
+		self.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2017','12/31/2017')
+	end
 end

@@ -43,11 +43,32 @@
     </div>
 
 
-  <div class="actions">
-    <%= f.submit class: 'btn btn-default'%>
-  </div>
-<% end %>
+    <!-- Nested form Weighings -->
+      <hr>
+        <h4> Weighings:</h4>
+       
+            <div id="weighing_line_item_fields">
+              <!-- <div id='weighings'> -->
+              <%=f.fields_for :weighings do |weighing| %>
+                <%=render'weighing_fields',:f=>weighing %>
+              <%end%>
+                <div class="links">
+                  <%=link_to_add_association 'add weight',f,:weighings%>
+                </div>
+                </div>
+
+          <hr>
+          
+            <%= f.submit 'Save'%>
+         
+  <% end %>
 </div>
 
 
+<script>
+$('#lot_plastics').keyup(function(){
+    // alert("Plastics clicked");
+    $('#lot_kg').html("hello");
+  });
 
+</script>

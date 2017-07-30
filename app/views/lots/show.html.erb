@@ -1,106 +1,40 @@
-<script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyA5Ce2ZGnQx7kxD6z_A8YL_qpYH5yzbqvI"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> 
+<h4><%= @lot.lot %></h4>
+Grower:<%= @lot.purchase.pmu.grower.name %><br>
+Location:<%= @lot.purchase.pmu.location %><br>
+Date:<%= @lot.created_at.strftime("%d-%m-%M") %>
+Time:<%=@lot.created_at.strftime("%H:%M")%>
 
-<div class='row'>
+		
+<hr>
+Weighings:<br>
+<div class='media'>
+	<div class='media-body'>
+		<table class='table table-hover'>
+			<tr>
+			<th>Time</th><th>Mixed Weight</th><th> Crates</th><th>CW</th><th>Palets</th><th>PW</th><th>Net Weight</th>
+			 </tr>
+			<tbody>
+			<% @lot.weighings.each do |weighing| %>
+				<tr>
+					<td><%=weighing.created_at.strftime("%H:%M")%></td>
+					<td><%= weighing.mixed_weight%></td>
+					<td><%=weighing.crates%></td>
+					<td><%=weighing.crate_weight%></td>
+					<td><%=weighing.palets%></td>
+					<td><%=weighing.palet_weight%></td>
+					<td><%=weighing.net_weight %></td>
+				</tr>
+			</tbody>
+			<%end%>
+				<tr>
+				<td></td> 
+				<td><%= @lot.weighings.sum(:mixed_weight) %></td>
+				<td><%= @lot.weighings.sum(:crates) %></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><%= @lot.weighings.to_a.sum{|l| l.net_weight}%></td>
 
-	 <!-- <div class='col-md-12'> -->
-	<div class='grower'>
-	<!--
-	<%= image_tag gravatar_url("papidakis@gmail.com", 128), alt: "",class:"img-circle",id:'photo' %>
-	-->
-	<h4>Grower: <br>
-	<%=@lot.purchase.pmu.grower.name%></h4>
-
+		</table>
 	</div>
-
-	<!-- <div class='col-md-12'> -->
-	<div class='ggn'>
-	<%=image_tag('ggn1',class:'img-thumbnail') %>
- <h4>GGN: <%=@lot.purchase.pmu.grower.ggn%></h4>
- </div>
- <div class='analysis'>
- <h4> Pest Analysis:<%=@lot.purchase.analysis%></h4>
- </div>
- <div class='field'>
-	<h4>Field:<br>
-	<%=@lot.purchase.pmu.location%> <%=@lot.purchase.pmu.village%></h4>
-
- </div>
- <!-- </div> -->
-
- 
-  <div id="map-container-lot-show">
-      <div id="map-canvas-lot"></div>
-   </div>
-
-
-<!-- <div class='row'> -->
-	<!-- <div class='col-md-12'> -->
-
-<!-- <br> -->
-<div class='lot'>
-<h3><%=link_to @lot.lot ,edit_tenant_lot_path(@tenant,@lot)%></h3>
-
-<span>
-<%= link_to 'Edit', edit_tenant_lot_path(@tenant,@lot) %> |
-<%= link_to 'Back', tenant_lots_path(@tenant) %></span>
 </div>
-
-<div class='box'>
-<h4>Weight: <%=@lot.kg%> kgs </h4>
-<h4>Packed: <%=@lot.palet_line_items.sum(:cartons)*5%> kgs</h4>
-<!--<h4>Loose: <%=1-(@lot.palet_line_items.sum(:cartons)*5.00/@lot.kg) %></h4> -->
-<h4>LostBerries:<%= number_with_precision(@lot.loose_berries,precision:2) %> %</h4>
-
-</div>
-
-<div class='box'>
-<h4><%=pluralize(@lot.palet_line_items.sum(:cartons),'box')%> </h4>
-</div>
-
-<div class='palet'>
-<h4> <%=pluralize(@lot.palets.count,'palet')%></h4>
-<ol>
-<%@lot.palets.each  do |palet| %>
-<div class='palet-details'>
-<li><strong><%=palet.code%> </strong> 
-<%palet.palet_line_items.where(lot_id:@lot.id).each do |pli|%>
-<%=pluralize(pli.cartons,'box')%> 
-to  <%=palet.packed_for %>
-
-<%end%>
-
- </li>
-<%end%>
-</ol>
-</div>
-</div>
-</div>
-<div class='col-md-6'>
-
-</div>
-
-</div>
-<hr>
-
-
-
-	<br>
-<div><%= raw @qr.as_html %></div>
-
-<hr>
-
-<script>
-var mapOptions = {mapTypeId: google.maps.MapTypeId.SATELLITE,scrollwheel:false,disableDefaultUI:true};
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: mapOptions, internal: {id:'map-canvas-lot'}}, function(){
-        markers = handler.addMarkers(<%=raw @hash.to_json%>, {draggable: false});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(18);
-});   
-
-
-</script>
-

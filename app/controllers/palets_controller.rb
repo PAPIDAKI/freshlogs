@@ -31,9 +31,7 @@ class PaletsController < ApplicationController
   def new
     @palet = Palet.new
     @palet_line_item=@palet.palet_line_items.new
-    # @palet_line_item=@palet.palet_line_items.new
     @palet_line_item.tenant_id=params[:tenant_id]
-
   end
 
   def edit
@@ -92,11 +90,11 @@ class PaletsController < ApplicationController
   private
    
     # Use callbacks to share common setup or constraints between actions.
-    def set_palet
-      @palet = Palet.find(params[:id])
-    end
     def set_tenant
       @tenant=Tenant.find(params[:tenant_id])
+    end
+    def set_palet
+      @palet = Palet.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
