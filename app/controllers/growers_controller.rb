@@ -12,7 +12,7 @@ class GrowersController < ApplicationController
     @grower=Grower.find(params[:grower_id])
     # @grower_lots=@grower.lots.order(created_at: :DESC)
     # @grower_lots= @grower.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2016','12/31/2016')
-    @grower_lots=@grower.lots_2017
+    @grower_lots=@grower.lots_2016
 
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
