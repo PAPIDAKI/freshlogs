@@ -1,6 +1,6 @@
 
 <div style='padding-top: 55px;'>
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-pills nav-stacked hidden-print">
 		<li><%=link_to 'Growers',tenant_growers_path(@tenant)%></li>
 		<li><%=link_to 'Pmus',tenant_pmus_path(@tenant)%></li>
 		<li><%=link_to 'Purchases',tenant_purchases_path(@tenant)%></li>
@@ -12,7 +12,7 @@
 </div>
 
 <div style='padding-top: 55px;'>
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-pills nav-stacked hidden-print">
 		<li><%=link_to 'Workgroups',tenant_workgroups_path(@tenant)%></li>
 		<li><%=link_to 'Shifts',tenant_shift_lists_path(@tenant)%></li>
 		<li><%=link_to 'Workers',tenant_workers_path(@tenant)%></li>

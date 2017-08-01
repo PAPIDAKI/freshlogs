@@ -42,9 +42,9 @@ Rails.application.routes.draw do
       resources :palets
       resources :loadings
       resources :growers do
-         get :position
-        # get 'position/2017' =>"growers#position"
-        # get 'position/2016' =>"growers#"
+         get 'position' => "growers#position"
+         get 'position/current' => "growers#position" ,scope:'current'
+         get 'position/last_year' =>"growers#position",scope:'last_year' 
         get :xposition
         resources :pmus 
               resources :lots  

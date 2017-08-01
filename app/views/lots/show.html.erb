@@ -2,8 +2,8 @@
 Grower:<%= @lot.purchase.pmu.grower.name %><br>
 Location:<%= @lot.purchase.pmu.location %><br>
 Date:<%= @lot.created_at.strftime("%d-%m-%M") %>
-Time:<%=@lot.created_at.strftime("%H:%M")%>
-
+Time:<%=@lot.created_at.strftime("%H:%M")%><br/>
+<%=link_to 'Edit',edit_tenant_lot_path(@tenant,@lot)%>
 		
 <hr>
 Weighings:<br>

@@ -1,16 +1,16 @@
      <div class='nested-fields'>
         <div class='row'>
-            <div class='col-md-12'>
+            <div class='col-md-9'>
                 <%= f.text_field :mixed_weight,placeholder:"Weight",class:'col-md-2',id:'mixed_weight'%>
                  <%= f.text_field :crates,placeholder:"Crates",class:'col-md-1',id:'crates' %>
                   <%= f.text_field :crate_weight,placeholder:"Crate Weight" ,class:'col-md-1',id:'crate_weight'%>
                    <%= f.text_field :palets,placeholder:"Palets",class:'col-md-1',id:'palets' %>
                     <%= f.text_field :palet_weight,placeholder:"Palet Weight",class:'col-md-1',id:'palet_weight'%>
-
-                   <%= link_to_remove_association "remove weight", f %>
+                    </div>
+                  <div class= 'col-md-3'>
+                  
+                   <%= link_to_remove_association "remove",f %>
             </div>
-          <!--  <div class='col-md-3'>
-           </div>   -->
          </div>
 
      </div>

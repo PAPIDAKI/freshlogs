@@ -5,11 +5,12 @@ class Lot < ActiveRecord::Base
   # accepts_nested_attributes_for :palet_line_items
   # accepts_nested_attributes_for :palets
   has_many :palets, through: :palet_line_items
-  has_many :weighings ,dependent: :destroy
-  # accepts_nested_attributes_for :weighings,reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :weighings,
-                                  reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
-                                  allow_destroy: true 
+  has_many :weighings ,inverse_of: :lot, dependent: :destroy
+  accepts_nested_attributes_for :weighings,reject_if: :all_blank, allow_destroy: true
+  # accepts_nested_attributes_for :weighings,
+  #                                 reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
+  #                                 allow_destroy: true 
+                                  
   before_validation :set_default_lot, unless: :persisted?
   # after_initialize :set_default_lot
   # The set_defaults will only work if the object is new

@@ -13,11 +13,20 @@ class Grower < ActiveRecord::Base
 		"#{name} - #{address}"
 	end
 
-	def lots_2016
-		self.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2016','12/31/2016')
+	def current_year_lots
+		self.lots.where('lots.created_at BETWEEN ? AND ?',
+		 Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
 	end
 
-	def lots_2017
-		self.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2017','12/31/2017')
+	# def current_month
+	# 	self.lots.where('lots.created_at BETWEEN ? AND ?', Time.zone.now.beginning_of_month,Time.zone.now.end_of_month)
+	# end
+
+	def last_year_lots
+		self.lots.where('lots.created_at BETWEEN ? AND ?',
+		 Time.zone.now.beginning_of_year-1.year,Time.zone.now.end_of_year-1.year)
 	end
+
+
+
 end

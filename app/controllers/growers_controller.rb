@@ -10,28 +10,26 @@ class GrowersController < ApplicationController
 
   def position
     @grower=Grower.find(params[:grower_id])
-    # @grower_lots=@grower.lots.order(created_at: :DESC)
-    # @grower_lots= @grower.lots.where('lots.created_at BETWEEN ? AND ?', '01/01/2016','12/31/2016')
-    @grower_lots=@grower.lots_2016
-
+    case params[:scope]
+    when 'last_year'
+      @grower_lots=@grower.last_year_lots
+     else 
+      @grower_lots=@grower.current_year_lots
+    end
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
     @grower_purchases=@grower.purchases
   end
 
-  def position_last_3_months
+  def last_year_position
      @grower=Grower.find(params[:grower_id])
-    @grower_lots=@grower.lots.where(created_at: Date.today.month-3).order(created_at: :DESC)
+
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
-    # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
     @grower_purchases=@grower.purchases
 
 
   end
 
-  def position_last_6_months
-
-  end
 
 
 
