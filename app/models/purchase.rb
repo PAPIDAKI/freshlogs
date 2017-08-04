@@ -12,6 +12,11 @@ class Purchase < ActiveRecord::Base
 		"#{pmu.grower.name} - #{pmu.location}"
 	end
 
+	def self.current
+		where('created_at BETWEEN ? AND ?',
+		 Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
+	end
+
 
 # Methods used in  grower- position 
 	def lots_count		

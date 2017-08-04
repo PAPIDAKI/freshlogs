@@ -22,19 +22,24 @@
      <div class='form-group'>
      <%=f.label :purchase_id,class:'control-label'%>
      <div >
-     <%=f.collection_select(:purchase_id,Purchase.where(tenant_id:params[:tenant_id]),:id , :details,{:prompt=> true},{:class=>'form-control'})%> 
+     <%=f.collection_select(:purchase_id,Purchase.current.where(tenant_id:params[:tenant_id]),:id , :details,{:prompt=> true},{:class=>'form-control'})%> 
    <!--  <%=f.grouped_collection_select(:purchase_id,Grower.where(tenant_id:params[:tenant_id]),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%> -->
      </div>
     </div>
 
    <div class="form-group">
-      <%=f.label :plastics,class:'control-label'%>
-      <%=f.text_field :plastics, class: 'form-control'%>
+   <!-- TODO Delete attr  -->
+      <%=f.hidden_field :plastics, id:'plastics',class: 'form-control'%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :crates,class:'control-label'%>
+      <%=f.text_field :crates, id:'crates',class: 'form-control'%>
     </div>
 
     <div class="form-group">
       <%=f.label :kg,class:'control-label'%>
-      <%=f.text_field :kg, class: 'form-control'%>
+      <%=f.text_field :kg, id:'kg',class: 'form-control'%>
     </div>
 
     <div class="form-group">
@@ -47,7 +52,7 @@
       <hr>
         <h4> Weighings:</h4>
        
-            <div id="weighing_line_item_fields">
+            <div class="weighing_line_item_fields">
               <!-- <div id='weighings'> -->
               <%=f.fields_for :weighings do |weighing| %>
                 <%=render'weighing_fields',:f=>weighing %>

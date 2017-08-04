@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @crate.tenant_id %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @crate.driver_id %>
+</p>
+
+<p>
+  <strong>From pmu:</strong>
+  <%= @crate.from_pmu_id %>
+</p>
+
+<p>
+  <strong>To pmu:</strong>
+  <%= @crate.to_pmu_id %>
+</p>
+
+<p>
+  <strong>Crates:</strong>
+  <%= @crate.crates %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @crate.note %>
+</p>
+
+<%= link_to 'Edit', edit_tenant_crate_path(@tenant,@crate) %> |
+<%= link_to 'Back', tenant_crates_path %>

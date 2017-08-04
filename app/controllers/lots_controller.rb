@@ -4,7 +4,7 @@ class LotsController < ApplicationController
   # before_action :verify_tenant
 
   def index
-    @lots = Lot.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
+    @lots = Lot.current.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
    @lots_kgs=@lots.sum(:kg) 
    @lots=@lots.to_a
    @daily_lots=@lots.group_by {|t| t.created_at.beginning_of_day}
@@ -100,7 +100,7 @@ class LotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
       # params.fetch(:lot, {})
-      params.require(:lot).permit(:lot,:kg,:plastics,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
+      params.require(:lot).permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
     end
 
     def verify_tenant

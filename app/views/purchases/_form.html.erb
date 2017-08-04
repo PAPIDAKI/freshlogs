@@ -15,10 +15,10 @@
      </div>
 
 
-  
+ <!-- :selected => params[:pid]  -->
   <div class="form-group">
     <%= f.label :pmu_id,class:'control-label' %><br>
-        <%=f.grouped_collection_select(:pmu_id,Grower.where(tenant_id:params[:tenant_id]).order(name: :asc),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
+        <%=f.grouped_collection_select(:pmu_id,Grower.where(tenant_id:params[:tenant_id]).order(name: :asc),:pmus,:name,:id,:location,{:prompt=> true,:selected => params[:pid]},{:class=>'form-control'})%>
 
   </div>
   <div class="form-group">

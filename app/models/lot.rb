@@ -14,6 +14,7 @@ class Lot < ActiveRecord::Base
   before_validation :set_default_lot, unless: :persisted?
   # after_initialize :set_default_lot
   # The set_defaults will only work if the object is new
+  # validates :purchase ,presence: true
   def set_default_lot
   	lot_date_time=DateTime.current
   	a_part=lot_date_time.strftime("D%d")
@@ -26,6 +27,11 @@ class Lot < ActiveRecord::Base
   def lot_description
     "#{lot}   #{purchase.pmu.grower.name}-#{purchase.pmu.location}"
  end
+
+ def self.current
+    where('created_at BETWEEN ? AND ?',
+     Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
+  end
 
  def worth
   if purchase

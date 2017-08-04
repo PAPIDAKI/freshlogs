@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730150236) do
+ActiveRecord::Schema.define(version: 20170803070403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(version: 20170730150236) do
   end
 
   add_index "contact_infos", ["contactable_type", "contactable_id"], name: "index_contact_infos_on_contactable_type_and_contactable_id", using: :btree
+
+  create_table "crates", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.integer  "driver_id"
+    t.integer  "from_pmu_id"
+    t.integer  "to_pmu_id"
+    t.integer  "crates"
+    t.string   "note"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "growers", force: :cascade do |t|
     t.string   "name"
@@ -357,6 +368,7 @@ ActiveRecord::Schema.define(version: 20170730150236) do
     t.string   "photo"
     t.integer  "status"
     t.string   "work_for"
+    t.string   "type"
   end
 
   create_table "workgroup_workers", force: :cascade do |t|

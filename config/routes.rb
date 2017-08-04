@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :att_performances
   
   resources :tenants do 
+    resources :crates
     resources :pmus
     resources :purchases
     resources :paralavis
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
 
 
   resources :tenants do
-      resources :reports
+          resources :reports
       resources :palets
       resources :loadings
       resources :growers do

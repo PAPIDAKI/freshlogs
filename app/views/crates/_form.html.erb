@@ -1,0 +1,49 @@
+<%= form_for([@tenant,@crate]) do |f| %>
+  <% if @crate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crate.errors.count, "error") %> prohibited this crate from being saved:</h2>
+
+      <ul>
+      <% @crate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  
+
+
+  <div class="form-group">
+    <%= f.label :driver_id,class:'control-label' %><br><br/>
+        <%=f.collection_select(:driver_id,Driver.where(tenant_id:params[:tenant_id]).order(name: :asc),:id,:name,{:class=>'form-control'})%>
+  </div>
+
+  
+  <div class="field">
+    <%= f.label :crates %><br>
+    <%= f.number_field :crates %>
+  </div>
+  
+ 
+  <div class="form-group">
+    <%= f.label :from_pmu_id,class:'control-label' %><br>
+        <%=f.grouped_collection_select(:from_pmu_id,Grower.where(tenant_id:params[:tenant_id]).order(name: :asc),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
+
+  </div>
+
+  <div class="form-group">
+    <%= f.label :to_pmu_id,class:'control-label' %><br>
+        <%=f.grouped_collection_select(:to_pmu_id,Grower.where(tenant_id:params[:tenant_id]).order(name: :asc),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
+
+  </div>
+  
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

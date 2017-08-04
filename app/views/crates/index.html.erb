@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Crates</h1>
+<%= link_to 'New Crate', new_tenant_crate_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tenant</th>
+      <th>Driver</th>
+      <th>From pmu</th>
+      <th>To pmu</th>
+      <th>Crates</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crates.each do |crate| %>
+      <tr>
+
+       
+        <td><%= crate.created_at.strftime("%H:%M - %e %m %a") %></td>
+        <td><%= crate.driver.name %></td>
+        <td><%= crate.from_pmu.location %></td>
+        <td><%= crate.to_pmu_id %></td>
+        <td><%= crate.crates %></td>
+        <td><%= crate.note %></td>
+        <td><%= link_to 'Show', tenant_crate_path(@tenant,crate) %></td>
+        <td><%= link_to 'Edit', edit_tenant_crate_path(@tenant,crate) %></td>
+        <td><%= link_to 'Destroy', tenant_crate_path(@tenant,crate), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

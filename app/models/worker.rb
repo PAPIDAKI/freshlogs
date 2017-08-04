@@ -5,18 +5,18 @@ class Worker < ActiveRecord::Base
 	has_many :workgroups,through: :workgroup_workers
 
 	# sti implementation
-	# self.inheritance_column = :type
+	self.inheritance_column = :type
 
-	# def self.types
-		# %(Packer Assistant Driver Field Supervisor) 
-	# end
+	def self.types
+		%(Packer Assistant Driver Field Supervisor) 
+	end
 
 
-	# scope :drivers, -> {where(type:'Driver') }
-	# scope :packers, -> {where(type:'Packer')}
-	# scope :supervisors, -> {where(type:"Supervisor")}
-	# scope :assistants, -> {where(type:'Assistant')}
-    # scope :fields, -> {where(type:'Field')}
+	scope :drivers, -> {where(type:'Driver') }
+	scope :packers, -> {where(type:'Packer')}
+	scope :supervisors, -> {where(type:"Supervisor")}
+	scope :assistants, -> {where(type:'Assistant')}
+    scope :fields, -> {where(type:'Field')}
 	# end of sti
 
 	scope :packhouse, -> {where(work_for:'Packhouse')}
