@@ -18,7 +18,8 @@ class GrowersController < ApplicationController
     end
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
-    @grower_purchases=@grower.purchases
+    @grower_purchases=@grower.purchases.where('purchases.created_at BETWEEN ? AND ?',
+     Time.zone.now.beginning_of_year,Time.zone.now.end_of_year).order(created_at: :desc)
   end
 
   def last_year_position

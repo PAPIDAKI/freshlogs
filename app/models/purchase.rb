@@ -9,7 +9,8 @@ class Purchase < ActiveRecord::Base
 	
 
 	def details
-		"#{pmu.grower.name} - #{pmu.location}"
+		"#{pmu.grower.name}- #{pmu.location}"
+		# "HEllo fm details"
 	end
 
 	def self.current

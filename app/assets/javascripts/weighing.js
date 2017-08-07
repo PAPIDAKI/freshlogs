@@ -1,7 +1,34 @@
 $(document).ready(function(){
 
-	$('.weighing_line_item_fields').keyup(function(){
+	$('.nested-fields').on('cocoon:after-remove'),function(){
+		console.log('====>Cocoon Item inserted');
+	};
 
+	//1
+	$(document).on('keyup','.nested-fields',function(){
+		console.log('==========');
+		console.log('Hello WLIF');
+		var mixed_count = $('.mixed_weight').length;
+		// if (mixed_count.lenth>=1){
+			// console.log(mixed_count.item(0));
+			// console.log(mixed_count.item(1));
+		// }
+		console.log(mixed_count);
+
+		
+		// console.log(mixed_weight[2]);
+		var thiss =$(this);
+		// var parent_nested_item=thiss.parent('.nested-fields');
+		var q = thiss.val();
+		// console.log(q);
+
+	// });
+
+
+ 		
+		// $('.weighing_line_item_fields').keyup(function(){
+
+		
 
 		// $(function() {
 		//     $("#price, #qty").keyup(function() {
@@ -10,9 +37,12 @@ $(document).ready(function(){
 		//         $("#amount").val(q * p);
 		//     });
 		// });
+ // $('.weighing_line_item_fields').on('cocoon:before_insert',function(){
+
 	    // $(".mixed_weight,.crates,.crate_weight,.palets,.palet_weight").keyup(function(){
-	 		
-	 		// var thiss= $(this);
+ 		
+
+
 	 		// var parent_nested_item=thiss.parent('.nested-fields'),
 	 		// var mixed_weight= parent_nested_item.find('.mixed_weight').val();
 	 		var mixed_weight=$('.mixed_weight').val();
@@ -38,12 +68,15 @@ $(document).ready(function(){
 			 //fill up net kg and plastics on lot form 
 			 //for posting to server 
 			 //temporary out of use for updating to heroku
-			 $('#kg').val(net_weight);
-			 $('#plastics').val(crates);
-			  $('#crates').val(crates);
+			 // $('.weighing_line_item_fields').on('cocoon:before_insert',function(){
+				 $('#kg').val(net_weight);
+				 $('#plastics').val(crates);
+				  $('#crates').val(crates);
+				  console.log("Bye now!")
 			// });
 
 	    });
+	// });
 	   
 	
  

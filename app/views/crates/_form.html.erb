@@ -16,8 +16,8 @@
 
 
   <div class="form-group">
-    <%= f.label :driver_id,class:'control-label' %><br><br/>
-        <%=f.collection_select(:driver_id,Driver.where(tenant_id:params[:tenant_id]).order(name: :asc),:id,:name,{:class=>'form-control'})%>
+    <%= f.label :worker_id,class:'control-label' %><br><br/>
+        <%=f.collection_select(:worker_id,Driver.where(tenant_id:params[:tenant_id]).order(name: :asc),:id,:name,{:class=>'form-control'})%>
   </div>
 
   

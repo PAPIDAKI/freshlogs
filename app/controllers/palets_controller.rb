@@ -4,7 +4,9 @@ class PaletsController < ApplicationController
   
   
   def index
-    @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC')
+    # @palets = Palet.where(tenant_id:@tenant.id).order('DATE(date) DESC')
+   @palets=Palet.where('created_at BETWEEN ? AND ?',
+     Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
     @cartons=PaletLineItem.where(tenant_id:@tenant.id).sum(:cartons)
     @available_palets=@palets.where(loading_id:nil)
     @kg_packed=@cartons*5
