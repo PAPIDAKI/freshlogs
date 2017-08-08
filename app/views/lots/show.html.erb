@@ -2,8 +2,8 @@
 Grower:<%= @lot.purchase.pmu.grower.name %><br>
 Location:<%= @lot.purchase.pmu.location %><br>
 Date:<%= @lot.created_at.strftime("%d-%m-%M") %>
-Time:<%=@lot.created_at.strftime("%H:%M")%><br/>
-<%=link_to 'Edit',edit_tenant_lot_path(@tenant,@lot)%>
+Time:<%=@lot.created_at.strftime("%H:%M")%>
+<div class='hidden-print'><%=link_to 'Edit',edit_tenant_lot_path(@tenant,@lot)%></div>
 		
 <hr>
 Weighings:<br>
@@ -11,7 +11,7 @@ Weighings:<br>
 	<div class='media-body'>
 		<table class='table table-hover'>
 			<tr>
-			<th>Time</th><th>Mixed Weight</th><th> Crates</th><th>CW</th><th>Palets</th><th>PW</th><th>Net Weight</th>
+			<th></th><th>M W</th><th> C</th><th>CW</th><th>P</th><th>PW</th><th>Net Weight</th>
 			 </tr>
 			<tbody>
 			<% @lot.weighings.each do |weighing| %>

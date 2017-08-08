@@ -12,9 +12,9 @@ class GrowersController < ApplicationController
     @grower=Grower.find(params[:grower_id])
     case params[:scope]
     when 'last_year'
-      @grower_lots=@grower.last_year_lots
+      @grower_lots=@grower.last_year_lots.order(created_at: :desc)
      else 
-      @grower_lots=@grower.current_year_lots
+      @grower_lots=@grower.current_year_lots.order(created_at: :desc)
     end
     @purchase_prices=@grower_lots.map {|l| l.purchase.price}
     # @grower_purchases_lots=@grower.purchases.map {|p| p.lots}
