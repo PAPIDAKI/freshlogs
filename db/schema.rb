@@ -67,8 +67,6 @@ ActiveRecord::Schema.define(version: 20170806033533) do
     t.integer  "worker_id"
     t.integer  "time_diff"
     t.string   "note"
-    t.string   "position"
-    t.integer  "cartons"
   end
 
   add_index "attendances", ["shift_list_id"], name: "index_attendances_on_shift_list_id", using: :btree
@@ -361,12 +359,12 @@ ActiveRecord::Schema.define(version: 20170806033533) do
     t.datetime "updated_at",         null: false
     t.string   "phone"
     t.string   "insurance"
+    t.boolean  "active"
     t.string   "area"
     t.string   "working_experience"
     t.string   "name"
     t.date     "birthday"
     t.string   "photo"
-    t.integer  "status"
     t.string   "work_for"
     t.string   "type"
   end
