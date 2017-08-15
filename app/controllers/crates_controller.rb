@@ -17,7 +17,9 @@ class CratesController < ApplicationController
   def new
     @crate = Crate.new
     @crate.tenant_id=params[:tenant_id]
-  end
+    @driver=Driver.all
+    @worker=Worker.all
+    end
 
   # GET /crates/1/edit
   def edit
@@ -74,6 +76,6 @@ class CratesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def crate_params
-      params.require(:crate).permit(:tenant_id, :driver_id, :from_pmu_id, :to_pmu_id, :crates, :note)
+      params.require(:crate).permit(:tenant_id, :worker_id, :from_pmu_id, :to_pmu_id, :crates, :note)
     end
 end

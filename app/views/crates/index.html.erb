@@ -24,7 +24,7 @@
         <td><%= crate.created_at.strftime("%H:%M - %e %m %a") %></td>
         <td><%= crate.worker_id %></td>
         <td><%= crate.from_pmu.location %></td>
-        <td><%= crate.to_pmu_id %></td>
+        <td><%= crate.to_pmu.location %></td>
         <td><%= crate.crates %></td>
         <td><%= crate.note %></td>
         <td><%= link_to 'Show', tenant_crate_path(@tenant,crate) %></td>

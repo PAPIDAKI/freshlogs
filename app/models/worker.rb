@@ -3,7 +3,7 @@ class Worker < ActiveRecord::Base
 	has_many :shift_lists,through: :attendances
 	has_many :workgroup_workers
 	has_many :workgroups,through: :workgroup_workers
-
+	has_many :crates
 	# sti implementation
 	self.inheritance_column = :type
 

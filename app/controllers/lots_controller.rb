@@ -1,7 +1,7 @@
 class LotsController < ApplicationController
   before_action :set_tenant
   before_action :set_lot , only: [:show, :edit, :update, :destroy]
-  # before_action :verify_tenant
+  # before_action :purchase_default_to_seu_if_necessary,only:[:update,:edit]
 
   def index
     @lots = Lot.current.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
@@ -31,6 +31,7 @@ class LotsController < ApplicationController
     @lot.tenant_id=@tenant.id
     @weighing=@lot.weighings.new
 
+
   end
 
   # GET /lots/1/edit
@@ -43,6 +44,7 @@ class LotsController < ApplicationController
     @lot = Lot.new(lot_params)
     @lot.tenant_id=@tenant.id
     @lot.tenant_id=@tenant.id
+     # @lot.purchase_id = 122 if purchase_id.blank?
 
     @lot.weighings.each do |w|
       w.tenant_id = @tenant.id
@@ -66,7 +68,7 @@ class LotsController < ApplicationController
         @lot.weighings.each do |w|
           w.tenant_id = params[:tenant_id]
         end
-
+        # purchase_default_to_seu_if_necessary
     respond_to do |format|
       if @lot.update(lot_params)
         format.html { redirect_to tenant_lots_path(@tenant,@lot), notice: 'Lot was successfully updated.' }
@@ -109,4 +111,9 @@ class LotsController < ApplicationController
     #     flash:{error: 'You are not authorized to access any organization other than your own'}
     #   end
     end
+
+   #  def purchase_default_to_seu_if_necessary
+   # purchase_id = 122 if purchase_id.blank?
+   #  end 
+
 end

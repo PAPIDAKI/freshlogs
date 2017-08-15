@@ -21,7 +21,8 @@
                         <tbody>
                            <% v.each do |worker|%>
                               <tr>
-                                 <td><%= worker.name%></td>
+                                 <td><%= worker.type%></td>
+                                 <td><%=link_to worker.name,tenant_worker_path(@tenant,worker)%></td>
                                  <td><%=worker.mobile %></td>
                                  <td><%=worker.status %></td>
                                </tr>

@@ -1,0 +1,10 @@
+=>from heroku to import localy and keep back up 
+1)Make a back in heroku
+heroku pg:backups:capture
+
+2)download it localy in project directort ,it gets saved as local.damp
+heroku pg:backups:download
+
+3)restore localy
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
+

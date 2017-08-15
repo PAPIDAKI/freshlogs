@@ -21,7 +21,7 @@
      <div class='form-group'>
      <%=f.label :purchase_id,class:'control-label'%>
      <div >
-     <%=f.collection_select(:purchase_id,Purchase.all.where(tenant_id:params[:tenant_id]).current.order(created_at: :desc),:id , :details,{:prompt=> true},{:class=>'form-control'})%> 
+     <%=f.collection_select(:purchase_id,Purchase.all.where(tenant_id:params[:tenant_id]).current.order(created_at: :desc),:id , :details,{:prompt=> true,:selected => 14},{:class=>'form-control'})%> 
    <!--  <%=f.grouped_collection_select(:purchase_id,Grower.where(tenant_id:params[:tenant_id]),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%> -->
      </div>
     </div>

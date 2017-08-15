@@ -12,12 +12,9 @@ class Lot < ActiveRecord::Base
                                   allow_destroy: true 
                                   
   before_validation :set_default_lot, unless: :persisted?
-  # after_initialize :set_default_lot
-  # The set_defaults will only work if the object is new
-  # validates :purchase ,presence: true
-  # self.crates =0 if self.new_record?
-
-  def set_default_lot
+  # before_validation :purchase_default_to_seu_if_necessary
+  # validates :purchase_id ,presence: true 
+   def set_default_lot
   	lot_date_time=DateTime.current
   	a_part=lot_date_time.strftime("D%d")
   	b_part=lot_date_time.strftime("%H%M")
@@ -25,8 +22,12 @@ class Lot < ActiveRecord::Base
     self.lot  ||="#{a_part}#{b_part}#{c_part}" if self.new_record?
     #set crate default 0 to avoid crashing 
     self.crates =0 if self.new_record?
-    
+
   end
+
+ def purchase_default_to_seu_if_necessary
+   purchase_id = 122 if purchase_id.blank?
+  end 
 
   def lot_description
     "#{lot}   #{purchase.pmu.grower.name}-#{purchase.pmu.location}"

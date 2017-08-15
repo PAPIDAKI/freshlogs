@@ -40,11 +40,11 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @worker.status.capitalize %>
+  <%= @worker.status %>
   <!-- use humanize to capitalize the status integer -->
 </p>
 
 <%= link_to 'Edit', edit_tenant_worker_path(@tenant,@worker) %> |
-<%= link_to 'Destroy',[@tenant,@worker], method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Destroy',tenant_worker_path(@tenant,@worker), method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', tenant_workers_path %>
 
