@@ -40,27 +40,29 @@
 		 </tbody>
 		 </table>
        <hr>
+       <h4>per PMU: </h4>
        <div id='by_location'>
-           <% @grower_purchases.each do |purchase|%>
-   <strong><%=purchase.pmu.location%></strong>
-   (<%= purchase.lots_count%> lots):
-   <br>
-   in:<%=purchase.weight_in%>
-   out:<%=purchase.weight_out%>
-   missing:<%=purchase.missing_kgs%> 
-   <strong><%=number_to_percentage(purchase.fyra_percent,precision: 2)%></strong>
-   <br>
-   <% palet_hash=purchase.palets.group(:packed_for).count%>
-   <% total_palets=palet_hash.inject(0) {|sum,tuple| sum+=tuple[1]}%>
-   <%palet_hash.each do |k,v|%>
-   <%=k%>: <%=number_to_percentage(v/total_palets.to_f*100,precision:0)%>
-   
-   <%end%>
-   <br>
-<%end%>
+       <% @grower_purchases.each do |purchase|%>
+           <strong><%=purchase.pmu.location%></strong>
+             (<%= purchase.lots_count%> lots):
+       
+             In:<%=purchase.weight_in%> - 
+             Out:<%=purchase.weight_out%> = 
+             Missing:<%=purchase.missing_kgs%> 
+             <strong>(<%=number_to_percentage(purchase.fyra_percent,precision: 2)%>)</strong>
+             <br>
+              <!-- sale distribution ie bama ever hnh -->
+             <% palet_hash=purchase.palets.group(:packed_for).count%>
+             <% total_palets=palet_hash.inject(0) {|sum,tuple| sum+=tuple[1]}%>
+             <%palet_hash.each do |k,v|%>
+             <%=k%>: <%=number_to_percentage(v/total_palets.to_f*100,precision:0)%>
+             <%end%>
+             <br>
+        <%end%>
 </div>
         <hr>
-        <span> <h4>
+        <span> 
+        <h4> Packed Totals</h4>
         Cartons:
            <%=@grower.palet_line_items.where('palet_line_items.created_at BETWEEN ? AND ?',
            Time.zone.now.beginning_of_year,Time.zone.now.end_of_year).order(created_at: :desc).sum(:cartons)%> 

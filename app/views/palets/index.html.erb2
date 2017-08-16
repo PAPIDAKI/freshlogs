@@ -1,0 +1,53 @@
+<h3>Palets</h3>
+<%= link_to 'New Palet',new_tenant_palet_path(@tenant) %>
+<div>
+Ready for loading:<%= @available_palets.count%> palets <br>
+
+Last Palet packed <%=Palet.where(loading_id:nil).last.try(:code)%> 
+
+
+
+
+
+<br/>
+
+</div>
+
+    <table class='table'>
+      <tbody>
+        <% @daily_palets.each do |day,palets|%>
+        
+         <table class='table table-hover'> 
+      <h4><strong><%=day.strftime('%d %b')%></strong>
+      <% unless palets.nil?%>
+      <%=palets.count%> |
+      <span><%=number_with_precision(palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)},precision:0,seperator:',',delimiter:'.')%></span> | <%= palets.inject(0){|sum,p| sum+=p.palet_line_items.sum(:cartons)}*5%> 
+       </h4>
+
+      <% for palet in palets.sort  %> 
+      <% if palet %>
+          <tr>
+              <td><%=link_to palet.code ,edit_tenant_palet_path(@tenant,palet)%></td>
+              <td><%=palet.note%></td>
+               <td><%=palet.packed_for%></td>
+               <td><%= palet.palet_line_items.sum(:cartons)%></td>
+
+              <td><% palet.palet_line_items.each do |pli|%> 
+                    <%=pli.lot.try(:lot)%>
+                    <%=pli.cartons%> cartons
+                    <%=pli.lot.try(:purchase).try(:details) %><br/>
+                      <%end%>
+              </td>
+              <td><%= palet.date.strftime(" %H:%y") %></td>
+                </tr>
+                <%end%>
+              <%end%>
+                  </table>
+              <%end%>
+        <% end %>
+      </tbody>
+        <br/>
+        </div>
+    </div>
+</div>
+   
