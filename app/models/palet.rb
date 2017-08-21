@@ -14,6 +14,14 @@ class Palet < ActiveRecord::Base
 
       validates :code ,presence: true,uniqueness: true
 
+
+    def loading_descripion  
+      "#{code} (#{date.strftime("%H:%M - %e/%m/%y  %a")})"
+    end
+
+    def form_description
+      self.loading_descripion
+    end
      private 
 
      	def capitalize_packed_for
