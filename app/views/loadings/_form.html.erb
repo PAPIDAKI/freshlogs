@@ -33,9 +33,10 @@
     <%= f.check_box :delivered %>
   </div>
   <hr>
- <div class='field'>
+ <div class='checkbox-list'>
     <%=f.collection_check_boxes(:palet_ids,@palets,:id,:code)%>
     </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

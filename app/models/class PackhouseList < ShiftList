@@ -1,0 +1,4 @@
+class PackhouseList < ShiftList
+	has_many :attedances
+
+end

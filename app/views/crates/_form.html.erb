@@ -16,14 +16,14 @@
 
 
   <div class="form-group">
-    <%= f.label :worker_id,class:'control-label' %>
-        <%=f.collection_select(:worker_id,Worker.where(tenant_id:params[:tenant_id]).order(name: :asc),:id,:name,{:class=>'form-control'})%>
+    <%= f.label :driver_id %>
+        <%=f.collection_select(:worker_id,Worker.drivers.where(tenant_id:params[:tenant_id]).order(name: :asc),:id,:name,{:prompt=>true},{:class=>'form-control'})%>
   </div>
 
   
-  <div class="field">
-    <%= f.label :crates %><br>
-    <%= f.number_field :crates %>
+  <div class="form-group">
+    <%= f.label :crates,class:'control-label' %><br>
+    <%= f.number_field :crates,class:'form-control' %>
   </div>
   
  
@@ -36,12 +36,11 @@
   <div class="form-group">
     <%= f.label :to_pmu_id,class:'control-label' %><br>
         <%=f.grouped_collection_select(:to_pmu_id,Grower.where(tenant_id:params[:tenant_id]).order(name: :asc),:pmus,:name,:id,:location,{:prompt=> true},{:class=>'form-control'})%>
-
   </div>
   
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
+  <div class="form-group">
+    <%= f.label :note,class:'control-label' %><br>
+    <%= f.text_field :note,class:'form-control' %>
   </div>
   <div class="actions">
     <%= f.submit %>

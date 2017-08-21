@@ -32,7 +32,7 @@ class CratesController < ApplicationController
 
     respond_to do |format|
       if @crate.save
-        format.html { redirect_to tenant_crate_path(@tenant,@crate), notice: 'Crate was successfully created.' }
+        format.html { redirect_to tenant_crates_path(@tenant), notice: 'Crate was successfully created.' }
         format.json { render :show, status: :created, location: @crate }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class CratesController < ApplicationController
   def update
     respond_to do |format|
       if @crate.update(crate_params)
-        format.html { redirect_to tenant_crate_path(@tenant,@crate), notice: 'Crate was successfully updated.' }
+        format.html { redirect_to tenant_crates_path(@tenant), notice: 'Crate was successfully updated.' }
         format.json { render :show, status: :ok, location: @crate }
       else
         format.html { render :edit }

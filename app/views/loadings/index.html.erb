@@ -22,7 +22,7 @@
   <tbody>
     <% @loadings.each do |loading| %>
       <tr>
-        <td><%= link_to loading.date.strftime("%e %b %a"),tenant_loading_path(@tenant,loading) %></td>
+        <td><%= link_to loading.date.strftime("%e %b %Y  %a"),tenant_loading_path(@tenant,loading) %></td>
         <td><%= loading.customer %></td>
         <td><%= loading.purchase_order%></td>
         <td><%= loading.palets.count %></td>

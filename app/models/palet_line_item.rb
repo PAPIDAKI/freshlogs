@@ -4,6 +4,11 @@ class PaletLineItem < ActiveRecord::Base
 	accepts_nested_attributes_for :lot,:reject_if=>:all_blank 
 	# validates_presence_of :palet
 
+	def self.current
+    where('created_at BETWEEN ? AND ?',
+     Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
+	  end
+
 	def current
 		self.where('created_at BETWEEN ? AND ?',
      Time.zone.now.beginning_of_year,Time.zone.now.end_of_year).order(created_at: :desc)

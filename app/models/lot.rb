@@ -38,6 +38,8 @@ class Lot < ActiveRecord::Base
      Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
   end
 
+  
+
  def worth
   if purchase
   self.kg * self.purchase.price/100

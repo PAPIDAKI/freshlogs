@@ -1,0 +1,11 @@
+//
+.checkbox-list input[type="checkbox"] {
+  display: inline-block;
+  width: 3%;
+}
+
+.checkbox-list input[type="checkbox"] + label {
+  display: inline-block;
+  margin-left: 0%;
+  width: 95%;
+}

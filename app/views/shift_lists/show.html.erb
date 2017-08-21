@@ -36,6 +36,8 @@ Work Hours:<strong><%=@attendances.count*@shift_list.hours_worked%></strong>
 <% @attendances.each do |attendance| %>
 <tr>
 <td><%=attendance.worker.name%></td>
+<td><%=attendance.shift_list.hours_worked%></td>
+<td><%=attendance.shift_list.hours_worked*4%></td>
 </tr>
 <%end%>
 </tbody>

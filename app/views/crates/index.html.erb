@@ -6,10 +6,10 @@
 <table>
   <thead>
     <tr>
-      <th>Tenant</th>
+      <th>Date</th>
       <th>Driver</th>
-      <th>From pmu</th>
-      <th>To pmu</th>
+      <th>From </th>
+      <th>To</th>
       <th>Crates</th>
       <th>Note</th>
       <th colspan="3"></th>
@@ -22,7 +22,7 @@
 
        
         <td><%= crate.created_at.strftime("%H:%M - %e %m %a") %></td>
-        <td><%= crate.worker_id %></td>
+        <td><%= crate.worker.name %></td>
         <td><%= crate.from_pmu.location %></td>
         <td><%= crate.to_pmu.location %></td>
         <td><%= crate.crates %></td>

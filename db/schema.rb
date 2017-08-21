@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806033533) do
+ActiveRecord::Schema.define(version: 20170819110611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(version: 20170806033533) do
   end
 
   add_index "contact_infos", ["contactable_type", "contactable_id"], name: "index_contact_infos_on_contactable_type_and_contactable_id", using: :btree
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "crates", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -283,6 +290,7 @@ ActiveRecord::Schema.define(version: 20170806033533) do
     t.string   "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "type"
   end
 
   create_table "tenant_users", force: :cascade do |t|
@@ -365,6 +373,7 @@ ActiveRecord::Schema.define(version: 20170806033533) do
     t.string   "name"
     t.date     "birthday"
     t.string   "photo"
+    t.string   "status"
     t.string   "work_for"
     t.string   "type"
   end

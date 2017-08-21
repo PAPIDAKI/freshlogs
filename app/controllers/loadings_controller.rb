@@ -16,7 +16,7 @@ class LoadingsController < ApplicationController
   # GET /loadings/new
   def new
     @loading = Loading.new
-    @palets=Palet.where(loading_id:nil).order(code: :desc)
+  @palets=Palet.where(loading_id:nil).order(date: :desc)
   end
 
   # GET /loadings/1/edit

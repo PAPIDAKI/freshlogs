@@ -28,17 +28,36 @@
             <td><%=lot.purchase.price%> </td><td>=</td>
             <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
             <td><%=lot.note%></td>
-            </tr>
+      </tr>
             <%end%>
             <tr>
-            <td></td>
-            <td></td><td></td>
+            <td></td><td></td><td></td>
             <td><strong><%=number_with_precision(@grower_lots.sum(:kg),precision: 0 ,separator:',',delimiter:'.')%> </strong></td>
             <td></td><td></td><td></td>
             <td><strong><%= number_with_precision(@grower_lots.to_a.sum {|l| l.worth},precision: 2 ,separator:',',delimiter:'.')%></strong></td>
-            </tr>
-		 </tbody>
+            </tr>       
+
+             <tr>
+            <td></td><td></td><td>Cut Days:</td>
+            <td><strong><%=@grower_lots.pluck(:created_at).map{|d| d.day}.uniq.count%> </strong></td>
+            <td></td><td></td><td></td>
+            <td><strong><%=number_with_precision(@grower_lots.pluck(:created_at).map{|d| d.day}.uniq.count*500,precision:2,separator:',',delimiter:'.')%></strong></td>
+            </tr> 
+
+            <tr>
+            <td></td><td></td><td>Analysis:</td>
+             <td></td><td></td><td></td>
+            <td><strong><%=number_with_precision(@grower.lots.pluck(:created_at).map{|d| d.day}.uniq.count*500,precision:2,separator:',',delimiter:'.')%></strong></td>
+            </tr> 
+
+     </tbody>
 		 </table>
+  </div>
+  <div>
+       <div class=charges>
+        Cut Days Count: <%=@grower.lots.pluck(:created_at).map{|d| d.day}.uniq.count*500%> <br>
+        Analysis:<%=@grower.purchases.last.analysis%>
+        </div>
        <hr>
        <h4>per PMU: </h4>
        <div id='by_location'>
