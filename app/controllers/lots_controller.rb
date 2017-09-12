@@ -19,8 +19,15 @@ class LotsController < ApplicationController
       marker.lat pmu.latitude
       marker.lng pmu.longitude
     end
-  # @qr = RQRCode::QRCode.new( 'https://github.com/whomwah/rqrcode', :size => 4, :level => :h )
+  end
 
+   def cushow
+    @pmu=@lot.purchase.pmu
+    # @pmu=Pmu.find(params[:id])
+    @hash = Gmaps4rails.build_markers(@pmu) do |pmu, marker|
+      marker.lat pmu.latitude
+      marker.lng pmu.longitude
+    end
 
   end
 

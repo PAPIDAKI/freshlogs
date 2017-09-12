@@ -5,7 +5,7 @@ class ShiftList < ActiveRecord::Base
 	has_many :workgroups,through: :workers
 
 	accepts_nested_attributes_for :attendances
-    
+
     # sti implementation
 	self.inheritance_column = :type
 

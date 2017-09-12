@@ -1,4 +1,4 @@
-<h4><%= @lot.lot %></h4>
+<h4><%=link_to @lot.lot %></h4>
 Grower:<%= @lot.purchase.pmu.grower.name %><br>
 Location:<%= @lot.purchase.pmu.location %><br>
 Date:<%= @lot.created_at.strftime("%d-%m-%M") %>
@@ -38,3 +38,4 @@ Weighings:<br>
 		</table>
 	</div>
 </div>
+

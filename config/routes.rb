@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :purchases
     resources :paralavis
     resources :lots
+    
     resources :process_lots
     resources :loose_berries
   
