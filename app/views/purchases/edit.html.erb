@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :pmu_id,class:'control-label' %><br>
        
-    <%= f.collection_select(:pmu_id,Pmu.where(tenant_id:params[:tenant_id]),:id,:details,
+    <%= f.collection_select(:pmu_id,Pmu.where(tenant_id:params[:tenant_id]),:id,:grower_name_and_location,
     {:prompt=>true},
     {:class=>'form-control'})%>
 
