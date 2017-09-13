@@ -17,7 +17,7 @@ class Pmu < ActiveRecord::Base
   end
 
   def grower_name_and_location
-        "#{grower.name} - #{location}"
+        "#{grower} - #{location}"
   end
 
 
