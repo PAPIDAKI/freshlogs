@@ -23,6 +23,7 @@ class PurchasesController < ApplicationController
   # GET /purchases/1/edit
   def edit
     @purchase.tenant_id=@tenant.id
+    @purchase_details=@purchase.details
   end
 
   # POST /purchases
