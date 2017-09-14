@@ -13,7 +13,7 @@ class Pmu < ActiveRecord::Base
   validates :longitude,:latitude,presence: true,numericality: true
 
   def details
-  	"#{village} - #{location} #{grower.name} "
+  	" #{grower.name} : #{village} - #{location} "
   end
 
   def grower_name_and_location
