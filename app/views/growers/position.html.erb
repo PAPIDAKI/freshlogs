@@ -24,6 +24,7 @@
 		    <td><%=lot.created_at.strftime("%d-%m-%Y")%></td>
 		    <td><%=link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%></td>
 		    <td><%=lot.purchase.pmu.location%></td>
+            <td><%=lot.crates%></td>
             <td><%=number_with_precision(lot.kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
             <td><%=lot.purchase.price%> </td><td>=</td>
             <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
@@ -32,6 +33,7 @@
             <%end%>
             <tr>
             <td></td><td></td><td></td>
+            <td><strong><%=number_with_precision(@grower_lots.sum(:crates),precision: 0 ,separator:',',delimiter:'.')%> </strong></td>
             <td><strong><%=number_with_precision(@grower_lots.sum(:kg),precision: 0 ,separator:',',delimiter:'.')%> </strong></td>
             <td></td><td></td><td></td>
             <td><strong><%= number_with_precision(@grower_lots.to_a.sum {|l| l.worth},precision: 2 ,separator:',',delimiter:'.')%></strong></td><td></td
@@ -41,7 +43,7 @@
             <td></td><td></td><td>CutDays:</td>
             <td><strong><%=@grower_lots.pluck(:created_at).map{|d| d.day}.uniq.count%> </strong></td>
             <td></td><td></td>
-            <td><strong><%=number_with_precision(@grower_lots.pluck(:created_at).map{|d| d.day}.uniq.count*500,precision:2,separator:',',delimiter:'.')%></strong></td><td>
+            <td><strong><%=number_with_precision(@grower_lots.pluck(:created_at).map{|d| d.day}.uniq.count*720,precision:2,separator:',',delimiter:'.')%></strong></td><td>
             </tr> 
 
             <tr>
