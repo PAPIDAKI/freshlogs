@@ -21,6 +21,7 @@ group :development do
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.6', '>= 1.6.1'
+  gem 'faker'
 end
 
 group :production do

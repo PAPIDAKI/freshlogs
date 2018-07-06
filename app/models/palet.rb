@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: palets
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  date       :datetime
+#  code       :string
+#  loading_id :integer
+#  tenant_id  :integer
+#  note       :string
+#  packed_for :string
+#
+
 class Palet < ActiveRecord::Base
     before_create :capitalize_packed_for
     before_update :capitalize_packed_for

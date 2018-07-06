@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: purchases
+#
+#  id         :integer          not null, primary key
+#  price      :float            default(0.0)
+#  note       :string
+#  tenant_id  :integer
+#  pmu_id     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  analysis   :string
+#
+
 class Purchase < ActiveRecord::Base
 	belongs_to :pmu
 	has_many :loose_berries,dependent: :destroy

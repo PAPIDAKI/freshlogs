@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: growers
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  address    :string
+#  phone      :string
+#  mobile     :string
+#  vat        :string
+#  picture    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  project_id :integer
+#  tenant_id  :integer
+#  ggn        :string
+#
+
 class Grower < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :tenant

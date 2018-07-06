@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: weighings
+#
+#  id           :integer          not null, primary key
+#  tenant_id    :integer
+#  lot_id       :integer
+#  mixed_weight :integer
+#  crates       :integer
+#  crate_weight :integer
+#  palets       :integer
+#  palet_weight :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Weighing < ActiveRecord::Base
 	belongs_to :lot
 	after_initialize :set_defaults

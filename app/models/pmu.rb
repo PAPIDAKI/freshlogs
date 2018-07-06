@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: pmus
+#
+#  id            :integer          not null, primary key
+#  produce       :string
+#  village       :string
+#  location      :string
+#  size          :integer
+#  plants        :integer
+#  production    :integer
+#  facilities    :string
+#  certification :string
+#  latitude      :float
+#  longitude     :float
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  grower_id     :integer
+#  tenant_id     :integer
+#
+
 class Pmu < ActiveRecord::Base
   
   belongs_to :grower

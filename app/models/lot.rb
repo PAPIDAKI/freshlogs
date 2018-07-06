@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: lots
+#
+#  id          :integer          not null, primary key
+#  purchase_id :integer
+#  lot         :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  tenant_id   :integer
+#  kg          :integer          default(0)
+#  plastics    :string
+#  note        :string
+#  crates      :integer
+#
+
 class Lot < ActiveRecord::Base
 	belongs_to :purchase
   has_many :loadings,through: :palets
@@ -23,30 +39,30 @@ class Lot < ActiveRecord::Base
     #set crate default 0 to avoid crashing 
     self.crates =0 if self.new_record?
 
-  end
+   end
 
  def purchase_default_to_seu_if_necessary
    purchase_id = 122 if purchase_id.blank?
-  end 
+ end 
 
   def lot_description
     "#{lot}   #{purchase.pmu.grower.name}-#{purchase.pmu.location}"
- end
+  end
 
  def self.current
     where('created_at BETWEEN ? AND ?',
      Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
-  end
+ end
 
   
 
  def worth
   if purchase
   self.kg * self.purchase.price/100
-    else 
-   0
-   end
+  else 
+    0
   end
+ end
 
   def loose_berries
      (1-self.palet_line_items.sum(:cartons)*5.00/self.kg)*100

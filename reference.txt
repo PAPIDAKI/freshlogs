@@ -1,5 +1,5 @@
 =>from heroku to import localy and keep back up 
-1)Make a back in heroku
+1)Make a backup in heroku
 heroku pg:backups:capture
 
 2)download it localy in project directort ,it gets saved as local.damp
