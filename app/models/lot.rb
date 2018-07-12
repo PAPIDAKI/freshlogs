@@ -15,7 +15,7 @@
 #
 
 class Lot < ActiveRecord::Base
-	belongs_to :purchase
+  belongs_to :purchase
   has_many :loadings,through: :palets
   has_many :palet_line_items,dependent: :destroy
   # accepts_nested_attributes_for :palet_line_items
@@ -25,11 +25,10 @@ class Lot < ActiveRecord::Base
   # accepts_nested_attributes_for :weighings,reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :weighings,
                                   reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
-                                  allow_destroy: true 
-                                  
-  before_validation :set_default_lot, unless: :persisted?
+                                  allow_destroy: true                                 
+  after_initialize :set_default_lot, unless: :persisted?
   # before_validation :purchase_default_to_seu_if_necessary
-  # validates :purchase_id ,presence: true 
+  validates :purchase_id ,presence: true 
    def set_default_lot
   	lot_date_time=DateTime.current
   	a_part=lot_date_time.strftime("D%d")

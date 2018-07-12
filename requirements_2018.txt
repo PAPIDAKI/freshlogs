@@ -1,0 +1,44 @@
+Growers/
+    1.Move the position button - hide it or restrict access  
+    /show 
+    1.Move the delete inside the edit
+    2.List all lots with kgs and comments
+    3.Grower dashboard -pmus total kgs per time period last year last 2 years etc with prices
+    4.List Pmus with kgs by year etc and price agreed 
+Purchases/
+    1.restrict access 
+    2.Add a field to the grower GGN 
+    3.Purchase dashboard with season average and time tendance -past year comparisons 
+    3.Change the list of the purchases and calculate weighted average of the pmus
+   /edit 
+    *.Analisis shoud be uploads as pdf
+Lots/
+    DONE Rescue from NilClass when purchase selection is undefined 
+    /show 
+    1.now it is a weighing print  for the grower / 
+    2.lot should tell the whole story as it was with the map plus photos plus people worked for it 
+    3. from  a restricted view cost per lot - price payable loose berries etc 
+   /new lot
+        DONE -  Validate purchase  default - add purchase on the new lot form 
+   1.a nested weighing form with ajax for running totals 
+    2.change the input fields with the totals 
+        DONE    3.The form totals is not working  it displayes the result of the first weighing
+Loose Berries 
+    /
+    1.format date -format kgs(remove decimal add delimeter)
+    2.add lot-s 
+    3.Add a dashboard of calculations  with totals in and outs etc 
+Redesign the labour Workgroupsforce managment 
+Requirements: 1 Keep track presence hours and costs fast efficient way with less human interaction 
+to :
+    1.Daily presence list with Workgroupsforcehours and payable for deposits and clearence and ika 
+    2.Print it Email it to Palmeda 
+    3.Labour cost 
+    4.Extra hours for IKA 
+    5.External labour 
+ Workgroups 
+    /Delete it
+
+
+
+Improve performance 

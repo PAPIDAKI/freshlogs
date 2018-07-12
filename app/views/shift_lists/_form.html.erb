@@ -32,9 +32,13 @@
   <h4>Staff:</h4>
 
  <div class="col-md-6 checkbox-list"> 
- <!-- <div class='field'> -->
-   <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ?', params[:tenant_id]),:id,:name)%>
- 
+  <div class='check'>
+   <%=f.collection_check_boxes(:worker_ids,Worker.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
+   <%= b.label class: "label-checkbox" do %>
+    <%=b.check_box+ "  " + b.text%>
+    <%end%>
+    <%end%>
+    </div> 
   <div class="actions">
     <%= f.submit %>
   </div>

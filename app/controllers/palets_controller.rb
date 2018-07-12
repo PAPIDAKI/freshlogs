@@ -44,7 +44,6 @@ class PaletsController < ApplicationController
   def create
     @palet = Palet.new(palet_params)
     @palet.tenant_id=@tenant.id
-    # @palet.palet_line_items.last.tenant_id=params[:tenant_id]
         @palet.palet_line_items.each do |pli|
           pli.tenant_id=params[:tenant_id]
         end

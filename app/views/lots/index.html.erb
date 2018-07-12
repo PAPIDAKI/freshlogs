@@ -11,14 +11,14 @@
         <table class='table table-hover'>
           <h4><strong><%= day.strftime('%d %b ') %></strong>
               <% unless lots.nil? %>
-                  <br><%=number_with_precision(lots.inject(0){|sum,e| sum += e.kg},precision:0,seperator:',',delimiter:'.')%></h4>
+                  <%=number_with_precision(lots.inject(0){|sum,e| sum += e.kg},precision:0,seperator:',',delimiter:'.')%></h4>
         </div>
         <div class='col-md-9'>
           <% for lot in lots %> 
            <tr>
             <td> 
               <%= link_to lot.lot,tenant_lot_path(@tenant,lot)%>
-               <%= lot.kg %>kg 
+               <%= lot.weighings.to_a.sum{|l| l.net_weight} %>kg 
               <%= lot.purchase.details  %>
                <br>
               <strong><%=lot.note%></strong> 

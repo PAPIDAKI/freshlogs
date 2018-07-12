@@ -209,3 +209,44 @@ padding-right: 0 !important;
 	// width:228px;
 }
 
+#lot_lot,
+#lot_note {
+    border: none;
+}
+*.mixed_weight,
+.crates,
+.palets,
+.crate_weight,
+.palet_weight {
+    border: 0;
+    width:100%;
+    border: 0;
+    margin-top: 5px;
+    margin-right:5px;
+}
+
+
+#lot{
+    border: 0;
+    background-color: #f5efe6;
+    font-weight: bold;
+    font-stretch: expanded;
+    font-size: large;
+    text-align: right;
+    letter-spacing: 5px;
+    font-size: 30px;
+}
+/*
+.line_items {
+  display: flex;
+  align-items: stretch;
+}
+*/
+// collection check_boxboxes in loadings ,shiftlists etc
+.label-checkbox{
+  margin: 1px;
+  //background-color: red;
+  padding: 0px;
+  width:100%;
+  font-weight:normal;
+}

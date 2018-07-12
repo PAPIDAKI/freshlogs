@@ -15,14 +15,17 @@
 #
 
 class Weighing < ActiveRecord::Base
-	belongs_to :lot
+	belongs_to :lot 
+
 	after_initialize :set_defaults
   before_validation :default_to_zero_if_necessary
 
   def net_weight
-  	mixed_weight-(crates*crate_weight)-(palets*palet_weight)
+   self.net_kg=mixed_weight-(crates*crate_weight)-(palets*palet_weight)
   end	
+
     
+
 private
   def default_to_zero_if_necessary
     mixed_weight = 0 if mixed_weight.blank?

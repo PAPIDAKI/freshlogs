@@ -1,19 +1,14 @@
 
 
 <h3>
-  <strong>
- Work shift for  <%= @shift_list.start_at.strftime('%a %d %b %y') %></strong>
+<%= @shift_list.start_at.strftime('%a %d %b %y') %>
 </h3>
 
-
 <p>
-  <strong>Start at:</strong>
+  ΕΝΑΡΞΗ:
   <%= @shift_list.start_at.strftime('%H:%M') %>
-</p>
 
-<p>
-  <strong>End at:</strong>
-  <%= @shift_list.end_at.strftime('%H:%M') %>
+  ΛΗΞΗ:  <%= @shift_list.end_at.strftime('%H:%M') %>
 </p>
 
 <p>
@@ -35,7 +30,7 @@ Work Hours:<strong><%=@attendances.count*@shift_list.hours_worked%></strong>
 <tbody>
 <% @attendances.each do |attendance| %>
 <tr>
-<td><%=attendance.worker.name%></td>
+<td><%=attendance.worker.name.capitalize%></td>
 <td><%=attendance.shift_list.hours_worked%></td>
 <td><%=attendance.shift_list.hours_worked*4%></td>
 </tr>
