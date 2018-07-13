@@ -11,7 +11,8 @@ class ShiftListsController < ApplicationController
   # GET /shift_lists/1
   # GET /shift_lists/1.json
   def show
-    @attendances=Attendance.where(shift_list_id:params[:id ])
+   @attendances=Attendance.where(shift_list_id:params[:id ])
+   @non_attendance=Attendance.where(shift_list_id:!params[:id])
   end
 
   # GET /shift_lists/new
@@ -85,6 +86,6 @@ class ShiftListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_list_params
-      params.require(:shift_list).permit(:course_id, :tenant_id, :start_at, :end_at, :note,worker_ids:[])
+      params.require(:shift_list).permit(:type,:break_time, :tenant_id, :start_at, :end_at, :note,worker_ids:[])
     end
 end

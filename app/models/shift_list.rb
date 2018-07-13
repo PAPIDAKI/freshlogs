@@ -33,8 +33,8 @@ class ShiftList < ActiveRecord::Base
 
 
 	def hours_worked
-		(end_at-start_at)/60/60
-	end
+		(end_at-start_at)/60/60-break_time/60
+     end
 
 
 
