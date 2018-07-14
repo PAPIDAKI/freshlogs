@@ -14,6 +14,10 @@
 class Attendance < ActiveRecord::Base
   belongs_to :shift_list
   belongs_to :worker
-
-  has_many :att_performances 
+ 
+ #set the hours workgrouped of the Worker from the shift_list it belongs 
+  def set_hours_worked_from_shift_list
+   self.hours_worked=shift_list.hours_worked
+   self.save
+  end
 end

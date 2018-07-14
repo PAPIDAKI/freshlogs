@@ -251,7 +251,6 @@
 Rails.application.routes.draw do
   resources :process_lots
   resources :agreements
-  resources :att_performances
   
   resources :tenants do 
     resources :crates

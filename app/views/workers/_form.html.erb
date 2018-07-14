@@ -18,12 +18,12 @@
   <div class="form-group">
     <%= f.label :type ,class:'control-label'%><br>
    
-      <%= f.select :type,[['Driver','Driver'],['Packer','Packer'],['Field','Field']],{},{class:'form-control'}%>
+      <%= f.select :type,[['Συσκευάστρια','Packer'],['Bοηθητικό Προσωπικό','Assistant'],['Επιστάτης','Supervisor'],['Εξωτερικός Εργάτης','Field'],['Αυτοκίνητο','Driver']],{},{class:'form-control'}%>
   </div>
   
   <div class="form-group">
     <%= f.label :name ,class:'control-label'%><br>
-    <%= f.text_field :name ,class:'form-control'%>
+    <%= f.text_field :name ,placeholder:'Επίθετο - Ονομα - (Ονομα Πατρος ή Μητρός)',class:'form-control'%>
   </div>
 
    <div class="form-group">

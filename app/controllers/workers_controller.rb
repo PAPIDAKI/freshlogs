@@ -90,7 +90,7 @@ class WorkersController < ApplicationController
     end
 
     def set_type
-      # @type=type
+       #@type=type
     end
 
     def type
@@ -99,7 +99,7 @@ class WorkersController < ApplicationController
 
     def type_class
       # type.constantize
-      # type.constantize if type.in? type_classes
+       #type.constantize if type.in? type_classes
     end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180713111240) do
+ActiveRecord::Schema.define(version: 20180714195136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,24 +49,15 @@ ActiveRecord::Schema.define(version: 20180713111240) do
 
   add_index "artifacts", ["project_id"], name: "index_artifacts_on_project_id", using: :btree
 
-  create_table "att_performances", force: :cascade do |t|
-    t.integer  "attendance_id"
-    t.integer  "tenant_id"
-    t.string   "work_position"
-    t.integer  "cartons_packed"
-    t.datetime "late_arrival"
-    t.datetime "early_leave"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "attendances", force: :cascade do |t|
     t.integer  "shift_list_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "worker_id"
-    t.integer  "time_diff"
     t.string   "note"
+    t.float    "hours_worked"
+    t.float    "extra_time"
+    t.integer  "productivity"
   end
 
   add_index "attendances", ["shift_list_id"], name: "index_attendances_on_shift_list_id", using: :btree
