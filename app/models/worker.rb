@@ -23,22 +23,19 @@
 class Worker < ActiveRecord::Base
 	has_many :attendances ,dependent: :destroy 
 	has_many :shift_lists,through: :attendances
-	has_many :workgroup_workers
-	has_many :workgroups,through: :workgroup_workers
 	has_many :crates
-	# sti implementation
-	self.inheritance_column = :type
+    attr_accessor :age
 
-	def self.types
-		%(Packer Assistant Driver Field Supervisor) 
-	end
+     # enum kind 
+#     enum kind: [:packer, :assistant,:driver,:field,:supervisor]
+	 # enum for status 
+   #  enum status: [:active, :inactive,:reserve]
 
-
-	scope :drivers, -> {where(type:'Driver') }
-	scope :packers, -> {where(type:'Packer')}
-	scope :supervisors, -> {where(type:"Supervisor")}
-	scope :assistants, -> {where(type:'Assistant')}
-    scope :fields, -> {where(type:'Field')}
+	#scope :drivers, -> {where(type:'Driver') }
+	#scope :packers, -> {where(type:'Packer')}
+	#scope :supervisors, -> {where(type:"Supervisor")}
+	#scope :assistants, -> {where(type:'Assistant')}
+    #scope :fields, -> {where(type:'Field')}
 	# end of sti
 
 	scope :packhouse, -> {where(work_for:'Packhouse')}
@@ -48,9 +45,6 @@ class Worker < ActiveRecord::Base
 	scope :reserve,-> {where(status: :reserve)}
     scope :all_workers,->{all}	
  
-	# # enum for status 
-
-     enum status: [:active, :inactive,:reserve]
 	# def name
 		# "#{last_name} #{first_name}"
 	# end
@@ -66,6 +60,31 @@ class Worker < ActiveRecord::Base
 	  	end
 	   end
 	 end
+
+     def set_age
+       self.age=Time.now.year-self.birthday.year
+     end
+      
+      def before_save
+        self.name.upcase!
+      end
+      
+      def self.packer
+        where(["kind = ? and status = ?","Packer","Active"])
+      end
+
+      def self.assistant
+        where(["kind = ? and status = ?","Assistant","Active"])
+      end
+       
+       def self.driver
+        where(["kind = ? and status = ?","Driver","Active"])
+       end
+
+       def self.field
+        where(["kind = ? and status = ?","Field","Active"])
+       end
+
 end
 
 

@@ -1,6 +1,6 @@
-<h1>Editing Attendance</h1>
+<h3>Διόρθωση  Παρουσίας </h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @attendance %> |
-<%= link_to 'Back', attendances_path %>
+<%= link_to 'Show',tenant_attendance_path(@tenant ,@attendance) %> |
+<%= link_to 'Back', tenant_attendances_path(@tenant,@attendances) %>

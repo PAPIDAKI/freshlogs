@@ -1,7 +1,7 @@
 class WorkersController < ApplicationController
   before_action :set_tenant
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
-  # before_action :set_type
+   #before_action :set_type
 # for sti 
 
   def import
@@ -10,18 +10,10 @@ class WorkersController < ApplicationController
   end
 
   def index
-    case params[:scope]
-    when 'packhouse'
-    @workers = Worker.where(tenant_id:params[:tenant_id]).packhouse
-    @workers_hash=@workers.group_by {|k| k.status} 
-    when 'fields'
-    @workers =Worker.where(tenant_id:params[:tenant_id]).fields
-    @workers_hash=@workers.group_by {|k| k.status} 
-    else
-      @workers=Worker.where(tenant_id:params[:tenant_id]).all_workers
-    @workers_hash=@workers.group_by {|k| k.work_for}
-    end
     
+      @workers=Worker.where(tenant_id:params[:tenant_id]).all_workers.order('status ASC').order('kind ASC').order('name ASC')
+  #  @workers_hash=@workers.group_by {|k| k.work_for}
+    @workers_hash=@workers.group_by {|k| k.status}
   end
 
   # GET /workers/1
@@ -61,7 +53,7 @@ class WorkersController < ApplicationController
   def update
     respond_to do |format|
       if @worker.update(worker_params)
-        format.html { redirect_to [@tenant,@worker], notice: 'Worker was successfully updated.' }
+        format.html { redirect_to tenant_workers_path(@tenant), notice: 'Worker was successfully updated.' }
         format.json { render :show, status: :ok, location: @worker }
       else
         format.html { render :edit }
@@ -90,11 +82,11 @@ class WorkersController < ApplicationController
     end
 
     def set_type
-       #@type=type
+    #   @type=type
     end
 
     def type
-      # Worker.types.include?(params[:type]) ? params[:type]  :  "Worker"
+     # Worker.types.include?(params[:type]) ? params[:type]  :  "Worker"
     end
 
     def type_class
@@ -105,6 +97,6 @@ class WorkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def worker_params
-      params.require(:worker).permit(:name,:work_for,:workgroup,:mobile, :tenant_id,:phone,:area,:working_experience,:photo,:birthday,:insurance,:status,:type)
+      params.require(:worker).permit(:name,:work_for,:workgroup,:mobile, :tenant_id,:phone,:area,:working_experience,:photo,:birthday,:insurance,:status,:kind)
     end
 end

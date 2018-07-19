@@ -1,7 +1,6 @@
 # == Schema Information
 #
 # Table name: weighings
-#
 #  id           :integer          not null, primary key
 #  tenant_id    :integer
 #  lot_id       :integer
@@ -20,9 +19,13 @@ class Weighing < ActiveRecord::Base
 	after_initialize :set_defaults
   before_validation :default_to_zero_if_necessary
 
-  def net_weight
-   self.net_kg=mixed_weight-(crates*crate_weight)-(palets*palet_weight)
+def net_weight
+  mixed_weight-(crates*crate_weight)-(palets*palet_weight)
   end	
+
+#def net_kg
+ #  mixed_weight-(crates*crate_weight)-(palets*palet_weight)
+#end
 
     
 

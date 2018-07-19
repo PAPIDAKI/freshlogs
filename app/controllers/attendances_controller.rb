@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_tenant
   # GET /attendances
   # GET /attendances.json
   def index
@@ -40,9 +40,10 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendances/1
   # PATCH/PUT /attendances/1.json
   def update
+    @shift_list=@attendance.shift_list
     respond_to do |format|
       if @attendance.update(attendance_params)
-        format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
+        format.html { redirect_to tenant_shift_list_path(@tenant,@shift_list), notice: 'Attendance was successfully updated.' }
         format.json { render :show, status: :ok, location: @attendance }
       else
         format.html { render :edit }
@@ -52,7 +53,7 @@ class AttendancesController < ApplicationController
   end
 
   # DELETE /attendances/1
-  # DELETE /attendances/1.json
+  # DELETE /attendances/1.(json
   def destroy
     @attendance.destroy
     respond_to do |format|
@@ -66,9 +67,13 @@ class AttendancesController < ApplicationController
     def set_attendance
       @attendance = Attendance.find(params[:id])
     end
+    
+    def set_tenant
+        @tenant=Tenant.find(params[:tenant_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
-      params.require(:attendance).permit(:shift_list_id, :worker_id)
+      params.require(:attendance).permit(:shift_list_id, :worker_id,:note,:hours_worked,:extra_time,:productivity)
     end
 end

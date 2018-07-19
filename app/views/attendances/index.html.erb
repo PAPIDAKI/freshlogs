@@ -14,11 +14,11 @@
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= attendance.shift_list %></td>
-        <td><%= attendance.worker %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= attendance.shift_list.start_at%></td>
+        <td><%= attendance.worker.name %></td>
+        <td><%= link_to 'Show',tenant_attendance_path(@tenant,attendance)%></td>
+        <td><%= link_to 'Edit', edit_tenant_attendance_path(@tenant,attendance) %></td>
+        <td><%= link_to 'Destroy',[@tenant, attendance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Attendance', new_attendance_path %>
+<%= link_to 'New Attendance', new_tenant_attendance_path %>

@@ -13,16 +13,30 @@
 <div class='media'>
   <div class='media-body'>
   <table>
-                        <thead>Header test </thead>
+
+                    <table class='table table-hover'>
+                        <tbody>
+                           <% @workers.each do |worker|%>
+                              <tr>
+                                 <td><%=link_to worker.name,edit_tenant_worker_path(@tenant,worker)%></td>
+                                 <td><%=worker.mobile %></td>
+                                 <td><%= worker.kind%></td>
+                                 <td><%=worker.status %></td>
+                               </tr>
+                              <%end%>
+                       </tbody>
+                    </table>
+
+                      <!--  <thead>Header test </thead>
            <%if @workers_hash %>
             <% @workers_hash.each do |k,v| %>
-                       <h4><%=k.capitalize%>:</h4>
+            <h4><%=k%></h4>
                     <table class='table table-hover'>
                         <tbody>
                            <% v.each do |worker|%>
                               <tr>
-                                 <td><%= worker.type%></td>
-                                 <td><%=link_to worker.name,tenant_worker_path(@tenant,worker)%></td>
+                                 <td><%= worker.kind%></td>
+                                 <td><%=link_to worker.name,edit_tenant_worker_path(@tenant,worker)%></td>
                                  <td><%=worker.mobile %></td>
                                  <td><%=worker.status %></td>
                                </tr>
@@ -30,7 +44,9 @@
                        </tbody>
                     </table>
                  <%end%>
-          <%end%>
+          <%end%> -->
+
+
              
               
           </table>

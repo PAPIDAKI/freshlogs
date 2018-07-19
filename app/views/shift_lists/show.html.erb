@@ -1,5 +1,3 @@
-
-
 <h3>
 <%= @shift_list.start_at.strftime('%a %d %b %y') %>
 </h3>
@@ -13,8 +11,8 @@
 </p>
 <p>
 ΠΑΡΟΥΣΙΕΣ:<strong><%=@attendances.count%></strong>
-ΩΡΕΣ ΕΡΓΑΣΙΑΣ:<strong><%=number_with_precision(@shift_list.hours_worked,precision:2)%></strong>
-ΕΡΓΑΤΩΡΕΣ:<strong><%=@attendances.count*@shift_list.hours_worked%>
+ΩΡΕΣ ΕΡΓΑΣΙΑΣ:<strong><%=number_with_precision(@shift_list.hours_worked,precision:1)%></strong>
+ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances.count*@shift_list.hours_worked,precision:1)%>
 ΑΠΟΥΣΙΕΣ: <%=@non_attendance.count%></strong>
 </p>
 
@@ -28,15 +26,41 @@
 
 <hr>
 <h4>ΠΑΡΟΥΣΙΕΣ</h4>
+<div class="media">
+
 <table class='table table-condensed'>
+  <div class="media-body">
+    <table class='table table-hover'>
+<thead>
+    <tr>
+    <th>ΟΝΟΜΑ</th>
+    <th>Ωρες Εργασίας</th>
+    <th>Διαφορές Ωρών</th>
+    <th> Σύνολο Ωρών</th>
+    <th>Σημείωση</th>
+    <th>Ποσό</th>
+</tr>
+</thead>
+
+
 <tbody>
 <% @attendances.each do |attendance| %>
 <tr>
-<td><%=attendance.worker.name.capitalize%></td>
-<td><%=attendance.shift_list.hours_worked%></td>
-<td><%=attendance.shift_list.hours_worked*4%></td>
+<td><%=link_to attendance.worker.name.capitalize,edit_tenant_attendance_path(@tenant,attendance)%></td>
+<td><%=number_with_precision(attendance.shift_list.hours_worked,precision:1)%></td>
+<td><%=number_with_precision(attendance.extra_time,precision:0)%></td>
+
+<td><%=number_with_precision(attendance.hours_worked_plus_extra_time,precision:1)%></td>
+<td><%=attendance.note%></td>
+<td><%=number_with_precision(attendance.daily_payable,precision:1)%></td>
 </tr>
 <%end%>
 </tbody>
+<td></td>
+<td></td>
+<td><%=number_with_precision(@attendances.to_a.sum{|a| a.extra_time}/60,precision:1)%></td>
+<td><%=number_with_precision(@attendances.to_a.sum{|a| a.hours_worked_plus_extra_time},precision:1)%></td>
+<td></td>
+<td><%=number_with_precision(@attendances.to_a.sum{|a| a.daily_payable},precision:1)%></td>
 
 </table>

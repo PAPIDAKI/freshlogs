@@ -18,7 +18,7 @@
   <div class="form-group">
     <%= f.label :type ,class:'control-label'%><br>
    
-      <%= f.select :type,[['Συσκευάστρια','Packer'],['Bοηθητικό Προσωπικό','Assistant'],['Επιστάτης','Supervisor'],['Εξωτερικός Εργάτης','Field'],['Αυτοκίνητο','Driver']],{},{class:'form-control'}%>
+      <%= f.select :kind,[['Packer','Packer'],['Assistant','Assistant'],['Field','Field']],{},{class:'form-control'}%>
   </div>
   
   <div class="form-group">
@@ -70,7 +70,8 @@
 
 <div class="form-group">
     <%= f.label :status,class:'control-label' %><br>
-    <%= f.select :status ,Worker.statuses.keys,{},{class:'form-control'}%>
+        <%=f.select :status,[['Active','Active'],['Inactive','Inactive'],['Reserve','Reserve']],{},{class:'form-control'}%>
+  <!-- Using  enum  %= f.select :status ,Worker.statuses.keys,{},{class:'form-control'}%> -->
     <!--Formating  the f.select list: the list array is mapped to a new array and using  the humanize method converts lower case to upper -->
   </div>
     
