@@ -61,28 +61,46 @@ class Worker < ActiveRecord::Base
 	   end
 	 end
 
-     def set_age
+     def age
        self.age=Time.now.year-self.birthday.year
      end
+
+     def pay_rate
+       case 
+       when kind=='Packhouse' && self.age >25
+       3.93
+       when kind=='Packhouse' && self.age<=25
+       3.43
+       when kind=='Fields'
+       25
+       when kind=='Field Supervisor'
+       70
+       when kind=='Driver'
+       100
+       end
+     end
+
+     
+
       
       def before_save
         self.name.upcase!
       end
       
-      def self.packer
-        where(["kind = ? and status = ?","Packer","Active"])
+      def self.packhouse
+        where(["kind = ? and status = ?","Packhouse","Active"])
       end
 
-      def self.assistant
-        where(["kind = ? and status = ?","Assistant","Active"])
+      def self.fields
+        where(["kind = ? and status = ?","Fields","Active"])
       end
        
        def self.driver
         where(["kind = ? and status = ?","Driver","Active"])
        end
 
-       def self.field
-        where(["kind = ? and status = ?","Field","Active"])
+       def self.field_supervisor
+        where(["kind = ? and status = ?","Field Supervisor","Active"])
        end
 
 end

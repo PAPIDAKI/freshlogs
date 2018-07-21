@@ -29,11 +29,21 @@ class Attendance < ActiveRecord::Base
   end
   
   def hours_worked_plus_extra_time
-    shift_list.hours_worked+extra_time/60
+   case
+   when worker.kind=='Packhouse'
+   shift_list.hours_worked+extra_time/60
+   when worker.kind=='Fields'
+   1
+   when worker.kind=='Driver'
+   1
+   when worker.kind=='Field Supervisor'
+   1
+   end
   end
 
      
   def daily_payable
-   hours_worked_plus_extra_time*4
+   hours_worked_plus_extra_time*worker.pay_rate
   end
+
 end

@@ -20,16 +20,9 @@ class ShiftList < ActiveRecord::Base
 
 	accepts_nested_attributes_for :attendances
 
-    # sti implementation
-	self.inheritance_column = :type
 
-	def self.types
-		%(PackhouseList FieldsList) 
-	end
 
-	scope :packhouse_lists, -> {where(type:'PackhouseList') }
 	scope :fields_lists, -> {where(type:'FieldsList')}
-    #end of sti
 
     def hours_present
       (end_at-start_at)/60/60
@@ -41,4 +34,22 @@ class ShiftList < ActiveRecord::Base
 
 
 
+# instance methods to seperate the shiftlist by worker_hasher kind used in 
+# shift_list/show to mape it easier to read and calculations
+
+    def packhouse
+    workers.where(kind:'Packhouse')
+    end
+
+    def fields
+    workers.where(kind:'Fields')
+    end
+    
+    def drivers
+    workers.where(kind:'Driver')
+    end
+
+    def field_supervisors
+    workers.where(kind:'Field Supervisor')
+    end
 end

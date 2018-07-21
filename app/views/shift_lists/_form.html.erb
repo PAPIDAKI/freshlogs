@@ -37,18 +37,18 @@
   <h4>Συσκευαστήριο:</h4>
 
  <div class="col-md-6 checkbox-list"> 
-  <h4>Συσκευάστριες</h4>
+  <h4>Packhouse</h4>
   <div class='check'>
-   <%=f.collection_check_boxes(:worker_ids,Worker.packer.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
+   <%=f.collection_check_boxes(:worker_ids,Worker.packhouse.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
    <%= b.label class: "label-checkbox" do %>
     <%=b.check_box+ "  " + b.text%>
     <%end%>
     <%end%>
     </div>
     <hr>
-    <h4>Assistance</h4>
+    <h4>Fields</h4>
 <div class='check'>
-   <%=f.collection_check_boxes(:worker_ids,Worker.assistant.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
+   <%=f.collection_check_boxes(:worker_ids,Worker.fields.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
    <%= b.label class: "label-checkbox" do %>
     <%=b.check_box+ "  " + b.text%>
     <%end%>
@@ -65,9 +65,9 @@
     </div> 
 <hr>
    
-    <h4>Field Xternal</h4>
+    <h4>Field Supervisor</h4>
 <div class='check'>
-   <%=f.collection_check_boxes(:worker_ids,Worker.field.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
+   <%=f.collection_check_boxes(:worker_ids,Worker.field_supervisor.where('tenant_id = ?', params[:tenant_id]),:id,:name) do |b|%>
    <%= b.label class: "label-checkbox" do %>
     <%=b.check_box+ "  " + b.text%>
     <%end%>

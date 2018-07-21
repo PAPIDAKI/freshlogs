@@ -45,7 +45,6 @@ gem 'milia'
 
 gem "cocoon"
 
-
 # beutify
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
