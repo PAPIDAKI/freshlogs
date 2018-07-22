@@ -1,4 +1,3 @@
-<div class="row">
           <%= form_for([@tenant,@lot]) do |f| %>
             <% if @lot.errors.any? %>
               <div id="error_explanation">
@@ -31,34 +30,36 @@
       <%=f.text_field :note, class: 'form-control'%>
     </div>
 
-
     <!-- Nested form Weighings -->
-      <hr>
-        <h4> Weighings:</h4>
-            <div id ="items">
-              <!-- <div id='weighings'> -->
-              <%=f.fields_for :weighings do |weighing| %>
-                <%=render'weighing_fields',:f=>weighing %>
+ <h4> Weighings:</h4>
+     <table class="table">
+        <thead>
+        <tr>
+            <th>Mixed W</th>
+            <th>Crates</th>
+            <th>Weighings</th>
+            <th>Crate Weigh</th>
+            <th>Palet Weight</th>
+            <th>Net  </th>
+        </tr>
+        </thead>
+        <tbody class='weighings'>
+              <%=f.fields_for :weighings do |builder| %>
+                    <%=render'weighing_fields',f: builder %>
               <%end%>
-                <div class="links">
-                   <%=link_to_add_association 'add weight',f,:weighings%> 
-                </div>
+        </tbody>
+        </table> </br>
+        <div class="form-actions">
+            <%=link_to_add_association 'add weight',f,:weighings,class: "btn btn-primary",data:{assosciation_insertion_node: '.weigings',assosiation_insertion_method: :append}%> 
             </div>
+            </br>
 
-          <hr>
-          
-    <div class="form-group">
-      <%=f.label :kg,class:'control-label'%>
-      <%=f.text_field :kg, id:'kg',class: 'form-control'%>
-      <%=f.label :crates,class:'control-label'%>
-      <%=f.text_field :crates, id:'crates',placeholder:'Σύνολο Κλουβών',class: 'form-control'%>
-    </div>
-
-    
+            <div>
             <%= f.submit 'Save'%>
+            </br>
             <%= link_to 'Cancel',tenant_lots_path %>
-         
-</div>
+        </div>
+
   <% end %>
 
 

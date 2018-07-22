@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180718145043) do
+ActiveRecord::Schema.define(version: 20180721101844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -341,8 +341,10 @@ ActiveRecord::Schema.define(version: 20180718145043) do
     t.integer  "crate_weight"
     t.integer  "palets"
     t.integer  "palet_weight"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "note"
+    t.float    "price_difference", default: 0.0
   end
 
   create_table "worker_agreements", force: :cascade do |t|

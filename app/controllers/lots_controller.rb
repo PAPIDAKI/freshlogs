@@ -102,7 +102,10 @@ class LotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
       # params.fetch(:lot, {})
-      params.require(:lot).permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
+     # params.require(:lot).permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
+      params
+      .require(:lot)
+      .permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:Weighing.attribute_names.map(&:to_sym).push(:destroy))
     end
 
     def verify_tenant

@@ -19,7 +19,7 @@ $(document).ready(function(){
 		// console.log(mixed_weight[2]);
 		var thiss =$(this);
 		// var parent_nested_item=thiss.parent('.nested-fields');
-		var q = thiss.val();
+		var q = this.val();
 		// console.log(q);
 
 	// });

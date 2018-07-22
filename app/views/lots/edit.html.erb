@@ -1,8 +1,3 @@
 <h3>Editing Lot</h3>
 
 <%= render 'form' %>
-
-<%= link_to 'Show',tenant_lot_path(@tenant, @lot) %> |
-<%= link_to 'Delete',tenant_lot_path(@tenant, @lot),method: :delete,data: {confirm: 'Are you sure?'} %>
-
-<%= link_to 'Back', tenant_lots_path(@tenant) %>

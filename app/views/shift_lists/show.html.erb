@@ -1,36 +1,21 @@
 <h3>
 <%= @shift_list.start_at.strftime('%a %d %b %y') %>
 </h3>
-
-<p>
-  ΕΝΑΡΞΗ:
-  <%= @shift_list.start_at.strftime('%H:%M') %>
-  ΛΗΞΗ:
-  <%= @shift_list.end_at.strftime('%H:%M') %>
-  ΔΙΑΛΕΙΜΜΑ:<%=number_with_precision(@shift_list.break_time,precision:0)%> λεπτά
-</p>
-<p>
-ΠΑΡΟΥΣΙΕΣ:<strong><%=@attendances.count%></strong>
-ΩΡΕΣ ΕΡΓΑΣΙΑΣ:<strong><%=number_with_precision(@shift_list.hours_worked,precision:1)%></strong>
-ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances.count*@shift_list.hours_worked,precision:1)%>
-ΑΠΟΥΣΙΕΣ: <%=@non_attendance.count%></strong>
-</p>
-
-<p>
- ΣΗΜΕΙΩΣΗ: <%= @shift_list.note %>
-</p>
-
+<span><%=@packhouse_payable%>
+</span> 
 <%= link_to 'Edit', edit_tenant_shift_list_path(@tenant,@shift_list) %> |
  <%= link_to 'Destroy',tenant_shift_list_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', tenant_shift_lists_path %>
 
+<p>
+ ΣΗΜΕΙΩΣΗ: <%= @shift_list.note %>
+</p>
 <hr>
 
 <% @attendances_hash= @attendances.group_by {|a| a.worker.kind}%>
 
 <!--PACKHOUSE WORKERS -->
 <% if @attendances_hash['Packhouse'] %> 
-<h4>PACKHOUSE</h4>
 <div class="media">
 
 <table class='table table-condensed'>
@@ -39,6 +24,8 @@
 <thead>
     <tr>
     <th>ΟΝΟΜΑ</th>
+    <th>Age</th>
+    <th>pr</th>
     <th>Ωρες Εργασίας</th>
     <th>Διαφορές Ωρών</th>
     <th> Σύνολο Ωρών</th>
@@ -46,23 +33,37 @@
     <th>Ποσό</th>
 </tr>
 </thead>
+<h4>PACKHOUSE</h4>
 
+<p>
+  ΕΝΑΡΞΗ:
+  <%= @shift_list.start_at.strftime('%H:%M') %>
+  ΛΗΞΗ:
+  <%= @shift_list.end_at.strftime('%H:%M') %>
+  ΔΙΑΛΕΙΜΜΑ:<%=number_with_precision(@shift_list.break_time,precision:0)%> λεπτά
+ΩΡΕΣ ΕΡΓΑΣΙΑΣ:<strong><%=number_with_precision(@shift_list.hours_worked,precision:1)%></strong>
+ΠΑΡΟΥΣΙΕΣ:<strong><%=@attendances.count%></strong>
+ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances.count*@shift_list.hours_worked,precision:1)%>
+ΑΠΟΥΣΙΕΣ: <%=@non_attendance.count%></strong>
+</p>
 <tbody>
 <% @attendances_hash['Packhouse'].each do |attendance|%>
 
 <tr>
 <td><%=link_to attendance.worker.name,tenant_attendance_path(@tenant,attendance)%></td>
+<td><%=attendance.worker.age%></td>
+<td><%=attendance.worker.pay_rate%></td>
 <td><%=number_with_precision(attendance.shift_list.hours_worked,precision:1)%></td>
 <td><%=link_to number_with_precision(attendance.extra_time,precision:0),edit_tenant_attendance_path(@tenant,attendance)%></td>
 
 <td><%=number_with_precision(attendance.hours_worked_plus_extra_time,precision:1)%></td>
 <td><%=attendance.note%></td>
 <td><%=number_with_precision(attendance.hours_worked_plus_extra_time*attendance.worker.pay_rate,precision:1)%></td>
-<td><%=attendance.worker.age%></td>
-<td><%=attendance.worker.pay_rate%></td>
 </tr>
 <%end%>
 </tbody>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 <td><%=number_with_precision(@attendances.to_a.sum{|a| a.extra_time}/60,precision:1)%></td>
@@ -71,53 +72,39 @@
 <td><%=number_with_precision(@attendances_hash['Packhouse'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
+</div>
+
 
 
 <!--  Driver -->
 <% if @attendances_hash['Driver'] %> 
 <div class="media">
 
-<table class='table table-condensed'>
-  <div class="media-body">
+<table  class='table table-condensed'>
+<div class="media-body">
     <table class='table table-hover'>
-
 <thead>
-    <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-</tr>
+ <tr>
+ </tr>
 </thead>
 
-<h4>Αυτοκίνητα</h4>
+<h4>ΑΥΤΟΚΙΝΗΤΑ</h4>
 <tbody>
 <% @attendances_hash['Driver'].each do |attendance|%>
 <tr>
     <td><%=link_to attendance.worker.name,tenant_attendance_path(@tenant,attendance)%></td>
-    <td></td>
-    <td></td>
-<td></td>
-<td></td>
-    <td></td>
     <td><%=attendance.note%></td>
-    <td><%=number_with_precision(attendance.hours_worked_plus_extra_time*attendance.worker.pay_rate,precision:1)%></td>
-    <td><%=attendance.worker.age%></td>
-    <td><%=attendance.worker.pay_rate%></td>
+    <td align='right'><%=number_with_precision(attendance.worker.pay_rate,precision:1)%></td>
 </tr>
 <%end%>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><%=number_with_precision(@attendances_hash['Driver'].sum{|a| a.daily_payable},precision:1)%></td>
-</tr>
 </tbody>
+<td></td>
+<td></td>
+<td align="right"><%=number_with_precision(@attendances_hash['Driver'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
+</div>
+
 
 <!--  Supervisor -->
 <% if @attendances_hash['Field Supervisor'] %> 
@@ -139,33 +126,26 @@
     <td><%=link_to attendance.worker.name,tenant_attendance_path(@tenant,attendance)%></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td><%=attendance.note%></td>
-    <td><%=number_with_precision(attendance.hours_worked_plus_extra_time*attendance.worker.pay_rate,precision:1)%></td>
-    <td><%=attendance.worker.age%></td>
-    <td><%=attendance.worker.pay_rate%></td>
+    <td align='right'><%=number_with_precision(attendance.worker.pay_rate,precision:1)%></td>
 </tr>
 <%end%>
 </tbody>
-
+    <td></td>
+    <td></td>
+    <td></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><%=number_with_precision(@attendances_hash['Field Supervisor'].sum{|a| a.daily_payable},precision:1)%></td>
+<td align="right"><%=number_with_precision(@attendances_hash['Field Supervisor'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
+</div>
+
 
 <!--  Fields -->
 <% if @attendances_hash['Fields'] %> 
 <div class="media">
 
-<table class='table table-condensed'>
+<table align ="left" class='table table-condensed'>
   <div class="media-body">
     <table class='table table-hover'>
 <thead>
@@ -180,26 +160,15 @@
 <tr>
     <td><%=link_to attendance.worker.name,tenant_attendance_path(@tenant,attendance)%></td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><%=attendance.note%></td>
-    <td><%=number_with_precision(attendance.hours_worked_plus_extra_time*attendance.worker.pay_rate,precision:1)%></td>
-    <td><%=attendance.worker.age%></td>
-    <td><%=attendance.worker.pay_rate%></td>
+    <td align="right"><%=attendance.note%></td>
+    <td align="right"><%=number_with_precision(attendance.worker.pay_rate,precision:1)%></td>
 </tr>
 <%end%>
 </tbody>
-
 <td></td>
 <td></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><%=number_with_precision(@attendances_hash['Fields'].sum{|a| a.daily_payable},precision:1)%></td>
+<td align='right'><%=number_with_precision(@attendances_hash['Fields'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
-
+</div>

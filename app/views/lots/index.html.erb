@@ -19,6 +19,7 @@
             <td> 
               <%= link_to lot.lot,tenant_lot_path(@tenant,lot)%>
                <%= lot.weighings.to_a.sum{|l| l.net_weight} %>kg 
+           ( <%= pluralize(lot.weighings.count,'weighing')%>) 
               <%= lot.purchase.details  %>
                <br>
               <strong><%=lot.note%></strong> 
