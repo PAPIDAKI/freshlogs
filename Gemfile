@@ -30,7 +30,7 @@ end
 	
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fogmple_form'
+gem 'simple_form'
 
 #maps
 gem 'geocoder'
