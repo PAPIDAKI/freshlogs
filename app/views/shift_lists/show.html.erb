@@ -16,23 +16,10 @@
 
 <!--PACKHOUSE WORKERS -->
 <% if @attendances_hash['Packhouse'] %> 
-<div class="media">
+<!-- <div class="media">
 
 <table class='table table-condensed'>
-  <div class="media-body">
-    <table class='table table-hover'>
-<thead>
-    <tr>
-    <th>ΟΝΟΜΑ</th>
-    <th>Age</th>
-    <th>pr</th>
-    <th>Ωρες Εργασίας</th>
-    <th>Διαφορές Ωρών</th>
-    <th> Σύνολο Ωρών</th>
-    <th>Σημείωση</th>
-    <th>Ποσό</th>
-</tr>
-</thead>
+  <div class="media-body"> -->
 <h4>PACKHOUSE</h4>
 
 <p>
@@ -46,6 +33,19 @@
 ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances.count*@shift_list.hours_worked,precision:1)%>
 ΑΠΟΥΣΙΕΣ: <%=@non_attendance.count%></strong>
 </p>
+    <table class='media table table-condensed  table-hover'>
+<thead>
+    <tr>
+    <th>ΟΝΟΜΑ</th>
+    <th>Age</th>
+    <th>pr</th>
+    <th>Ωρες Εργασίας</th>
+    <th>Διαφορές Ωρών</th>
+    <th> Σύνολο Ωρών</th>
+    <th>Σημείωση</th>
+    <th>Ποσό</th>
+</tr>
+</thead>
 <tbody>
 <% @attendances_hash['Packhouse'].each do |attendance|%>
 
@@ -72,23 +72,22 @@
 <td><%=number_with_precision(@attendances_hash['Packhouse'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
-</div>
 
 
 
 <!--  Driver -->
 <% if @attendances_hash['Driver'] %> 
-<div class="media">
+<!-- <div class="media">
 
 <table  class='table table-condensed'>
-<div class="media-body">
-    <table class='table table-hover'>
+<div class="media-body"> -->
+<h4>ΑΥΤΟΚΙΝΗΤΑ</h4>
+    <table class='media table table-condensed  table-hover'>
 <thead>
  <tr>
  </tr>
 </thead>
 
-<h4>ΑΥΤΟΚΙΝΗΤΑ</h4>
 <tbody>
 <% @attendances_hash['Driver'].each do |attendance|%>
 <tr>
@@ -103,22 +102,17 @@
 <td align="right"><%=number_with_precision(@attendances_hash['Driver'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
-</div>
 
 
 <!--  Supervisor -->
 <% if @attendances_hash['Field Supervisor'] %> 
-<div class="media">
-
-<table class='table table-condensed'>
-  <div class="media-body">
-    <table class='table table-hover'>
+<h4>FIELD SUPER</h4>
+    <table class='media table table-condensed  table-hover'>
 <thead>
     <tr>
 </tr>
 </thead>
 
-<h4>FIELD SUPER</h4>
 <tbody>
 <% @attendances_hash['Field Supervisor'].each do |attendance|%>
 
@@ -138,22 +132,21 @@
 <td align="right"><%=number_with_precision(@attendances_hash['Field Supervisor'].sum{|a| a.daily_payable},precision:1)%></td>
 </table>
 <%end%>
-</div>
 
 
 <!--  Fields -->
 <% if @attendances_hash['Fields'] %> 
-<div class="media">
+<!--<div class="media">
 
 <table align ="left" class='table table-condensed'>
-  <div class="media-body">
-    <table class='table table-hover'>
+  <div class="media-body"> -->
+<h4>ΕΞΩΤΕΡΙΚΟΙ</h4>
+    <table class='media table table-hover'>
 <thead>
     <tr>
 </tr>
 </thead>
 
-<h4>ΕΞΩΤΕΡΙΚΟΙ</h4>
 <tbody>
 <% @attendances_hash['Fields'].each do |attendance|%>
 
