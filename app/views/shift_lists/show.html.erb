@@ -29,9 +29,13 @@
   <%= @shift_list.end_at.strftime('%H:%M') %>
   ΔΙΑΛΕΙΜΜΑ:<%=number_with_precision(@shift_list.break_time,precision:0)%> λεπτά
 ΩΡΕΣ ΕΡΓΑΣΙΑΣ:<strong><%=number_with_precision(@shift_list.hours_worked,precision:1)%></strong>
-ΠΑΡΟΥΣΙΕΣ:<strong><%=@attendances.count%></strong>
-ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances.count*@shift_list.hours_worked,precision:1)%>
+ΠΑΡΟΥΣΙΕΣ:<strong><%=number_with_precision(@attendances_hash['Packhouse'].count{|a| a.daily_payable},precision:0)%></strong>
+
+ΕΡΓΑΤΩΡΕΣ:<strong><%=number_with_precision(@attendances_hash['Packhouse'].count{|a| a.daily_payable}*@shift_list.hours_worked,precision:0)%></strong>
+
+
 ΑΠΟΥΣΙΕΣ: <%=@non_attendance.count%></strong>
+<%=number_with_precision(@attendances_hash['Packhouse'].count{|a| a.daily_payable},precision:0)%>
 </p>
     <table class='media table table-condensed  table-hover'>
 <thead>
@@ -141,6 +145,7 @@
 <table align ="left" class='table table-condensed'>
   <div class="media-body"> -->
 <h4>ΕΞΩΤΕΡΙΚΟΙ</h4>
+ΠΑΡΟΥΣΙΕΣ:<strong><%=number_with_precision(@attendances_hash['Fields'].count{|a| a.daily_payable},precision:0)%></strong>
     <table class='media table table-hover'>
 <thead>
     <tr>
