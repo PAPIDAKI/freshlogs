@@ -53,7 +53,10 @@ class Lot < ActiveRecord::Base
      Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
  end
 
-  
+def set_kg
+    self.kg=999
+    save
+    end
 
  def worth
   if purchase
