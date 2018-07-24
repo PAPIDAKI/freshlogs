@@ -54,7 +54,7 @@
 <% @attendances_hash['Packhouse'].each do |attendance|%>
 
 <tr>
-<td><%=link_to attendance.worker.name,tenant_attendance_path(@tenant,attendance)%></td>
+<td><%=link_to attendance.worker.name,tenant_worker_path(@tenant,attendance.worker)%></td>
 <td><%=attendance.worker.age%></td>
 <td><%=attendance.worker.pay_rate%></td>
 <td><%=number_with_precision(attendance.shift_list.hours_worked,precision:1)%></td>

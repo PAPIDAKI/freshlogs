@@ -24,8 +24,10 @@ class Worker < ActiveRecord::Base
 	has_many :attendances ,dependent: :destroy 
 	has_many :shift_lists,through: :attendances
 	has_many :crates
-    attr_accessor :age
 
+    attr_accessor :age
+    
+    validates :birthday,presence:true
      # enum kind 
 #     enum kind: [:packer, :assistant,:driver,:field,:supervisor]
 	 # enum for status 

@@ -19,7 +19,7 @@ class ShiftList < ActiveRecord::Base
 	has_many :workgroups,through: :workers
 
 	accepts_nested_attributes_for :attendances
-
+    validates :break_time, presence: true,numericality: { only_integer: true }
 
 
 	scope :fields_lists, -> {where(type:'FieldsList')}

@@ -58,7 +58,8 @@
             <div>
             <%= f.submit 'Save',class:"btn btn-primary"%>
             </br>
-            <%= link_to 'Cancel',tenant_lots_path %>
+            <%= link_to 'Cancel',tenant_lots_path %> | 
+        <%=link_to 'Delete',tenant_lot_path(@tenant,@lot),method: :delete,data:{confirm: 'Are you sure?'}%>   
         </div>
 
   <% end %>
