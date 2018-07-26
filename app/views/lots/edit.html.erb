@@ -1,3 +1,5 @@
 <h3>Editing Lot</h3>
 
 <%= render 'form' %>
+
+         <%= link_to'Delete',tenant_lot_path(@tenant,@lot),method: :delete,data:{confirm:'Are you sure?'}%> 

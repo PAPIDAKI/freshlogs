@@ -24,12 +24,14 @@ class Lot < ActiveRecord::Base
 
   has_many :weighings ,inverse_of: :lot, dependent: :destroy
   accepts_nested_attributes_for :weighings,
-                                  reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
+                                 reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
                                   allow_destroy: true                                 
   after_initialize :set_default_lot, unless: :persisted?
   # before_validation :purchase_default_to_seu_if_necessary
   validates :purchase_id ,presence: true 
-   def set_default_lot
+#after_save :set_kg
+
+def set_default_lot
   	lot_date_time=DateTime.current
   	a_part=lot_date_time.strftime("D%d")
   	b_part=lot_date_time.strftime("%H%M")
@@ -54,9 +56,12 @@ class Lot < ActiveRecord::Base
  end
 
 def set_kg
-    self.kg=999
+  g = self.weighings.to_a.sum{|l| l.net_weight}
+   self.kg=g 
     save
     end
+
+
 
  def worth
   if purchase

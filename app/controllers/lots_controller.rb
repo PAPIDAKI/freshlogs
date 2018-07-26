@@ -1,8 +1,6 @@
 class LotsController < ApplicationController
   before_action :set_tenant
   before_action :set_lot , only: [:show, :edit, :update, :destroy]
-  # before_action :purchase_default_to_seu_if_necessary,only:[:update,:edit]
-  #after_initialize :set_default_lot 
 
   def index
     @lots = Lot.current.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
@@ -53,7 +51,8 @@ class LotsController < ApplicationController
         end
     respond_to do |format|
       if @lot.save
-        format.html { redirect_to tenant_lots_path(@tenant,@lot), notice: 'Lot was successfully created.' }
+       # @lot.set_kg
+        format.html { redirect_to tenant_lots_path(@tenant), notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: @lot }
       else
         format.html { render :new }

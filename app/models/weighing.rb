@@ -19,6 +19,7 @@ class Weighing < ActiveRecord::Base
 	after_initialize :set_defaults
   before_validation :default_to_zero_if_necessary
 
+   
   def net_weight
   mixed_weight-(crates*crate_weight)-(palets*palet_weight)
   end	
