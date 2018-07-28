@@ -104,7 +104,7 @@ class LotsController < ApplicationController
      # params.require(:lot).permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
       params
       .require(:lot)
-      .permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes: [ :id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:destroy])
+      .permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes: [ :id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
       #Weighing.attribute_names.map(&:to_sym).push(:destroy))
     end
 

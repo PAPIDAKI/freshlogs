@@ -22,10 +22,12 @@ class Lot < ActiveRecord::Base
   # accepts_nested_attributes_for :palets
   has_many :palets, through: :palet_line_items
 
-  has_many :weighings ,inverse_of: :lot, dependent: :destroy
-  accepts_nested_attributes_for :weighings,
-                                 reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
-                                  allow_destroy: true                                 
+  has_many :weighings ,inverse_of: :lot
+  #, dependent: :destroy
+  accepts_nested_attributes_for :weighings,reject_if: :all_blank,allow_destroy: true
+                                 
+                                 #reject_if: proc { |attributes| attributes.any? { |key, value| key == '_destroy' || value.blank? } },
+#                                  allow_destroy: true                                 
   after_initialize :set_default_lot, unless: :persisted?
   # before_validation :purchase_default_to_seu_if_necessary
   validates :purchase_id ,presence: true 
