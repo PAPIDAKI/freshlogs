@@ -60,9 +60,11 @@ def set_default_lot
 def set_kg
   g = self.weighings.to_a.sum{|l| l.net_weight}
    self.kg=g 
-    save
-    end
-
+end
+def set_crates
+   c= self.weighings.to_a.sum{|l| l.crates}
+   self.crates=c
+end
 
 
  def worth
