@@ -49,9 +49,10 @@ class LotsController < ApplicationController
         @lot.weighings.each do |w|
           w.tenant_id = @tenant.id
         end
+        @lot.set_kg
+        @lot.set_crates
     respond_to do |format|
       if @lot.save
-       # @lot.set_kg
         format.html { redirect_to tenant_lots_path(@tenant), notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: @lot }
       else
