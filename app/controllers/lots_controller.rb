@@ -7,6 +7,10 @@ class LotsController < ApplicationController
    @lots_kgs=@lots.sum(:kg) 
    @lots=@lots.to_a
    @daily_lots=@lots.group_by {|t| t.created_at.beginning_of_day}
+  
+  @weighings = Weighing.current.where(tenant_id:params[:tenant_id])
+   @daily_weighings=@weighings.group_by{|w| w.created_at.beginning_of_day}
+   @daily_weighings.to_a.sum{|w| w}
   end
 
   # GET /lots/1
@@ -71,6 +75,7 @@ class LotsController < ApplicationController
         end
     respond_to do |format|
       if @lot.update(lot_params)
+        @lot.set_kg
         format.html { redirect_to tenant_lots_path(@tenant), notice: 'Lot was successfully updated.' }
         format.json { render :show, status: :ok, location: @lot }
       else

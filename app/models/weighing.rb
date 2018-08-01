@@ -33,6 +33,10 @@ class Weighing < ActiveRecord::Base
 #end
 
     
+ def self.current
+    where('created_at BETWEEN ? AND ?',
+     Time.zone.now.beginning_of_year,Time.zone.now.end_of_year)
+ end
 
 private
   def default_to_zero_if_necessary
