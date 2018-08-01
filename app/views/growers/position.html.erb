@@ -24,8 +24,8 @@
 		    <td><%=lot.created_at.strftime("%d-%m-%Y")%></td>
 		    <td><%=link_to lot.lot,edit_tenant_lot_path(@tenant,lot)%></td>
 		    <td><%=lot.purchase.pmu.location%></td>
-            <td><%=lot.set_crates%></td>
-            <td><%=number_with_precision(lot.set_kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
+            <td><%=lot.crates%></td>
+            <td><%=number_with_precision(lot.kg,precision: 0 ,separator:',',delimiter:'.')%> kg  </td><td>x</td>
             <td><%=lot.purchase.price%> </td><td>=</td>
             <td><%=number_with_precision(lot.worth,precision: 2 ,separator:',',delimiter:'.')%> euro</td>
             <td><%=lot.note%></td>
