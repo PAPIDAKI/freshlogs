@@ -5,14 +5,15 @@ class GrowersController < ApplicationController
   # GET /growers
   # GET /growers.json
   def index
-    @growers = Grower.where(tenant_id:params[:tenant_id]).order(name: :asc)
+    @growers = Grower.all.includes(:lots,:purchases,:pmus).where(tenant_id:params[:tenant_id]).order(name: :asc)
+#   @growers =Grower.all.where(tenant_id:params[:tenant_id]).order(name: :asc)
   end
 
   def position
     @grower=Grower.find(params[:grower_id])
     case params[:scope]
     when 'last_year'
-      @grower_lots=@grower.last_year_lots.order(created_at: :desc)
+      @grower_lots=@grower.includes(:lots).last_year_lots.order(created_at: :desc)
      else 
       @grower_lots=@grower.current_year_lots.order(created_at: :desc)
     end

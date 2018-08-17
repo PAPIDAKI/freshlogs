@@ -3,12 +3,11 @@ class LotsController < ApplicationController
   before_action :set_lot , only: [:show, :edit, :update, :destroy]
 
   def index
-    @lots = Lot.current.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
-   @lots_kgs=@lots.sum(:kg) 
+    @lots = Lot.includes(:weighings,:purchase).current.where(tenant_id:params[:tenant_id]).order(created_at: :desc)
    @lots=@lots.to_a
    @daily_lots=@lots.group_by {|t| t.created_at.beginning_of_day}
   
-  @weighings = Weighing.current.where(tenant_id:params[:tenant_id])
+  @weighings = Weighing.includes(:lot).current.where(tenant_id:params[:tenant_id])
    @daily_weighings=@weighings.group_by{|w| w.created_at.beginning_of_day}
    @daily_weighings.to_a.sum{|w| w}
   end

@@ -21,7 +21,7 @@
 
 class Pmu < ActiveRecord::Base
   
-  belongs_to :grower
+  belongs_to :grower 
   has_many :purchases,dependent: :destroy
   has_many :crates
   has_many :drivers,through: :crates

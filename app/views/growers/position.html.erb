@@ -42,7 +42,7 @@
             <tr>
             <td></td><td></td><td>Analysis:</td>
              <td></td><td></td> <td></td><td></td><td></td>
-            <td><strong>Amount goes in here </strong></td><td></td>
+            <td><strong><%= @grower.purchases.where.not(analysis: nil).last.analysis %></strong></td><td></td>
             </tr> 
 
              <tr>

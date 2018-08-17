@@ -5,7 +5,7 @@ class PurchasesController < ApplicationController
   # GET /purchases.json
   def index
     # @purchases = Purchase.where(tenant_id:params[:tenant_id]).order(created_at: :DESC)\
-    @purchases=Purchase.where('created_at BETWEEN ? AND ?',
+    @purchases=Purchase.all.where('created_at BETWEEN ? AND ?',
      Time.zone.now.beginning_of_year,Time.zone.now.end_of_year).order(created_at: :desc)
   end
 
