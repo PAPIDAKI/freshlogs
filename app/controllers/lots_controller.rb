@@ -12,11 +12,8 @@ class LotsController < ApplicationController
    @daily_weighings.to_a.sum{|w| w}
   end
 
-  # GET /lots/1
-  # GET /lots/1.json
   def show
     @pmu=@lot.purchase.pmu
-    # @pmu=Pmu.find(params[:id])
     @hash = Gmaps4rails.build_markers(@pmu) do |pmu, marker|
       marker.lat pmu.latitude
       marker.lng pmu.longitude
@@ -25,14 +22,12 @@ class LotsController < ApplicationController
 
    def cushow
     @pmu=@lot.purchase.pmu
-    # @pmu=Pmu.find(params[:id])
     @hash = Gmaps4rails.build_markers(@pmu) do |pmu, marker|
       marker.lat pmu.latitude
       marker.lng pmu.longitude
     end
    end
 
-  # GET /lots/new
   def new
     @lot = Lot.new
     @weighing=@lot.weighings.new
@@ -40,12 +35,10 @@ class LotsController < ApplicationController
     @weighing.tenant_id=@tenant.id
   end
 
-  # GET /lots/1/edit
   def edit
         @lot.tenant_id=@tenant.id
   end
 
-  # POST /lots
   def create
     @lot = Lot.new(lot_params)
     @lot.tenant_id=@tenant.id
@@ -65,8 +58,6 @@ class LotsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lots/1
-  # PATCH/PUT /lots/1.json
   def update
         @lot.tenant_id=params[:tenant_id]
         @lot.weighings.each do |w|
@@ -84,8 +75,6 @@ class LotsController < ApplicationController
     end
   end
 
-  # DELETE /lots/1
-  # DELETE /lots/1.json
   def destroy
     @lot.destroy
     respond_to do |format|
@@ -98,30 +87,18 @@ class LotsController < ApplicationController
    def set_tenant
       @tenant=Tenant.find(params[:tenant_id])
    end
-    # Use callbacks to share common setup or constraints between actions.
     def set_lot
       @lot = Lot.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
-      # params.fetch(:lot, {})
-     # params.require(:lot).permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes:[:id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
       params
       .require(:lot)
       .permit(:lot,:kg,:plastics,:crates,:tenant_id,:purchase_id,:note,weighings_attributes: [ :id,:tenant_id,:lot_id,:mixed_weight,:crates,:crate_weight,:palets,:palet_weight,:_destroy])
-      #Weighing.attribute_names.map(&:to_sym).push(:destroy))
     end
 
     def verify_tenant
-    #   unless params[:tenant_id]==Tenant.current_tenant_id.to_s
-    #     redirect_to :root ,
-    #     flash:{error: 'You are not authorized to access any organization other than your own'}
-    #   end
     end
 
-   #  def purchase_default_to_seu_if_necessary
-   # purchase_id = 122 if purchase_id.blank?
-   #  end 
 
 end
